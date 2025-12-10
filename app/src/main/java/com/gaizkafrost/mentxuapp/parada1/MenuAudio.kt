@@ -1,5 +1,6 @@
 package com.gaizkafrost.mentxuapp.parada1
 
+import android.graphics.drawable.Animatable
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +10,9 @@ import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.load
 import com.gaizkafrost.mentxuapp.R
 
@@ -18,6 +22,7 @@ class MenuAudio : AppCompatActivity() {
     private lateinit var playPauseButton: Button
     private lateinit var audioSeekBar: SeekBar
     private lateinit var handler: Handler
+    private var gifAnimatable: Animatable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +30,27 @@ class MenuAudio : AppCompatActivity() {
 
         // --- 1. Cargar el GIF animado ---
         val gifImageView: ImageView = findViewById(R.id.gifMentxu)
-        // Asegúrate de tener un archivo 'mentxu_habla.gif' en res/drawable
-        gifImageView.load(R.drawable.mentxu_habla)
+
+        // Crear un ImageLoader que soporte GIFs
+        val imageLoader = ImageLoader.Builder(this)
+            .components {
+                if (android.os.Build.VERSION.SDK_INT >= 28) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
+            }
+            .build()
+
+        // Cargar el GIF y obtener el control de la animación
+        gifImageView.load(R.drawable.mentxu_habla, imageLoader) {
+            listener(onSuccess = { _, result ->
+                // Guarda la animación para poder controlarla
+                gifAnimatable = result.drawable as? Animatable
+                // Inicia el GIF en estado pausado
+                gifAnimatable?.stop()
+            })
+        }
 
         // --- 2. Inicializar componentes de la UI ---
         playPauseButton = findViewById(R.id.playPauseButton)
@@ -34,9 +58,16 @@ class MenuAudio : AppCompatActivity() {
         val continueButton: Button = findViewById(R.id.continueButton)
 
         // --- 3. Preparar el reproductor de audio ---
-        mediaPlayer = MediaPlayer.create(this, R.raw.audioa) // Cambia 'sonido_parada_1' por el nombre de tu audio
+        mediaPlayer = MediaPlayer.create(this, R.raw.audioa)
         mediaPlayer?.setOnPreparedListener {
             audioSeekBar.max = it.duration
+        }
+
+        // Listener para cuando el audio termina
+        mediaPlayer?.setOnCompletionListener {
+            playPauseButton.text = "▶"
+            gifAnimatable?.stop()
+            audioSeekBar.progress = 0
         }
 
         handler = Handler(Looper.getMainLooper())
@@ -57,6 +88,7 @@ class MenuAudio : AppCompatActivity() {
                     mediaPlayer?.seekTo(progress)
                 }
             }
+
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
@@ -67,9 +99,11 @@ class MenuAudio : AppCompatActivity() {
             if (it.isPlaying) {
                 it.pause()
                 playPauseButton.text = "▶"
+                gifAnimatable?.stop() // Detiene la animación del GIF
             } else {
                 it.start()
                 playPauseButton.text = "❚❚"
+                gifAnimatable?.start() // Inicia la animación del GIF
                 updateSeekBar()
             }
         }
@@ -90,5 +124,6 @@ class MenuAudio : AppCompatActivity() {
         mediaPlayer?.release()
         mediaPlayer = null
         handler.removeCallbacksAndMessages(null)
+        gifAnimatable?.stop()
     }
 }
