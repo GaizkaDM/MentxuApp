@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.gaizkafrost.mentxuapp"
-    compileSdk = 36
+    compileSdk =36
 
     defaultConfig {
         applicationId = "com.gaizkafrost.mentxuapp"
@@ -36,12 +36,15 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // ✅ CORREGIDO: Se usa la referencia del catálogo de versiones 'libs'.
+    implementation(libs.play.services.maps)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
