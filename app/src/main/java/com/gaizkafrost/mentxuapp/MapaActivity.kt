@@ -6,6 +6,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -36,9 +37,25 @@ class MapaActivity : AppCompatActivity(),OnMapReadyCallback {
             "“Monumento niños y niñas de la guerra” eskultura" to LatLng(43.330500, -3.029917)
         )
 
-        // Añadir los marcadores al mapa
-        locations.forEach { (title, latLng) ->
-            mMap.addMarker(MarkerOptions().position(latLng).title(title))
+        // Lista de colores para los marcadores
+        val colors = listOf(
+            BitmapDescriptorFactory.HUE_RED,
+            BitmapDescriptorFactory.HUE_ORANGE,
+            BitmapDescriptorFactory.HUE_YELLOW,
+            BitmapDescriptorFactory.HUE_GREEN,
+            BitmapDescriptorFactory.HUE_CYAN,
+            BitmapDescriptorFactory.HUE_AZURE
+        )
+
+        // Añadir los marcadores al mapa con colores diferentes
+        locations.forEachIndexed { index, (title, latLng) ->
+            val markerColor = colors[index % colors.size] // Cicla a través de los colores
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(latLng)
+                    .title(title)
+                    .icon(BitmapDescriptorFactory.defaultMarker(markerColor))
+            )
         }
 
         // Centrar la cámara en un punto intermedio de Santurtzi y ajustar el zoom
