@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MentxuApp</string>
+    <string name="descripcion_mentxu_hablando" />
 </resources>
