@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
  * Clase Presentacion que representa la actividad inicial de la aplicación.
  * Permite al usuario introducir sus datos y acceder a la actividad Mapa.
  *
- * @author Intissar, Aketza (Refactorizado)
- * @version 1.7
+ * @author Diego
+ * @version 1.0
  */
 class Presentacion : AppCompatActivity() {
 
@@ -58,15 +58,6 @@ class Presentacion : AppCompatActivity() {
                 val apellido = editTextApellido.text.toString().trim()
 
                 if (nombre.isNotEmpty() && apellido.isNotEmpty()) {
-                    // ✅ CAMBIO: Se comenta la navegación a 'Mapa' para evitar el error.
-                    // Cuando crees la actividad 'Mapa.kt', solo tienes que descomentar estas líneas.
-                    /*
-                    val intent = Intent(this, Mapa::class.java).apply {
-                        putExtra("nombre", nombre)
-                        putExtra("apellido", apellido)
-                    }
-                    startActivity(intent)
-                    */
 
                     // Mostramos un mensaje temporal para confirmar que funciona
                     Toast.makeText(this, "Usuario registrado: $nombre $apellido", Toast.LENGTH_LONG).show()
