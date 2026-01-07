@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
  * Clase Presentacion que representa la actividad inicial de la aplicación.
  * Permite al usuario introducir sus datos y acceder a la actividad Mapa.
  *
- * @author Intissar, Aketza (Refactorizado)
- * @version 1.7
+ * @author Diego
+ * @version 1.0
  */
 class Presentacion : AppCompatActivity() {
 

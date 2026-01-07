@@ -28,7 +28,7 @@
             android:value="AIzaSyDo0Tm_jeeUarZlxx-DVXJ3AFPsLrjJrMc" />
 
         <activity
-            android:name=".parada1.MenuAudio"
+            android:name=".Parada1.MenuAudio"
             android:exported="false" />
         <activity
             android:name=".Presentacion"
@@ -38,10 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <activity android:name=".parada1.Huevo_Activity"
+            <activity android:name=".Parada1.Huevo_Activity"
             android:exported="false" />
         <activity
-            android:name="com.gaizkafrost.mentxuapp.MapaActivity"
+            android:name="com.gaizkafrost.mentxuapp.Mapa.MapaActivity"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

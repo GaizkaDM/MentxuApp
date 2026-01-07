@@ -1,4 +1,4 @@
-package com.gaizkafrost.mentxuapp.parada1
+package com.gaizkafrost.mentxuapp.Parada1
 
 import android.content.Intent
 import android.graphics.drawable.Animatable
