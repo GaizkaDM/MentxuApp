@@ -1,5 +1,6 @@
 package com.gaizkafrost.mentxuapp.parada1
 
+import android.content.Intent
 import android.graphics.drawable.Animatable
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -79,6 +80,9 @@ class MenuAudio : AppCompatActivity() {
 
         continueButton.setOnClickListener {
             Toast.makeText(this, "Yendo a la siguiente actividad...", Toast.LENGTH_SHORT).show()
+            Intent(this, Huevo_Activity::class.java).also {
+                startActivity(it)
+            }
             finish()
         }
 
