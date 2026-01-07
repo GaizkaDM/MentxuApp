@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">MentxuApp</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="idioma">Idioma</string>
+    <string name="credenciales">Credenciales</string>
+    <string name="ayudaTexto">Ongi etorri aplikazioaren aurkezpenera. Sakatu erregistratzeko botoia jolasten hasteko. Gozatu!</string>
+    <string name="nombre">Nombre:</string>
+    <string name="apellido">Apellido:</string>
+    <string name="dialog_title">Zure datuak sartu</string>
+    <string name="dialog_comenzar">Hasi</string>
+    <string name="dialog_cancelar">Atzera</string>
+    <string name="desarrolladores">Garatzaileak:\n</string>
+    <string name="clientes">Bezero: \n</string>
+    <string name="error_campos_vacios">Mezedez, zure datuak bete.</string>
+    <string name="ok">OK</string>
     <string name="descripcion_mentxu_hablando" />
 </resources>
