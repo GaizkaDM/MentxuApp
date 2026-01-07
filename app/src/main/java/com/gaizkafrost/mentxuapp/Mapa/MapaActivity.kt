@@ -1,7 +1,8 @@
-package com.gaizkafrost.mentxuapp
+package com.gaizkafrost.mentxuapp.Mapa
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gaizkafrost.mentxuapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -10,7 +11,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapaActivity : AppCompatActivity(),OnMapReadyCallback {
+class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
