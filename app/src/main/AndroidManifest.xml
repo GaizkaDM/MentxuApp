@@ -37,7 +37,8 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            android:name=".parada1.Huevo_Activity"
+        </activity>
+            <activity android:name=".parada1.Huevo_Activity"
             android:exported="false" />
         <activity
             android:name="com.gaizkafrost.mentxuapp.MapaActivity"
@@ -48,10 +49,6 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
-
     </application>
 
 </manifest>
