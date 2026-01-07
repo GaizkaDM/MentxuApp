@@ -21,14 +21,14 @@
             android:value="AIzaSyDo0Tm_jeeUarZlxx-DVXJ3AFPsLrjJrMc" />
 
         <activity
-            android:name=".MapaActivity"
+            android:name=".parada1.MenuAudio"
             android:exported="false" />
 
         <activity
             android:name=".parada1.Huevo_Activity"
             android:exported="false" />
         <activity
-            android:name=".parada1.MenuAudio"
+            android:name="com.gaizkafrost.mentxuapp.MapaActivity"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
