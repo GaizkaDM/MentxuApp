@@ -33,21 +33,23 @@
         <activity
             android:name=".Presentacion"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
             <activity android:name=".parada1.Huevo_Activity"
             android:exported="false" />
         <activity
             android:name="com.gaizkafrost.mentxuapp.MapaActivity"
             android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        </activity>
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity
+            android:name=".parada5.FishingProcessActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:label="Arrantzaren prozesua">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
