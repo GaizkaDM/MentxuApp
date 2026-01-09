@@ -1,10 +1,14 @@
 package com.gaizkafrost.mentxuapp.Mapa
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.gaizkafrost.mentxuapp.parada1.Huevo_Activity
-import com.gaizkafrost.mentxuapp.parada1.MenuAudio
+import com.gaizkafrost.mentxuapp.EstadoParada
+import com.gaizkafrost.mentxuapp.Parada
+import com.gaizkafrost.mentxuapp.Parada1.Huevo_Activity
+import com.gaizkafrost.mentxuapp.Parada1.MenuAudio
+import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
