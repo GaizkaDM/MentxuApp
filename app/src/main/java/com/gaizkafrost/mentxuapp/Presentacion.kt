@@ -3,6 +3,8 @@ package com.gaizkafrost.mentxuapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -107,5 +109,28 @@ class Presentacion : AppCompatActivity() {
             .setMessage(mensaje)
             .setPositiveButton(getString(R.string.ok)) { d, _ -> d.dismiss() }
             .show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        // Ocultar la opción "Mapa" en la pantalla de registro/presentación
+        menu?.findItem(R.id.action_mapa)?.isVisible = false
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_mapa -> {
+                val intent = Intent(this, MapaActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                true
+            }
+            R.id.action_irten -> {
+                finishAffinity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

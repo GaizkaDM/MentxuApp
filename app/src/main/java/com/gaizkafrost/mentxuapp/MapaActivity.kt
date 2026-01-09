@@ -2,6 +2,9 @@ package com.gaizkafrost.mentxuapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
+import android.content.Intent
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -61,5 +64,27 @@ class MapaActivity : AppCompatActivity(),OnMapReadyCallback {
         // Centrar la cámara en un punto intermedio de Santurtzi y ajustar el zoom
         val santurtzi = LatLng(43.329, -3.029)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santurtzi, 15f))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_mapa -> {
+                // Regresar al mapa (reiniciar actividad o simplemente cerrar si ya estamos en ella)
+                val intent = Intent(this, MapaActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                true
+            }
+            R.id.action_irten -> {
+                finishAffinity() // Cierra la aplicación por completo
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
