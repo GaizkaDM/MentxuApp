@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 
 /**
  * Clase Presentacion que representa la actividad inicial de la aplicación.
