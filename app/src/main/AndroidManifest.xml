@@ -41,7 +41,8 @@
         <activity
             android:name=".Parada1.MenuAudio"
             android:exported="false" />
-        <activity android:name=".Parada1.SopaDeLetrasActivity"
+        <activity
+            android:name=".Parada1.SopaDeLetrasActivity"
             android:exported="false" />
         <activity
             android:name=".Parada1.Huevo_Activity"
@@ -59,6 +60,20 @@
         <activity
             android:name=".Parada3.Relacionar"
             android:exported="false" />
+
+        <!-- Módulo Parada 5 -->
+        <activity
+            android:name=".Parada5.FishingProcessActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Arrantzaren prozesua" />
+
+        <!-- Módulo Parada 6 -->
+        <activity
+            android:name=".Parada6.Parada6Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Parada 6: Puzlea eta Test-a" />
 
     </application>
 

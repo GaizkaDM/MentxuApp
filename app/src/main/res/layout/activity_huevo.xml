@@ -5,16 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Parada1.Huevo_Activity">
-
-    <!-- 1. La imagen de fondo donde está escondido el huevo. -->
-    <!-- Actúa como el recuadro del juego. -->
-
-    <!-- 2. La zona invisible que actúa como el área clicable del huevo. -->
-    <!-- La posicionamos RELATIVA A LA IMAGEN (imagenFondo). -->
-
-    <!-- 3. (Opcional) La imagen del huevo que aparecerá cuando lo encuentres. -->
-    <!-- La posicionamos exactamente sobre la zona clicable. -->
+    tools:context=".parada1.Huevo_Activity">
 
     <ImageView
         android:id="@+id/imagenFondo"
