@@ -12,8 +12,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import android.view.Menu
 import android.view.MenuItem
-import android.content.Intent
-import com.gaizkafrost.mentxuapp.MapaActivity
+import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import androidx.appcompat.app.AppCompatActivity
 import coil.ImageLoader
 import coil.decode.GifDecoder

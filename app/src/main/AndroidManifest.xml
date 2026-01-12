@@ -22,9 +22,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDo0Tm_jeeUarZlxx-DVXJ3AFPsLrjJrMc" />
 
-        <activity
-            android:name=".Parada1.MenuAudio"
-            android:exported="false" />
         <!-- Actividad Principal (Punto de entrada) -->
         <activity
             android:name=".Presentacion"
@@ -44,7 +41,8 @@
         <activity
             android:name=".Parada1.MenuAudio"
             android:exported="false" />
-        <activity android:name=".Parada1.SopaDeLetrasActivity"
+        <activity
+            android:name=".Parada1.SopaDeLetrasActivity"
             android:exported="false" />
         <activity
             android:name=".Parada1.Huevo_Activity"
@@ -58,26 +56,20 @@
             android:name=".Parada3.Relacionar"
             android:exported="false" />
 
-            android:name="com.gaizkafrost.mentxuapp.MapaActivity"
-            android:exported="true" >
-        </activity>
-
+        <!-- Módulo Parada 5 -->
         <activity
             android:name=".Parada5.FishingProcessActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:label="Arrantzaren prozesua" />
 
+        <!-- Módulo Parada 6 -->
         <activity
             android:name=".Parada6.Parada6Activity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:label="Parada 6: Puzlea eta Test-a">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="Parada 6: Puzlea eta Test-a" />
+
     </application>
 
 </manifest>
