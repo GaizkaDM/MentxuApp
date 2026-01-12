@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_app"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Parada2.DiferenciasActivity"> <!-- Añadido para mejor soporte del editor -->
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/titulo_diferencias"
+        android:textColor="@color/texto_principal"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="Encuentra las diferencias" /> <!-- Añadido para previsualización -->
+
+    <!-- Instrucciones -->
+    <TextView
+        android:id="@+id/tvInstrucciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="@string/instrucciones_diferencias"
+        android:textColor="@color/texto_secundario"
+        android:textSize="14sp"
+        tools:text="Encuentra las 7 diferencias entre las dos imágenes. Toca en la imagen de la derecha para marcarlas." /> <!-- Añadido para previsualización -->
+
+    <!-- Contador de diferencias -->
+    <TextView
+        android:id="@+id/tvContadorDiferencias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="@string/contador_diferencias_inicio"
+        android:textColor="@color/rojo_activo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Diferencias encontradas: 0/7" /> <!-- Añadido para previsualización -->
+
+    <!-- Vista del juego de diferencias -->
+    <com.gaizkafrost.mentxuapp.Parada2.DiferenciasView
+        android:id="@+id/diferenciasView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
+
+    <!-- Botón de ayuda -->
+    <Button
+        android:id="@+id/btnAyuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/azul_secundario"
+        android:text="@string/boton_pista"
+        tools:text="Pista" /> <!-- Añadido para previsualización -->
+
+</LinearLayout>
