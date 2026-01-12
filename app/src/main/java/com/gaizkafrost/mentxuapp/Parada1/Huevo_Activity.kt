@@ -1,5 +1,6 @@
 package com.gaizkafrost.mentxuapp.Parada1
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
@@ -64,6 +65,13 @@ class Huevo_Activity : AppCompatActivity() {
         findViewById<View>(R.id.zonaClicableHuevo).setOnClickListener(null)
         findViewById<ImageView>(R.id.imagenFondo).setOnClickListener(null)
 
-
+        // Opcional: Cerrar la actividad después de unos segundos para ir a la sopa de letras
+        huevoEncontrado.postDelayed({
+            // Lanzar la sopa de letras después de encontrar el huevo
+            val intent = Intent(this, SopaDeLetrasActivity::class.java)
+            intent.putExtra("ID_PARADA", idParadaActual)
+            startActivity(intent)
+            finish() // Cierra esta actividad
+        }, 2000) // 2000 milisegundos = 2 segundos
     }
 }

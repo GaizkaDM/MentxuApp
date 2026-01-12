@@ -41,6 +41,8 @@
         <activity
             android:name=".Parada1.MenuAudio"
             android:exported="false" />
+        <activity android:name=".Parada1.SopaDeLetrasActivity"
+            android:exported="false" />
         <activity
             android:name=".Parada1.Huevo_Activity"
             android:exported="false" />

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HIZKI-SOPA"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Vista de la sopa de letras -->
+    <com.gaizkafrost.mentxuapp.Parada1.SopaDeLetrasView
+        android:id="@+id/sopaDeLetrasView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F5F5F5"
+        android:padding="4dp"/>
+
+    <!-- Texto "Palabras a Encontrar:" -->
+    <TextView
+        android:id="@+id/tvPalabrasLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Palabras a Encontrar:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Lista de palabras en 3 columnas -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3">
+
+        <!-- Columna 1 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvArrautza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ARRAUTZA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvBiziduna"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BIZIDUNA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvHegaztia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HEGAZTIA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+        </LinearLayout>
+
+        <!-- Columna 2 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvHegoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HEGOA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvKaioa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KAIOA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvLuma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LUMA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvMokoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MOKOA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+        </LinearLayout>
+
+        <!-- Columna 3 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvMorea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MOREA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvObiparoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OBIPAROA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvUdala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UDALA"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
