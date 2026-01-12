@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/Fondo"
+    tools:context=".Parada3.Relacionar">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gVer1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gVer2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.45"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gVer3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.55"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gVer4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.9"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gHor1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gHor2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.9"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Contenedor horizontal para imágenes -->
+    <LinearLayout
+        android:id="@+id/logos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.35"
+        android:gravity="left"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/gHor1"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="@id/gVer1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Deskribapena1"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deskribapena1"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/Deskribapena2"
+        app:layout_constraintEnd_toStartOf="@+id/gVer2"
+        app:layout_constraintStart_toStartOf="@+id/gVer1"
+        app:layout_constraintTop_toTopOf="@+id/gHor1" />
+
+    <TextView
+        android:id="@+id/Deskribapena2"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deskribapena2"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/Deskribapena3"
+        app:layout_constraintEnd_toStartOf="@+id/gVer2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/gVer1"
+        app:layout_constraintTop_toBottomOf="@+id/Deskribapena1" />
+
+    <TextView
+        android:id="@+id/Deskribapena3"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deskribapena3"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/Deskribapena4"
+        app:layout_constraintEnd_toStartOf="@+id/gVer2"
+        app:layout_constraintStart_toStartOf="@+id/gVer1"
+        app:layout_constraintTop_toBottomOf="@+id/Deskribapena2" />
+
+    <TextView
+        android:id="@+id/Deskribapena4"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deskribapena4"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/Deskribapena5"
+        app:layout_constraintEnd_toStartOf="@+id/gVer2"
+        app:layout_constraintStart_toStartOf="@+id/gVer1"
+        app:layout_constraintTop_toBottomOf="@+id/Deskribapena3" />
+
+    <TextView
+        android:id="@+id/Deskribapena5"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deskribapena5"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/Deskribapena6"
+        app:layout_constraintEnd_toStartOf="@+id/gVer2"
+        app:layout_constraintStart_toStartOf="@+id/gVer1"
+        app:layout_constraintTop_toBottomOf="@+id/Deskribapena4" />
+
+    <TextView
+        android:id="@+id/Deskribapena6"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deskribapena6"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/Deskribapena7"
+        app:layout_constraintEnd_toStartOf="@+id/gVer2"
+        app:layout_constraintStart_toStartOf="@+id/gVer1"
+        app:layout_constraintTop_toBottomOf="@+id/Deskribapena5" />
+
+    <TextView
+        android:id="@+id/Deskribapena7"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/deskribapena7"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/gHor2"
+        app:layout_constraintEnd_toStartOf="@+id/gVer2"
+        app:layout_constraintStart_toStartOf="@+id/gVer1"
+        app:layout_constraintTop_toBottomOf="@+id/Deskribapena6" />
+
+    <TextView
+        android:id="@+id/objeto1"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/objeto1"
+        app:layout_constraintEnd_toStartOf="@+id/gVer4"
+        app:layout_constraintStart_toStartOf="@+id/gVer3"
+        app:layout_constraintBottom_toTopOf="@id/objeto2"
+        app:layout_constraintTop_toTopOf="@+id/gHor1" />
+
+    <TextView
+        android:id="@+id/objeto2"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/objeto2"
+        app:layout_constraintEnd_toStartOf="@+id/gVer4"
+        app:layout_constraintBottom_toTopOf="@id/objeto3"
+        app:layout_constraintStart_toStartOf="@+id/gVer3"
+        app:layout_constraintTop_toBottomOf="@id/objeto1" />
+
+    <TextView
+        android:id="@+id/objeto3"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/objeto3"
+        app:layout_constraintEnd_toStartOf="@+id/gVer4"
+        app:layout_constraintBottom_toTopOf="@id/objeto4"
+        app:layout_constraintStart_toStartOf="@+id/gVer3"
+        app:layout_constraintTop_toBottomOf="@id/objeto2" />
+
+    <TextView
+        android:id="@+id/objeto4"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/objeto4"
+        app:layout_constraintEnd_toStartOf="@+id/gVer4"
+        app:layout_constraintBottom_toTopOf="@id/objeto5"
+        app:layout_constraintStart_toStartOf="@+id/gVer3"
+        app:layout_constraintTop_toBottomOf="@id/objeto3" />
+
+    <TextView
+        android:id="@+id/objeto5"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/objeto5"
+        app:layout_constraintEnd_toStartOf="@+id/gVer4"
+        app:layout_constraintBottom_toTopOf="@id/objeto6"
+        app:layout_constraintStart_toStartOf="@+id/gVer3"
+        app:layout_constraintTop_toBottomOf="@id/objeto4" />
+    
+    <TextView
+        android:id="@+id/objeto6"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/objeto6"
+        app:layout_constraintEnd_toStartOf="@+id/gVer4"
+        app:layout_constraintBottom_toTopOf="@id/objeto7"
+        app:layout_constraintStart_toStartOf="@+id/gVer3"
+        app:layout_constraintTop_toBottomOf="@id/objeto5" />
+
+    <TextView
+        android:id="@+id/objeto7"
+        style="@style/Textos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/gHor2"
+        android:text="@string/objeto7"
+        app:layout_constraintEnd_toStartOf="@+id/gVer4"
+        app:layout_constraintStart_toStartOf="@+id/gVer3"
+        app:layout_constraintTop_toBottomOf="@id/objeto6" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

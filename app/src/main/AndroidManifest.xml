@@ -16,13 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MentxuApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Parada3.Relacionar"
+            android:exported="false" />
         <!-- ✅ CAMBIO APLICADO AQUÍ -->
         <!--
             Se ha añadido 'android:exported="true"' a la actividad 'Presentacion'.
             Es obligatorio para la actividad principal que se lanza al iniciar la app.
         -->
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDo0Tm_jeeUarZlxx-DVXJ3AFPsLrjJrMc" />
@@ -35,19 +36,21 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <activity android:name=".Parada1.Huevo_Activity"
+        <activity
+            android:name=".Parada1.Huevo_Activity"
             android:exported="false" />
         <activity
-            android:name="com.gaizkafrost.mentxuapp.Mapa.MapaActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:name=".Mapa.MapaActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
