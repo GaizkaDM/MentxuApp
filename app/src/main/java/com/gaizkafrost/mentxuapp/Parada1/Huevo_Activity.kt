@@ -64,9 +64,6 @@ class Huevo_Activity : AppCompatActivity() {
         findViewById<View>(R.id.zonaClicableHuevo).setOnClickListener(null)
         findViewById<ImageView>(R.id.imagenFondo).setOnClickListener(null)
 
-        // Opcional: Cerrar la actividad después de unos segundos para volver al mapa
-        huevoEncontrado.postDelayed({
-            finish() // Cierra esta actividad y vuelve a MapaActivity
-        }, 2000) // 2000 milisegundos = 2 segundos
+
     }
 }

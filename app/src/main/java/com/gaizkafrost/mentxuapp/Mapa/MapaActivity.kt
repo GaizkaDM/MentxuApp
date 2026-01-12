@@ -59,8 +59,11 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
                 // Decide qué actividad iniciar basándose en el ID de la parada
                 val intent: Intent? = when (paradaClicada.id) {
                     1 -> Intent(this, MenuAudio::class.java)
-                    // 2 -> Intent(this, MenuAudio::class.java)
-                    // 3 -> Intent(this, JuegoParada3::class.java) // Añade aquí tus futuras actividades
+                    2 -> {
+                        Toast.makeText(this, "Parada 2 no implementada.", Toast.LENGTH_SHORT).show()
+                        null
+                    }
+                    3 -> Intent(this, com.gaizkafrost.mentxuapp.Parada3.MenuAudio3::class.java)
                     // 4 -> Intent(this, JuegoParada4::class.java)
                     // ... etc.
                     else -> {

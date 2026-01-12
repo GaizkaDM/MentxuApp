@@ -157,8 +157,12 @@ class Relacionar : AppCompatActivity() {
     private fun checkCompletion() {
         if (remainingPairs == 0) {
             Toast.makeText(this, "Zorionak! Jarduera garaitu duzu!", Toast.LENGTH_LONG).show()
-            // Aquí se podría añadir un retraso y cerrar la actividad o pasar a la siguiente
-            // finish() 
+            
+            // Marcamos la parada como completada
+            val idParada = intent.getIntExtra("ID_PARADA", 3)
+            com.gaizkafrost.mentxuapp.ParadasRepository.completarParada(idParada)
+
+
         }
     }
 }

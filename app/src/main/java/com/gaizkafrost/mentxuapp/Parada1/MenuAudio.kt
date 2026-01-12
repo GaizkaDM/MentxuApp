@@ -80,8 +80,10 @@ class MenuAudio : AppCompatActivity() {
 
         continueButton.setOnClickListener {
             Toast.makeText(this, "Yendo a la siguiente actividad...", Toast.LENGTH_SHORT).show()
-            Intent(this, Huevo_Activity::class.java).also {
-                startActivity(it)
+            val idParada = intent.getIntExtra("ID_PARADA", -1)
+            Intent(this, Huevo_Activity::class.java).apply {
+                putExtra("ID_PARADA", idParada)
+                startActivity(this)
             }
             finish()
         }
