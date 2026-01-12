@@ -64,8 +64,8 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
                         null
                     }
                     3 -> Intent(this, com.gaizkafrost.mentxuapp.Parada3.MenuAudio3::class.java)
-                    // 4 -> Intent(this, JuegoParada4::class.java)
-                    // ... etc.
+                    4 -> Intent(this, com.gaizkafrost.mentxuapp.Parada4.JuegoRecogida::class.java)
+                    // 5 -> Intent(this, JuegoParada5::class.java)
                     else -> {
                         Toast.makeText(this, "Juego para esta parada no implementado.", Toast.LENGTH_SHORT).show()
                         null // No hacer nada si el juego no existe
