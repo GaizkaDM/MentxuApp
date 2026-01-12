@@ -1,4 +1,4 @@
-package com.gaizkafrost.mentxuapp.parada5
+package com.gaizkafrost.mentxuapp.Parada5
 
 import android.os.Bundle
 import android.view.View
