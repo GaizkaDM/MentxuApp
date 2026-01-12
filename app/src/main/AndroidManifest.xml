@@ -47,6 +47,11 @@
             android:name=".Parada1.Huevo_Activity"
             android:exported="false" />
 
+        <!-- Módulo Parada 2 -->
+        <activity
+            android:name=".Parada2.DiferenciasActivity"
+            android:exported="false" />
+
         <!-- Módulo Parada 3 -->
         <activity
             android:name=".Parada3.MenuAudio3"
