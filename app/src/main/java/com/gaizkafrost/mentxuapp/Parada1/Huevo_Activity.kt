@@ -54,12 +54,12 @@ class Huevo_Activity : AppCompatActivity() {
         // Hacemos visible el huevo (opcional, para resaltarlo)
         huevoEncontrado.visibility = View.VISIBLE
 
-        // Obtenemos el ID de la parada que se estaba jugando (necesitarás pasarlo desde MapaActivity)
+        // El huevo se ha encontrado, se pasará a la sopa de letras
+        // IMPORTANTE: NO marcamos la parada como completada aquí porque
+        // la Parada 1 tiene varios juegos. Solo la SopaDeLetrasActivity
+        // (el último juego) debe marcar la parada como completada.
         val idParadaActual = intent.getIntExtra("ID_PARADA", -1)
-        if (idParadaActual != -1) {
-            // Actualizamos el estado de la parada en el repositorio
-            ParadasRepository.completarParada(idParadaActual)
-        }
+
 
         // Desactivamos los listeners para que no se pueda seguir jugando
         findViewById<View>(R.id.zonaClicableHuevo).setOnClickListener(null)

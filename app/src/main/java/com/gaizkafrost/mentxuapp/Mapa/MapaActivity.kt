@@ -8,6 +8,7 @@ import com.gaizkafrost.mentxuapp.EstadoParada
 import com.gaizkafrost.mentxuapp.Parada
 import com.gaizkafrost.mentxuapp.Parada1.Huevo_Activity
 import com.gaizkafrost.mentxuapp.Parada1.MenuAudio
+import com.gaizkafrost.mentxuapp.Parada2.DiferenciasActivity
 import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -59,10 +60,7 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
                 // Decide qué actividad iniciar basándose en el ID de la parada
                 val intent: Intent? = when (paradaClicada.id) {
                     1 -> Intent(this, MenuAudio::class.java)
-                    2 -> {
-                        Toast.makeText(this, "Parada 2 no implementada.", Toast.LENGTH_SHORT).show()
-                        null
-                    }
+                    2 -> Intent(this, DiferenciasActivity::class.java)
                     3 -> Intent(this, com.gaizkafrost.mentxuapp.Parada3.MenuAudio3::class.java)
                     // 4 -> Intent(this, JuegoParada4::class.java)
                     // ... etc.

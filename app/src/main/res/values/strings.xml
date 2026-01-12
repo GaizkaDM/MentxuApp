@@ -30,4 +30,10 @@
     <string name="objeto6">Popa</string>
     <string name="objeto7">Nabigazioa zubia</string>
 
+    <!-- Parada 2: Juego de Diferencias -->
+    <string name="titulo_diferencias">Encuentra las diferencias</string>
+    <string name="instrucciones_diferencias">Encuentra las 7 diferencias entre las dos imágenes del puerto de Santurtzi. Toca en la imagen de la derecha para marcar las diferencias.</string>
+    <string name="contador_diferencias_inicio">Diferencias encontradas: 0/7</string>
+    <string name="boton_pista">Pista</string>
+
 </resources>
