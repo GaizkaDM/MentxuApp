@@ -17,9 +17,11 @@
         android:theme="@style/Theme.MentxuApp"
         tools:targetApi="31">
         <activity
-            android:name=".Parada3.Relacionar"
+            android:name=".Parada3.MenuAudio3"
             android:exported="false" />
-        <!-- ✅ CAMBIO APLICADO AQUÍ -->
+        <activity
+            android:name=".Parada3.Relacionar"
+            android:exported="false" /> <!-- ✅ CAMBIO APLICADO AQUÍ -->
         <!--
             Se ha añadido 'android:exported="true"' a la actividad 'Presentacion'.
             Es obligatorio para la actividad principal que se lanza al iniciar la app.
