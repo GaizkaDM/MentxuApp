@@ -9,6 +9,8 @@ import com.gaizkafrost.mentxuapp.Parada
 import com.gaizkafrost.mentxuapp.Parada1.Huevo_Activity
 import com.gaizkafrost.mentxuapp.Parada1.MenuAudio
 import com.gaizkafrost.mentxuapp.Parada2.DiferenciasActivity
+import com.gaizkafrost.mentxuapp.Parada5.FishingProcessActivity
+import com.gaizkafrost.mentxuapp.Parada6.Parada6Activity
 import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -63,6 +65,8 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
                     2 -> Intent(this, DiferenciasActivity::class.java)
                     3 -> Intent(this, com.gaizkafrost.mentxuapp.Parada3.MenuAudio3::class.java)
                     // 4 -> Intent(this, JuegoParada4::class.java)
+                    5 -> Intent(this, FishingProcessActivity::class.java)
+                    6 -> Intent(this, Parada6Activity::class.java)
                     // ... etc.
                     else -> {
                         Toast.makeText(this, "Juego para esta parada no implementado.", Toast.LENGTH_SHORT).show()

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 
 /**
@@ -134,6 +135,15 @@ class Parada6Activity : AppCompatActivity() {
         
         if (correctCount == total) {
             resultArea.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            
+            // Marcar la parada como completada
+            val idParadaActual = intent.getIntExtra("ID_PARADA", 6)
+            ParadasRepository.completarParada(idParadaActual)
+
+            // Cerrar la actividad después de 3 segundos para que vean el resultado
+            resultArea.postDelayed({
+                finish()
+            }, 3000)
         } else {
             resultArea.setTextColor(resources.getColor(android.R.color.holo_red_dark))
         }

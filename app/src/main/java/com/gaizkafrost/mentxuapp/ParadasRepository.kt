@@ -29,9 +29,13 @@ object ParadasRepository {
         val paradaActual = paradas.find { it.id == idParada }
         paradaActual?.estado = EstadoParada.COMPLETADA
 
-        // Buscamos la siguiente parada que esté bloqueada y la activamos
-        val siguienteParada = paradas.firstOrNull { it.estado == EstadoParada.BLOQUEADA }
-        siguienteParada?.estado = EstadoParada.ACTIVA
+        // Nota: la parada 6 es la última del recorrido.
+        // Después de marcarla como completada se activará el "modo libre", en el que se podrán jugar las actividades que quieran.
+        if (idParada != 6) {
+            // Buscamos la siguiente parada que esté bloqueada y la activamos
+            val siguienteParada = paradas.firstOrNull { it.estado == EstadoParada.BLOQUEADA }
+            siguienteParada?.estado = EstadoParada.ACTIVA
+        }
     }
 
     // Función para obtener la parada activa actual

@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 
 /**
@@ -127,6 +128,15 @@ class FishingProcessActivity : AppCompatActivity() {
         if (isCorrect) {
             showFeedback("¡Muy bien! Has ordenado correctamente el proceso de la pesca.", true)
             Toast.makeText(this, "¡Excelente trabajo!", Toast.LENGTH_SHORT).show()
+
+            // Marcar la parada como completada
+            val idParadaActual = intent.getIntExtra("ID_PARADA", 5)
+            ParadasRepository.completarParada(idParadaActual)
+
+            // Cerrar la actividad después de 2 segundos para dar tiempo a ver el mensaje
+            recyclerView.postDelayed({
+                finish()
+            }, 2000)
         } else {
             showFeedback("Hay algunos pasos mal ordenados. Vuelve a intentarlo.", false)
         }
