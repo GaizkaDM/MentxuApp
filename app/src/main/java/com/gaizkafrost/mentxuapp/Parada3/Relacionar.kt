@@ -20,69 +20,30 @@ import com.gaizkafrost.mentxuapp.R
  * @version 1.1
  */
 class Relacionar : AppCompatActivity() {
-    /**
-     * Referencias a los elementos de Deskribapenak (adivinanzas).
-     */
-    private lateinit var deskribapena1: TextView
-    private lateinit var deskribapena2: TextView
-    private lateinit var deskribapena3: TextView
-    private lateinit var deskribapena4: TextView
-    private lateinit var deskribapena5: TextView
-    private lateinit var deskribapena6: TextView
-    private lateinit var deskribapena7: TextView
 
-    /**
-     * Referencias a los elementos de objetos donde se pueden soltar las adivinanzas.
-     */
-    private lateinit var objeto1: TextView
-    private lateinit var objeto2: TextView
-    private lateinit var objeto3: TextView
-    private lateinit var objeto4: TextView
-    private lateinit var objeto5: TextView
-    private lateinit var objeto6: TextView
-    private lateinit var objeto7: TextView
-
-    /**
-     * Contenedor principal de la actividad.
-     */
-    private lateinit var mainLayout: ConstraintLayout
-
-    /**
-     * Número de pares restantes para completar el juego.
-     */
+    private lateinit var deskViews: List<TextView>
+    private lateinit var objViews: List<TextView>
     private var remainingPairs = 7
 
-    /**
-     * Inicializa la actividad, configura la interfaz de usuario y establece los 
-     * escuchadores de eventos para los elementos de arrastrar y soltar.
-     *
-     * @param savedInstanceState Si la actividad se está recreando a partir de un estado 
-     * previo guardado, este es el estado.
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_relacionar)
-        deskribapena1 = findViewById(R.id.Deskribapena1)
-        deskribapena2 = findViewById(R.id.Deskribapena2)
-        deskribapena3 = findViewById(R.id.Deskribapena3)
-        deskribapena4 = findViewById(R.id.Deskribapena4)
-        deskribapena5 = findViewById(R.id.Deskribapena5)
-        deskribapena6 = findViewById(R.id.Deskribapena6)
-        deskribapena7 = findViewById(R.id.Deskribapena7)
-        objeto1 = findViewById(R.id.objeto1)
-        objeto2 = findViewById(R.id.objeto2)
-        objeto3 = findViewById(R.id.objeto3)
-        objeto4 = findViewById(R.id.objeto4)
-        objeto5 = findViewById(R.id.objeto5)
-        objeto6 = findViewById(R.id.objeto6)
-        objeto7 = findViewById(R.id.objeto7)
-        mainLayout = findViewById(R.id.main)
+
+        // Inicializamos las listas de vistas usando sus IDs
+        val deskIds = listOf(
+            R.id.Deskribapena1, R.id.Deskribapena2, R.id.Deskribapena3,
+            R.id.Deskribapena4, R.id.Deskribapena5, R.id.Deskribapena6, R.id.Deskribapena7
+        )
+        val objIds = listOf(
+            R.id.objeto1, R.id.objeto2, R.id.objeto3,
+            R.id.objeto4, R.id.objeto5, R.id.objeto6, R.id.objeto7
+        )
+
+        deskViews = deskIds.map { findViewById<TextView>(it) }
+        objViews = objIds.map { findViewById<TextView>(it) }
 
         // Configuramos el arrastre
-        val deskViews = listOf(deskribapena1, deskribapena2, deskribapena3, deskribapena4, deskribapena5, deskribapena6, deskribapena7)
-        for (view in deskViews) {
-            setDraggable(view)
-        }
+        deskViews.forEach { setDraggable(it) }
 
         // Configuración aleatoria de textos y emparejamientos
         setupGame()
@@ -92,32 +53,29 @@ class Relacionar : AppCompatActivity() {
      * Configura el contenido de los TextViews de forma aleatoria y establece los vínculos correctos.
      */
     private fun setupGame() {
-        val descriptions = listOf(
+        val stringDeskIds = listOf(
             R.string.deskribapena1, R.string.deskribapena2, R.string.deskribapena3,
             R.string.deskribapena4, R.string.deskribapena5, R.string.deskribapena6, R.string.deskribapena7
         )
-        val objects = listOf(
+        val stringObjIds = listOf(
             R.string.objeto1, R.string.objeto2, R.string.objeto3,
             R.string.objeto4, R.string.objeto5, R.string.objeto6, R.string.objeto7
         )
 
-        val deskViews = listOf(deskribapena1, deskribapena2, deskribapena3, deskribapena4, deskribapena5, deskribapena6, deskribapena7)
-        val objViews = listOf(objeto1, objeto2, objeto3, objeto4, objeto5, objeto6, objeto7)
+        val shuffledDesks = stringDeskIds.shuffled()
+        val shuffledObjs = stringObjIds.shuffled()
 
-        val shuffledDesks = descriptions.shuffled()
-        val shuffledObjs = objects.shuffled()
-
-        // Asignamos textos aleatorios
+        // Asignamos textos aleatorios a las vistas
         deskViews.forEachIndexed { i, view -> view.text = getString(shuffledDesks[i]) }
         objViews.forEachIndexed { i, view -> view.text = getString(shuffledObjs[i]) }
 
-        // Establecemos los vínculos de emparejamiento correctos
-        for (i in descriptions.indices) {
-            val deskText = getString(descriptions[i])
-            val objText = getString(objects[i])
+        // Establecemos los vínculos de emparejamiento correctos basándonos en los IDs originales
+        for (i in stringDeskIds.indices) {
+            val correctDeskText = getString(stringDeskIds[i])
+            val correctObjText = getString(stringObjIds[i])
 
-            val currentDeskView = deskViews.find { it.text == deskText }
-            val currentObjView = objViews.find { it.text == objText }
+            val currentDeskView = deskViews.find { it.text == correctDeskText }
+            val currentObjView = objViews.find { it.text == correctObjText }
 
             if (currentDeskView != null && currentObjView != null) {
                 setDroppable(currentObjView, currentDeskView)
