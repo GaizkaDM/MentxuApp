@@ -45,6 +45,7 @@ dependencies {
     implementation("io.coil-kt:coil:2.7.0")
     implementation(libs.coil.gif)
     implementation("com.google.android.gms:play-services-maps:18.0.0")
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

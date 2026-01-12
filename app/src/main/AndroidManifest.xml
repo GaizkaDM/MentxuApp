@@ -65,14 +65,12 @@
         <activity
             android:name=".Parada5.FishingProcessActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Arrantzaren prozesua" />
 
         <!-- Módulo Parada 6 -->
         <activity
             android:name=".Parada6.Parada6Activity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Parada 6: Puzlea eta Test-a" />
 
     </application>
