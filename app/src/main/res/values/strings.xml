@@ -15,4 +15,19 @@
     <string name="error_campos_vacios">Mezedez, zure datuak bete.</string>
     <string name="ok">OK</string>
     <string name="descripcion_mentxu_hablando" />
+    <string name="deskribapena1">Goiko zatia, bertatik ibiltzeko erabiltzen dugu. </string>
+    <string name="deskribapena2">Ontziaren ezker aldea.</string>
+    <string name="deskribapena3">Ontziaren eskuin aldea.</string>
+    <string name="deskribapena4">Ontziaren kanpoko zatia, ura ukitzen duena.</string>
+    <string name="deskribapena5">Ontziaren aurreko aldea.</string>
+    <string name="deskribapena6">Ontziaren atzeko aldea.</string>
+    <string name="deskribapena7">Kapitaina bertan dago itsasontzia gidatzen.</string>
+    <string name="objeto1">Estalkia</string>
+    <string name="objeto2">Ababor</string>
+    <string name="objeto3">Istribor</string>
+    <string name="objeto4">Kroskoa</string>
+    <string name="objeto5">Proa</string>
+    <string name="objeto6">Popa</string>
+    <string name="objeto7">Nabigazioa zubia</string>
+
 </resources>

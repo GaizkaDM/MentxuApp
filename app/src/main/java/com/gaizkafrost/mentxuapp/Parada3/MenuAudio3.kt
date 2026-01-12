@@ -1,4 +1,4 @@
-package com.gaizkafrost.mentxuapp.Parada1
+package com.gaizkafrost.mentxuapp.Parada3
 
 import android.content.Intent
 import android.graphics.drawable.Animatable
@@ -10,10 +10,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
-import android.view.Menu
-import android.view.MenuItem
-import android.content.Intent
-import com.gaizkafrost.mentxuapp.MapaActivity
 import androidx.appcompat.app.AppCompatActivity
 import coil.ImageLoader
 import coil.decode.GifDecoder
@@ -21,7 +17,7 @@ import coil.decode.ImageDecoderDecoder
 import coil.load
 import com.gaizkafrost.mentxuapp.R
 
-class MenuAudio : AppCompatActivity() {
+class MenuAudio3 : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var playPauseButton: Button
@@ -31,7 +27,7 @@ class MenuAudio : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_audio)
+        setContentView(R.layout.activity_menu_audio3)
 
         // --- 1. Cargar el GIF animado ---
         val gifImageView: ImageView = findViewById(R.id.gifMentxu)
@@ -63,7 +59,7 @@ class MenuAudio : AppCompatActivity() {
         val continueButton: Button = findViewById(R.id.continueButton)
 
         // --- 3. Preparar el reproductor de audio ---
-        mediaPlayer = MediaPlayer.create(this, R.raw.audioa)
+        mediaPlayer = MediaPlayer.create(this, R.raw.audioa3)
         mediaPlayer?.setOnPreparedListener {
             audioSeekBar.max = it.duration
         }
@@ -85,7 +81,7 @@ class MenuAudio : AppCompatActivity() {
         continueButton.setOnClickListener {
             Toast.makeText(this, "Yendo a la siguiente actividad...", Toast.LENGTH_SHORT).show()
             val idParada = intent.getIntExtra("ID_PARADA", -1)
-            Intent(this, Huevo_Activity::class.java).apply {
+            Intent(this, Relacionar::class.java).apply {
                 putExtra("ID_PARADA", idParada)
                 startActivity(this)
             }
@@ -135,26 +131,5 @@ class MenuAudio : AppCompatActivity() {
         mediaPlayer = null
         handler.removeCallbacksAndMessages(null)
         gifAnimatable?.stop()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_mapa -> {
-                val intent = Intent(this, MapaActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                startActivity(intent)
-                true
-            }
-            R.id.action_irten -> {
-                finishAffinity()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

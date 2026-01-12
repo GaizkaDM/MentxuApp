@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 
 /**
  * Clase Presentacion que representa la actividad inicial de la aplicación.
@@ -60,6 +61,15 @@ class Presentacion : AppCompatActivity() {
                 val apellido = editTextApellido.text.toString().trim()
 
                 if (nombre.isNotEmpty() && apellido.isNotEmpty()) {
+                    // ✅ CAMBIO: Se comenta la navegación a 'Mapa' para evitar el error.
+                    // Cuando crees la actividad 'Mapa.kt', solo tienes que descomentar estas líneas.
+
+                    val intent = Intent(this, MapaActivity::class.java).apply {
+                        putExtra("nombre", nombre)
+                        putExtra("apellido", apellido)
+                    }
+                    startActivity(intent)
+
 
                     // Mostramos un mensaje temporal para confirmar que funciona
                     Toast.makeText(this, "Usuario registrado: $nombre $apellido", Toast.LENGTH_LONG).show()

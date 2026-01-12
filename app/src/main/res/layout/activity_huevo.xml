@@ -5,13 +5,60 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Parada1.Huevo_Activity">
+    tools:context=".parada1.Huevo_Activity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="402dp"
-        android:layout_height="375dp"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="99dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:id="@+id/imagenFondo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Busca el huevo en esta imagen"
+        android:scaleType="centerCrop"
+        android:src="@drawable/imagen_con_huevo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <!-- 4. Texto de instrucciones. -->
+
+    <View
+        android:id="@+id/zonaClicableHuevo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/imagenFondo"
+        app:layout_constraintEnd_toEndOf="@id/imagenFondo"
+        app:layout_constraintHorizontal_bias="0.635"
+        app:layout_constraintStart_toStartOf="@id/imagenFondo"
+        app:layout_constraintTop_toTopOf="@id/imagenFondo"
+        app:layout_constraintVertical_bias="0.028" />
+
+    <ImageView
+        android:id="@+id/huevoEncontrado"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/huevo_encontrado"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/zonaClicableHuevo"
+        app:layout_constraintEnd_toEndOf="@id/zonaClicableHuevo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/zonaClicableHuevo"
+        app:layout_constraintTop_toTopOf="@id/zonaClicableHuevo"
+        app:layout_constraintVertical_bias="1.0"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/instructions_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Encuentra el huevo escondido!"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/imagenFondo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
