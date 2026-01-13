@@ -1,13 +1,17 @@
 package com.gaizkafrost.mentxuapp.Parada3
 
 import android.content.ClipData
+import android.content.Intent
 import android.os.Bundle
 import android.view.DragEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.R
 
 /**
@@ -161,8 +165,27 @@ class Relacionar : AppCompatActivity() {
             // Marcamos la parada como completada
             val idParada = intent.getIntExtra("ID_PARADA", 3)
             com.gaizkafrost.mentxuapp.ParadasRepository.completarParada(idParada)
+        }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_mapa -> {
+                val intent = Intent(this, MapaActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                true
+            }
+            R.id.action_irten -> {
+                finishAffinity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

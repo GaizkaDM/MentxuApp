@@ -1,11 +1,15 @@
 package com.gaizkafrost.mentxuapp.Parada1
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 
@@ -78,5 +82,26 @@ class SopaDeLetrasActivity : AppCompatActivity() {
         sopaDeLetrasView.postDelayed({
             finish()
         }, 2000)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_mapa -> {
+                val intent = Intent(this, MapaActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                true
+            }
+            R.id.action_irten -> {
+                finishAffinity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -9,15 +9,16 @@ import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
 import android.view.Menu
 import android.view.MenuItem
-import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import androidx.appcompat.app.AppCompatActivity
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.load
+import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.R
 
 class MenuAudio : AppCompatActivity() {
@@ -25,17 +26,37 @@ class MenuAudio : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var playPauseButton: Button
     private lateinit var audioSeekBar: SeekBar
+    private lateinit var tvExplicacion: TextView
     private lateinit var handler: Handler
     private var gifAnimatable: Animatable? = null
+
+    companion object {
+        private const val EXTRA_ID_PARADA = "EXTRA_ID_PARADA"
+        private const val EXTRA_SIGUIENTE_CLASE = "EXTRA_SIGUIENTE_CLASE"
+
+        /**
+         * Método estático para navegar al menú de audio de forma sencilla.
+         * @param idParada El número de la parada (para cargar audioaX y textoExplicacionX).
+         * @param siguienteActividad La clase de la actividad que se abrirá al pulsar Continuar.
+         */
+        fun navegarAParada(context: android.content.Context, idParada: Int, siguienteActividad: Class<*>) {
+            val intent = Intent(context, MenuAudio::class.java).apply {
+                putExtra(EXTRA_ID_PARADA, idParada)
+                putExtra(EXTRA_SIGUIENTE_CLASE, siguienteActividad.name)
+            }
+            context.startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_audio)
 
+        val idParada = intent.getIntExtra(EXTRA_ID_PARADA, 1)
+        val siguienteClaseName = intent.getStringExtra(EXTRA_SIGUIENTE_CLASE)
+
         // --- 1. Cargar el GIF animado ---
         val gifImageView: ImageView = findViewById(R.id.gifMentxu)
-
-        // Crear un ImageLoader que soporte GIFs
         val imageLoader = ImageLoader.Builder(this)
             .components {
                 if (android.os.Build.VERSION.SDK_INT >= 28) {
@@ -46,12 +67,9 @@ class MenuAudio : AppCompatActivity() {
             }
             .build()
 
-        // Cargar el GIF y obtener el control de la animación
         gifImageView.load(R.drawable.mentxu_habla, imageLoader) {
             listener(onSuccess = { _, result ->
-                // Guarda la animación para poder controlarla
                 gifAnimatable = result.drawable as? Animatable
-                // Inicia el GIF en estado pausado
                 gifAnimatable?.stop()
             })
         }
@@ -59,36 +77,32 @@ class MenuAudio : AppCompatActivity() {
         // --- 2. Inicializar componentes de la UI ---
         playPauseButton = findViewById(R.id.playPauseButton)
         audioSeekBar = findViewById(R.id.audioSeekBar)
+        tvExplicacion = findViewById(R.id.tvExplicacion)
         val continueButton: Button = findViewById(R.id.continueButton)
 
-        // --- 3. Preparar el reproductor de audio ---
-        mediaPlayer = MediaPlayer.create(this, R.raw.audioa)
-        mediaPlayer?.setOnPreparedListener {
-            audioSeekBar.max = it.duration
-        }
+        // --- 3. Cargar Texto y Audio Dinámicamente ---
+        configurarRecursos(idParada)
 
-        // Listener para cuando el audio termina
-        mediaPlayer?.setOnCompletionListener {
-            playPauseButton.text = "▶"
-            gifAnimatable?.stop()
-            audioSeekBar.progress = 0
-        }
-
-        handler = Handler(Looper.getMainLooper())
-
-        // --- 4. Configurar los listeners (acciones de los botones) ---
+        // --- 4. Configurar listeners ---
         playPauseButton.setOnClickListener {
             togglePlayPause()
         }
 
         continueButton.setOnClickListener {
-            Toast.makeText(this, "Yendo a la siguiente actividad...", Toast.LENGTH_SHORT).show()
-            val idParada = intent.getIntExtra("ID_PARADA", -1)
-            Intent(this, Huevo_Activity::class.java).apply {
-                putExtra("ID_PARADA", idParada)
-                startActivity(this)
+            if (siguienteClaseName != null) {
+                try {
+                    val targetClass = Class.forName(siguienteClaseName)
+                    val intent = Intent(this, targetClass).apply {
+                        putExtra("ID_PARADA", idParada)
+                    }
+                    startActivity(intent)
+                    finish()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error al abrir la siguiente actividad", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                finish()
             }
-            finish()
         }
 
         audioSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -97,10 +111,37 @@ class MenuAudio : AppCompatActivity() {
                     mediaPlayer?.seekTo(progress)
                 }
             }
-
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+
+        handler = Handler(Looper.getMainLooper())
+    }
+
+    private fun configurarRecursos(idParada: Int) {
+        // Cargar Texto dinámicamente: R.string.textoExplicacionX
+        val textoResId = resources.getIdentifier("textoExplicacion$idParada", "string", packageName)
+        if (textoResId != 0) {
+            tvExplicacion.setText(textoResId)
+        } else {
+            tvExplicacion.text = "Explicación no encontrada para la parada $idParada"
+        }
+
+        // Cargar Audio dinámicamente: R.raw.audioaX
+        val audioResId = resources.getIdentifier("audioa$idParada", "raw", packageName)
+        if (audioResId != 0) {
+            mediaPlayer = MediaPlayer.create(this, audioResId)
+            mediaPlayer?.setOnPreparedListener {
+                audioSeekBar.max = it.duration
+            }
+            mediaPlayer?.setOnCompletionListener {
+                playPauseButton.text = "▶"
+                gifAnimatable?.stop()
+                audioSeekBar.progress = 0
+            }
+        } else {
+            Toast.makeText(this, "Audio no encontrado para la parada $idParada", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun togglePlayPause() {
@@ -108,11 +149,11 @@ class MenuAudio : AppCompatActivity() {
             if (it.isPlaying) {
                 it.pause()
                 playPauseButton.text = "▶"
-                gifAnimatable?.stop() // Detiene la animación del GIF
+                gifAnimatable?.stop()
             } else {
                 it.start()
                 playPauseButton.text = "❚❚"
-                gifAnimatable?.start() // Inicia la animación del GIF
+                gifAnimatable?.start()
                 updateSeekBar()
             }
         }

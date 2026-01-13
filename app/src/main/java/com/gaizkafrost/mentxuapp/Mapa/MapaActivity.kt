@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import com.gaizkafrost.mentxuapp.EstadoParada
 import com.gaizkafrost.mentxuapp.Parada
 import com.gaizkafrost.mentxuapp.Parada1.Huevo_Activity
@@ -56,28 +58,17 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
             val paradaClicada = marker.tag as? Parada
 
             if (paradaClicada != null && paradaClicada.estado == EstadoParada.ACTIVA) {
-                // --- LÓGICA DE NAVEGACIÓN BASADA EN EL ID DE LA PARADA ---
-                Toast.makeText(this, "Iniciando actividad para: ${paradaClicada.nombre}", Toast.LENGTH_SHORT).show()
-
-                // Decide qué actividad iniciar basándose en el ID de la parada
-                val intent: Intent? = when (paradaClicada.id) {
-                    1 -> Intent(this, MenuAudio::class.java)
-                    2 -> Intent(this, DiferenciasActivity::class.java)
-                    3 -> Intent(this, com.gaizkafrost.mentxuapp.Parada3.MenuAudio3::class.java)
-                    // 4 -> Intent(this, JuegoParada4::class.java)
-                    5 -> Intent(this, FishingProcessActivity::class.java)
-                    6 -> Intent(this, Parada6Activity::class.java)
-                    // ... etc.
+                // --- LÓGICA DE NAVEGACIÓN CENTRALIZADA EN MENUAUDIO ---
+                when (paradaClicada.id) {
+                    1 -> MenuAudio.navegarAParada(this, 1, Huevo_Activity::class.java)
+                    2 -> MenuAudio.navegarAParada(this, 2, DiferenciasActivity::class.java)
+                    3 -> MenuAudio.navegarAParada(this, 3, com.gaizkafrost.mentxuapp.Parada3.Relacionar::class.java)
+                    // 4 -> Proximamente...
+                    5 -> MenuAudio.navegarAParada(this, 5, FishingProcessActivity::class.java)
+                    6 -> MenuAudio.navegarAParada(this, 6, Parada6Activity::class.java)
                     else -> {
                         Toast.makeText(this, "Juego para esta parada no implementado.", Toast.LENGTH_SHORT).show()
-                        null // No hacer nada si el juego no existe
                     }
-                }
-
-                // Si se creó un intent, se le añade el ID de la parada y se lanza
-                intent?.let {
-                    it.putExtra("ID_PARADA", paradaClicada.id)
-                    startActivity(it)
                 }
 
             } else {
@@ -116,6 +107,23 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
                     .icon(BitmapDescriptorFactory.defaultMarker(colorIcono))
             )
             marker?.tag = parada // Asociamos el objeto Parada completo al marcador
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        // Ocultar la opción "Mapa" ya que ya estamos en él
+        menu?.findItem(R.id.action_mapa)?.isVisible = false
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_irten -> {
+                finishAffinity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

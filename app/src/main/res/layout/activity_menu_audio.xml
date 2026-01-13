@@ -7,29 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".Parada1.MenuAudio">
 
-    <!-- Imagen/GIF de Mentxu hablando -->
-    <ImageView
-        android:id="@+id/gifMentxu"
+    <!-- Contenedor para el texto y el GIF -->
+    <LinearLayout
+        android:id="@+id/contentLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:contentDescription="@string/descripcion_mentxu_hablando"
+        android:orientation="vertical"
+        android:padding="24dp"
         app:layout_constraintBottom_toTopOf="@+id/playPauseButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/mentxu_habla" /> <!-- Placeholder, se cargará desde Coil -->
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Imagen/GIF de Mentxu hablando -->
+        <ImageView
+            android:id="@+id/gifMentxu"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/descripcion_mentxu_hablando"
+            tools:srcCompat="@drawable/mentxu_habla" />
+
+        <!-- Texto explicativo con scroll por si es largo -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bubble_background"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvExplicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cargando explicación..."
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:lineSpacingExtra="4sp"
+                android:fontFamily="sans-serif-medium" />
+        </ScrollView>
+    </LinearLayout>
 
     <!-- Botón para reproducir o pausar el audio -->
     <Button
         android:id="@+id/playPauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="140dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
         android:text="▶"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/continueButton"
@@ -40,8 +64,8 @@
         android:id="@+id/audioSeekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/playPauseButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/playPauseButton"
@@ -51,10 +75,10 @@
     <Button
         android:id="@+id/continueButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:text="Continuar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

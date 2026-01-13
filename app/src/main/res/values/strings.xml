@@ -22,6 +22,15 @@
     <string name="deskribapena5">Ontziaren aurreko aldea.</string>
     <string name="deskribapena6">Ontziaren atzeko aldea.</string>
     <string name="deskribapena7">Kapitaina bertan dago itsasontzia gidatzen.</string>
+    <!-- Parada 1: Santurtziko Udala (Mentxu) -->
+    <string name="textoExplicacion1">
+        Kaixo lagunok!
+        Mentxu naiz, Santurtziko kaio alaiena eta maitagarriena! Itsasoa dut etxe, eta Santurtzi izugarri maite dut: olatuen soinua, portuko haizea eta itsasargiaren distira!
+        Urtero, uztailaren 8an udaletxean dagoen arrautza handi-handi batetik jaiotzen naiz, Santurtziko herritarrei jaiak hasi direla adierazte. Baina aurten, zerbait gertatu da…  nire arrautza galdu egin da! Herriko jaiak has daitezen, lagun diezadakezue arrautza bilatzen?
+        Horretarako, bi erronka dibertigarri gainditu beharko  dituzue: lehenengoan, arrautza bilatu eta apurtzen lagundu beharko didazue, ni mundura berriro irten ahal izateko. Bigarrenean, berriz, hizki-sopa magiko batean nire izatea ondo deskribatzen duten hitzak aurkitu beharko dituzue.
+        Prest al zaudete nirekin Santurtziko abentura honetan parte hartzeko? Elkarrekin arrautza aurkituko dugu, hitz sekretuak bilatuko ditugu, eta itsasoaren haizearekin batera hegan egingo dugu!
+        Goazen, lagunok!
+    </string>
     <string name="objeto1">Estalkia</string>
     <string name="objeto2">Ababor</string>
     <string name="objeto3">Istribor</string>
@@ -31,9 +40,62 @@
     <string name="objeto7">Nabigazioa zubia</string>
 
     <!-- Parada 2: Juego de Diferencias -->
+    <string name="textoExplicacion2">
+        Zorionak, talde!
+        Eskerrak eman nahi dizkizuet nire arrautza aurkitzea eta ura apurtzeagatik.
+        Egindako esfortzua saritzaren, ibilbidean zehar laguntzaile gisa izango nauzue.
+        Elkarrekin Santurtziko txoko politenak ezagutu ditugu, baina kontuz, aventura ez da oraindik amaitu.
+        Hurrengo dinamika bikain egin baduzue ere, zangoak jarraitu behar du.
+        Hurrengo geltokian eskultura bat aztertu beharko duzue, haren forman, kolorean eta xehetasun txiki-txikietan arreta guztia jarriz.
+        Ume eta txakurraren eskultura honek herriaren iraganari eta itsasarekiko loturari omenaldia egiten dio.
+        Garai batean, ura leku horretaraino heltzen zen, eta Santurtziko bizitza guztia arrantzaren eta portuaren inguruan antolatzen zen. Ondoren, benetako eskultura baten eta editatuta dagoen eskultura berberaren argazki biren arteko desberdintasunak bilatzea izango da hurrengo eginkizuna. Prest zaudete zuen ikusmen zorrotzena praktikan jartzeko?</string>
     <string name="titulo_diferencias">Encuentra las diferencias</string>
     <string name="instrucciones_diferencias">Encuentra las 7 diferencias entre las dos imágenes del puerto de Santurtzi. Toca en la imagen de la derecha para marcar las diferencias.</string>
     <string name="contador_diferencias_inicio">Diferencias encontradas: 0/7</string>
     <string name="boton_pista">Pista</string>
+
+    <!-- Parada 3: Agurtza itsasontzia -->
+    <string name="textoExplicacion3">
+        Kaixo talde!
+        Zorionak egindako lanagatik! Orain arte parte hartutako erronketan primeran moldatu zareten arren,  abenturak oraindik jarraitzen du! Prest?
+        Oraingoan, Agurtza izeneko atunontzia bisitatuko dugu, itsasontzi-museoan dagoena. Hau ez da edozein ontzia, Santurtziko arrantza-tradizioaren altxor bat baizik!
+        Agurtza itsasontzia Lekeitioko Murelaga ontzioletan eraikitako egurrezko atunontzia da. XX.mendearen hasiera arte arrantzarako erabili zen, bai Kantauriko kostaldean baita urruneko itsasoetan ere. Ontzia desegiteko zorian zegoela, Santurtzik eskuratu zuen, Bizkaian dagoen atunontzi bakarra izanik.
+        Hura aztertzeko, Agurtza ontziaren argaki bat ikertu beharko duzue, bertan itsasontziaren atal bereizgarrienak agertuko dira eta: proa, popa, txalupa, lemazaina... eta beste hainbat! Benetako ontzi-aditu bihurtu zaitezten, atal bakoitzaren izena dagokion esanahiarekin lotu beharko dituzue.
+        Prest al zaudete itsas abentura honetan murgiltzeko eta Agurtza ontzia hobeto ezagutzeko?
+        Aurrera, marinel ausartak!
+    </string>
+
+    <!-- Parada 4: Itsas-museoa -->
+    <string name="textoExplicacion4">
+        Kaixo, marinel ausartak!
+        Zelako lan dotorea orain arte egindakoa!
+        Primeran ari zareten arren, oraingoan, dinamika berezi bati ekingo diogu, hauen ardatz nagusia ingurumenaren zaintza izanik. Prest zaudete?
+        Dakizuen bezala, itsasoa nire etxea da, eta azkenaldian Santurtziko Itsas Portura heltzen ari den zabor kopurua gero eta handiagoa da.  Horregatik, zuen laguntza behar dut! Izan ere, hura zaintzen ez badugu, lurrean dagoen zaborra bertan pilatzen hasiko da, eta gune polit hau betirako galduko dugu.
+        Are gehiago, Santurtziko Itsas Portua urte askotan arrantzale eta merkatarien leku garrantzitsua izan da. Lehen, sardina-saltzaile eta marinel asko aritzen ziren bertan lanean. Denboraren poderioz, merkantzia-ontziak eta bidaiariak jasotzen dituen portu handi bihurtu delarik.
+        Hori dela eta, zuen lana portua bizirik eta garbi mantentzea izango da. Horretarako, zerutik eroriko diren zabor horiek guztiak eskuan daukadan saski erraldoiarekin harrapatu beharko dituzue, portura eta itsasora iritsi ez daitezen!
+        Prest zaudete itsasoa garbi mantentzeko eta naturaren zaintzan parte-hartzeko? Goazen, lagunok! Mentxurekin batera, itsasoa babes dezagun!
+    </string>
+
+    <!-- Parada 5: Arrantzaren prozesua -->
+    <string name="textoExplicacion5">
+        Kaixo, familia !
+        Zelako lana egiten ari zaretena!
+        Erronka bakoitza bikain gainditzen ari bazarete ere, abentura ez da oraindik amaitu! Baina lasai egon, ibilbidearen amaieratik gero eta gertuago zaudete… Eutsi gogor!
+        Gure hurrengo geldialdira iritsiko gara, hots, Santurtziko Itsas-museoa. Museo hau herriaren arrantza-portuaren bihotzean dago, eta Santurtzik itsasoarekiko duen lotura berezia erakusten du.
+        Alabaina arrantza-prozesua ezagutzen ahal duzue?
+        Orain arte lortu duzuen guztiagatik lagungarri txiki bat esango dizuet: Lehenik, arrainak harrapatzen dituzte sare erraldoien bitartez. Ondoren, arrantzatutako guztia jaso eta haren sailkapena egiten dute, tamaina eta motaren arabera banatuz. Azkenik, arraina merkaturatzen dute, merkatura edo herriko kontsumorako eramanez.
+        Orain, arrantzari buruz zertxobait gehiago dakizuela zuen erronka hurrengoa izango da: arrantza-prozesua osatzen duten urratsak kronologikoki ordenatzea. Horretarako, ordenatuta ez dauden zazpi irudi jasoko dituzue.
+        Prest al zaudete itsasoko sekretuak aurkitzeko eta hurrengo erronka gainditzeko? Has gaitezen, arrantzale trebeak!
+    </string>
+
+    <!-- Parada 6: Puzlea + AMALERAKO-TESTA -->
+    <string name="textoExplicacion6">
+        Aupa, lagunok!
+        Gure txango birtualaren amaierara iritsi gara! Baina elkarri agur esan aurretik, azken erronka bat geratzen zaizue. Ez triste egon! Elkarrekin Santurtziko txoko eta altxor asko ezagutu ditugu eta!
+        Azken geldialdian, Eskultura museora joango gara. Han dagoen “Monumento a los niños y niñas de la guerra” izeneko eskultura hunkigarria ezagutzeko.  Horretarako, denboran atzera egin behar dugu, zehazki, 1937. urtera, non Espainiak Gerra Zibila izeneko guda jasaten ari zen. Garai hartan, Santurtzi herria suntsitzen zuten bonben ondorioz, haur askok beldurrez herritik ihes egitearen beharra ikusi zuten. Hori dela eta, itsasontzi batera igo eta leku seguruago baten bila ekin zioten. Bestalde, leku honek beste garrantzi kulturala du ere: elkarri agur esango diogun tokia.
+        Oraingoan, zuen erronka hurrengo hau izango da:  batetik, eskultura arretaz aztertzea eta haren puzzlea osatzea. Bestetik, talde handian iritziak, pentsamenduak eta hipotesiak partekatzea. Amaitzeko, test-galdera labur bat erantzun beharko duzue.
+        Prest al zaudete azken erronka hau gainditzeko eta abenturari amaiera zoragarria emateko?
+        Has gaitezen, arrantzale trebeak!
+    </string>
 
 </resources>

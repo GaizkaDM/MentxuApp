@@ -25,7 +25,8 @@
         <!-- Actividad Principal (Punto de entrada) -->
         <activity
             android:name=".Presentacion"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -40,7 +41,8 @@
         <!-- Módulo Parada 1 -->
         <activity
             android:name=".Parada1.MenuAudio"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Parada1.SopaDeLetrasActivity"
             android:exported="false" />
