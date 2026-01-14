@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,8 +22,7 @@ class JuegoRecogida : AppCompatActivity() {
     private lateinit var gameContainer: ConstraintLayout
     private lateinit var player: ImageView
     private lateinit var scoreText: TextView
-    private lateinit var btnLeft: Button
-    private lateinit var btnRight: Button
+
 
     private var score = 0
     private val targetScore = 10
@@ -37,8 +35,7 @@ class JuegoRecogida : AppCompatActivity() {
     // Control de movimiento
     private var playerX = 0f
     private val moveStep = 50f
-    private var isMovingLeft = false
-    private var isMovingRight = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +44,7 @@ class JuegoRecogida : AppCompatActivity() {
         gameContainer = findViewById(R.id.gameContainer)
         player = findViewById(R.id.playerCharacter)
         scoreText = findViewById(R.id.scoreText)
-        btnLeft = findViewById(R.id.btnLeft)
-        btnRight = findViewById(R.id.btnRight)
+
 
         // Obtener ancho de pantalla
         gameContainer.post {
@@ -62,32 +58,30 @@ class JuegoRecogida : AppCompatActivity() {
     }
 
     private fun setupControls() {
-        // Lógica simple de movimiento continuo mientras se pulsa
-        btnLeft.setOnTouchListener { _, event ->
-            when (event.action) {
-                android.view.MotionEvent.ACTION_DOWN -> isMovingLeft = true
-                android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> isMovingLeft = false
-            }
-            true
-        }
-
-        btnRight.setOnTouchListener { _, event ->
-            when (event.action) {
-                android.view.MotionEvent.ACTION_DOWN -> isMovingRight = true
-                android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> isMovingRight = false
+        // Movimiento por deslizamiento
+        gameContainer.setOnTouchListener { _, event ->
+            if (isGameRunning) {
+                when (event.action) {
+                    android.view.MotionEvent.ACTION_DOWN, android.view.MotionEvent.ACTION_MOVE -> {
+                        val newX = event.x - (player.width / 2)
+                        // Limitar dentro de los bordes de la pantalla
+                        player.x = newX.coerceIn(0f, (screenWidth - player.width).toFloat())
+                    }
+                }
             }
             true
         }
     }
+
 
     // Bucle principal del juego (60 FPS aprox)
     private val gameRunnable = object : Runnable {
         override fun run() {
             if (!isGameRunning) return
 
-            movePlayer()
             updateFallingObjects()
             checkCollisions()
+
 
             handler.postDelayed(this, 16)
         }
@@ -108,14 +102,6 @@ class JuegoRecogida : AppCompatActivity() {
         }, 1000)
     }
 
-    private fun movePlayer() {
-        if (isMovingLeft && player.x > 0) {
-            player.x -= 15 // Velocidad de movimiento
-        }
-        if (isMovingRight && player.x < (screenWidth - player.width)) {
-            player.x += 15
-        }
-    }
 
     private fun spawnObject() {
         val obj = ImageView(this)

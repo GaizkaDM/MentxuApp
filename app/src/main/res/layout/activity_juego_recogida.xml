@@ -5,14 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Imagen de fondo con mejor calidad -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/puerto_fondo"
-        android:scaleType="centerCrop"
-        android:contentDescription="Fondo del puerto" />
-
     <!-- Contenedor del juego encima del fondo -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameContainer"
@@ -46,29 +38,6 @@
             android:contentDescription="Mentxu recogiendo basura"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- Controles MÁS GRANDES -->
-        <Button
-            android:id="@+id/btnLeft"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="32dp"
-            android:text="←"
-            android:textSize="36sp"
-            android:backgroundTint="#FF6200EE"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btnRight"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="32dp"
-            android:text="→"
-            android:textSize="36sp"
-            android:backgroundTint="#FF6200EE"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
