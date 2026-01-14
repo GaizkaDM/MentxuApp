@@ -326,6 +326,4 @@ class Parada6Activity : BaseMenuActivity() {
             val feedback: TextView = view.findViewById(R.id.question_feedback)
         }
     }
-
-    }
 }

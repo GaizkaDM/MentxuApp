@@ -5,8 +5,15 @@
     android:layout_height="match_parent"
     android:background="@color/fondo_app"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".Parada2.DiferenciasActivity"> <!-- Añadido para mejor soporte del editor -->
+    tools:context=".Parada2.DiferenciasActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
     <!-- Título -->
     <TextView
@@ -19,7 +26,7 @@
         android:textColor="@color/texto_principal"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:text="Encuentra las diferencias" /> <!-- Añadido para previsualización -->
+        tools:text="Encuentra las diferencias" />
 
     <!-- Instrucciones -->
     <TextView
@@ -31,7 +38,7 @@
         android:text="@string/instrucciones_diferencias"
         android:textColor="@color/texto_secundario"
         android:textSize="14sp"
-        tools:text="Encuentra las 7 diferencias entre las dos imágenes. Toca en la imagen de la derecha para marcarlas." /> <!-- Añadido para previsualización -->
+        tools:text="Encuentra las 7 diferencias entre las dos imágenes. Toca en la imagen de la derecha para marcarlas." />
 
     <!-- Contador de diferencias -->
     <TextView
@@ -44,7 +51,7 @@
         android:textColor="@color/rojo_activo"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:text="Diferencias encontradas: 0/7" /> <!-- Añadido para previsualización -->
+        tools:text="Diferencias encontradas: 0/7" />
 
     <!-- Vista del juego de diferencias -->
     <com.gaizkafrost.mentxuapp.Parada2.DiferenciasView
@@ -63,6 +70,8 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/azul_secundario"
         android:text="@string/boton_pista"
-        tools:text="Pista" /> <!-- Añadido para previsualización -->
+        tools:text="Pista" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,16 +1,35 @@
 package com.gaizkafrost.mentxuapp
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 
 /**
  * Clase base para todas las actividades que necesitan el menú superior.
  * Centraliza la lógica del menú para evitar duplicación de código.
+ * 
+ * IMPORTANTE: Si tu layout tiene un Toolbar con id="toolbar", se configurará automáticamente.
+ * De lo contrario, se usará el ActionBar por defecto.
  */
 abstract class BaseMenuActivity : AppCompatActivity() {
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        
+        // Intentar configurar un Toolbar si existe en el layout
+        try {
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            toolbar?.let {
+                setSupportActionBar(it)
+            }
+        } catch (e: Exception) {
+            // Si no hay toolbar en el layout, se usará el ActionBar por defecto
+        }
+    }
 
     /**
      * Override this method in child activities if you need to customize menu visibility.
