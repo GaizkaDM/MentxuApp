@@ -66,13 +66,7 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
                     1 -> MenuAudio.navegarAParada(this@MapaActivity, 1, Huevo_Activity::class.java)
                     2 -> MenuAudio.navegarAParada(this@MapaActivity, 2, DiferenciasActivity::class.java)
                     3 -> MenuAudio.navegarAParada(this@MapaActivity, 3, com.gaizkafrost.mentxuapp.Parada3.Relacionar::class.java)
-                    4 -> {
-                        val intent = Intent(this@MapaActivity, MenuAudio4::class.java).apply {
-                            putExtra("ID_PARADA", 4)
-                        }
-                        startActivity(intent)
-                    }
-
+                    4 -> MenuAudio.navegarAParada(this@MapaActivity, 4, JuegoRecogida::class.java)
                     5 -> MenuAudio.navegarAParada(this@MapaActivity, 5, FishingProcessActivity::class.java)
                     6 -> MenuAudio.navegarAParada(this@MapaActivity, 6, Parada6Activity::class.java)
 
