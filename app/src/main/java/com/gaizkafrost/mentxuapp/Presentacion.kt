@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 
 /**
@@ -21,7 +20,7 @@ import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
  * @author Diego
  * @version 1.0
  */
-class Presentacion : AppCompatActivity() {
+class Presentacion : BaseMenuActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,26 +120,10 @@ class Presentacion : AppCompatActivity() {
             .show()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        // Ocultar la opción "Mapa" en la pantalla de registro/presentación
-        menu?.findItem(R.id.action_mapa)?.isVisible = false
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_mapa -> {
-                val intent = Intent(this, MapaActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                startActivity(intent)
-                true
-            }
-            R.id.action_irten -> {
-                finishAffinity()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+
+    override fun onMenuCreated(menu: Menu) {
+        // Ocultar la opción "Mapa" en la pantalla de registro/presentación
+        menu.findItem(R.id.action_mapa)?.isVisible = false
     }
 }

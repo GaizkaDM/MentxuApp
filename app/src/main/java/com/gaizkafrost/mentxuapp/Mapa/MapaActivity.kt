@@ -2,10 +2,9 @@ package com.gaizkafrost.mentxuapp.Mapa
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
-import android.view.MenuItem
+import android.widget.Toast
+import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.EstadoParada
 import com.gaizkafrost.mentxuapp.Parada
 import com.gaizkafrost.mentxuapp.Parada1.Huevo_Activity
@@ -23,7 +22,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,20 +109,8 @@ class MapaActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
+    override fun onMenuCreated(menu: Menu) {
         // Ocultar la opción "Mapa" ya que ya estamos en él
-        menu?.findItem(R.id.action_mapa)?.isVisible = false
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_irten -> {
-                finishAffinity()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        menu.findItem(R.id.action_mapa)?.isVisible = false
     }
 }

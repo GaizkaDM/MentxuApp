@@ -2,16 +2,14 @@ package com.gaizkafrost.mentxuapp.Parada2
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 
-class DiferenciasActivity : AppCompatActivity() {
+class DiferenciasActivity : BaseMenuActivity() {
 
     private lateinit var diferenciasView: DiferenciasView
     private lateinit var tvContador: TextView
@@ -63,26 +61,5 @@ class DiferenciasActivity : AppCompatActivity() {
         diferenciasView.postDelayed({
             finish()
         }, 2000)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_mapa -> {
-                val intent = Intent(this, MapaActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                startActivity(intent)
-                true
-            }
-            R.id.action_irten -> {
-                finishAffinity()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

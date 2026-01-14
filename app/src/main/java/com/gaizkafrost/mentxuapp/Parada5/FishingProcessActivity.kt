@@ -2,17 +2,15 @@ package com.gaizkafrost.mentxuapp.Parada5
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
@@ -26,7 +24,7 @@ import com.gaizkafrost.mentxuapp.R
  * - Change [IS_DRAG_AND_DROP_MODE] to switch interaction modes.
  * - [validateGame] contains the logic for checking correctness.
  */
-class FishingProcessActivity : AppCompatActivity() {
+class FishingProcessActivity : BaseMenuActivity() {
 
     // --- CONFIGURATION FOR TEACHERS ---
     
@@ -163,26 +161,5 @@ class FishingProcessActivity : AppCompatActivity() {
         tvFeedback.visibility = View.VISIBLE
         val colorRes = if (success) android.R.color.holo_green_dark else android.R.color.holo_red_dark
         tvFeedback.setTextColor(ContextCompat.getColor(this, colorRes))
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_mapa -> {
-                val intent = Intent(this, MapaActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                startActivity(intent)
-                true
-            }
-            R.id.action_irten -> {
-                finishAffinity()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

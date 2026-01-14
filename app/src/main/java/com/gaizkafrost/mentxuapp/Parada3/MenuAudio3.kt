@@ -6,21 +6,19 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.load
+import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.R
 
-class MenuAudio3 : AppCompatActivity() {
+class MenuAudio3 : BaseMenuActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var playPauseButton: Button
@@ -136,24 +134,4 @@ class MenuAudio3 : AppCompatActivity() {
         gifAnimatable?.stop()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_mapa -> {
-                val intent = Intent(this, MapaActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                startActivity(intent)
-                true
-            }
-            R.id.action_irten -> {
-                finishAffinity()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 }

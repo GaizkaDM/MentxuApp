@@ -3,15 +3,13 @@ package com.gaizkafrost.mentxuapp.Parada6
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
@@ -21,7 +19,7 @@ import com.gaizkafrost.mentxuapp.R
  * Contiene un puzle de 5x5 y un test de preguntas.
  * Configurada como actividad de inicio (Launcher).
  */
-class Parada6Activity : AppCompatActivity() {
+class Parada6Activity : BaseMenuActivity() {
 
     // --- CONFIGURACIÓN DEL PUZLE ---
     private val PUZZLE_SIZE = 5 // 5x5
@@ -329,24 +327,5 @@ class Parada6Activity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_mapa -> {
-                val intent = Intent(this, MapaActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                startActivity(intent)
-                true
-            }
-            R.id.action_irten -> {
-                finishAffinity()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
