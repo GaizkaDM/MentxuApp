@@ -44,13 +44,15 @@ class Huevo_Activity : BaseMenuActivity() {
         // 3. Listener en la imagen de fondo para cuando el usuario falla
         imagenFondo.setOnClickListener {
             // Damos una pista o simplemente indicamos que ha fallado
-            Toast.makeText(this, "¡Casi! Sigue buscando...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ia-ia! Jarraitu bilatzen...", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun huevoEncontrado(huevoEncontrado: ImageView) {
         // Mostramos un mensaje de felicitación
-        Toast.makeText(this, "¡Lo has encontrado! ¡Felicidades!", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Aurkitu duzu! Zorionak!", Toast.LENGTH_LONG).show()
+
 
         // Hacemos visible el huevo (opcional, para resaltarlo)
         huevoEncontrado.visibility = View.VISIBLE

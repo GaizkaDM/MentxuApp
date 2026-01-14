@@ -34,14 +34,15 @@ class FishingProcessActivity : BaseMenuActivity() {
     // List of steps. You can add or remove steps here.
     // The "id" must be the correct sequence number (1, 2, 3...).
     private val stepsData = listOf(
-        FishingStep(1, "Preparar el barco y las redes", R.drawable.pesca_1),
-        FishingStep(2, "Navegar hacia el caladero", R.drawable.pesca_2),
-        FishingStep(3, "Echar las redes al mar", R.drawable.pesca_3),
-        FishingStep(4, "Recoger las redes con la captura", R.drawable.pesca_4),
-        FishingStep(5, "Clasificar el pescado por especies", R.drawable.pesca_5),
-        FishingStep(6, "Guardar en la bodega con hielo", R.drawable.pesca_6),
-        FishingStep(7, "Llegada a puerto y subasta", R.drawable.pesca_7)
+        FishingStep(1, "Ontzia eta sareak prestatu", R.drawable.pesca_1),
+        FishingStep(2, "Arrantza-lekura nabigatu", R.drawable.pesca_2),
+        FishingStep(3, "Sareak itsasora bota", R.drawable.pesca_3),
+        FishingStep(4, "Sareak jaso arrantzarekin", R.drawable.pesca_4),
+        FishingStep(5, "Arraina espezieen arabera sailkatu", R.drawable.pesca_5),
+        FishingStep(6, "Sotoan gorde izotzarekin", R.drawable.pesca_6),
+        FishingStep(7, "Portura iritsi eta enkantea egin", R.drawable.pesca_7)
     )
+
 
     // ----------------------------------
 
@@ -122,14 +123,14 @@ class FishingProcessActivity : BaseMenuActivity() {
             }
             // Extra check: Ensure all fields are filled
             if (currentItems.any { it.userOrder.isEmpty() }) {
-                showFeedback("Por favor, completa todos los números.", false)
+                showFeedback("Mesedez, bete zenbaki guztiak.", false)
                 return
             }
         }
 
         if (isCorrect) {
-            showFeedback("¡Muy bien! Has ordenado correctamente el proceso de la pesca.", true)
-            Toast.makeText(this, "¡Excelente trabajo!", Toast.LENGTH_SHORT).show()
+            showFeedback("Oso ondo! Arrantza prozesua ondo ordenatu duzu.", true)
+            Toast.makeText(this, "Lan bikaina!", Toast.LENGTH_SHORT).show()
 
             // Marcar la parada como completada
             val idParadaActual = intent.getIntExtra("ID_PARADA", 5)
@@ -140,8 +141,9 @@ class FishingProcessActivity : BaseMenuActivity() {
                 finish()
             }, 2000)
         } else {
-            showFeedback("Hay algunos pasos mal ordenados. Vuelve a intentarlo.", false)
+            showFeedback("Urrats batzuk gaizki ordenatuta daude. Saiatu berriro.", false)
         }
+
     }
 
     /**
@@ -153,7 +155,8 @@ class FishingProcessActivity : BaseMenuActivity() {
         }
         adapter.updateSteps(shuffledSteps)
         tvFeedback.visibility = View.GONE
-        Toast.makeText(this, "Juego reiniciado. ¡A por ello!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Jokoa berrabiarazi da. Aurrera!", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun showFeedback(message: String, success: Boolean) {

@@ -96,8 +96,9 @@ class MenuAudio : BaseMenuActivity() {
                     startActivity(intent)
                     finish()
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Error al abrir la siguiente actividad", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Errorea hurrengo jarduera irekitzean", Toast.LENGTH_SHORT).show()
                 }
+
             } else {
                 finish()
             }
@@ -122,8 +123,9 @@ class MenuAudio : BaseMenuActivity() {
         if (textoResId != 0) {
             tvExplicacion.setText(textoResId)
         } else {
-            tvExplicacion.text = "Explicación no encontrada para la parada $idParada"
+            tvExplicacion.text = "Ez da azalpenik aurkitu $idParada geltokirako"
         }
+
 
         // Cargar Audio dinámicamente: R.raw.audioaX
         val audioResId = resources.getIdentifier("audioa$idParada", "raw", packageName)
@@ -138,8 +140,9 @@ class MenuAudio : BaseMenuActivity() {
                 audioSeekBar.progress = 0
             }
         } else {
-            Toast.makeText(this, "Audio no encontrado para la parada $idParada", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ez da audiorik aurkitu $idParada geltokirako", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun togglePlayPause() {

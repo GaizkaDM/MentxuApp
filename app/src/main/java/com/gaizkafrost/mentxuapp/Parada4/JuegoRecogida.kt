@@ -33,6 +33,8 @@ class JuegoRecogida : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private var screenWidth = 0
     private val random = Random()
+    private var fallingSpeed = 20f // Velocidad inicial
+
 
     // Control de movimiento
     private var lastTouchX = 0f
@@ -151,7 +153,8 @@ class JuegoRecogida : AppCompatActivity() {
         val iterator = fallingObjects.iterator()
         while (iterator.hasNext()) {
             val obj = iterator.next()
-            obj.y += 25 // Velocidad de caída
+            obj.y += fallingSpeed // Velocidad de caída dinámica
+
 
             // Si sale de la pantalla por mucho (margen de seguridad para memoria)
             if (obj.y > gameContainer.height + 500) {
@@ -195,8 +198,12 @@ class JuegoRecogida : AppCompatActivity() {
     }
 
     private fun updateScore() {
-        scoreText.text = "Puntos: $score/$targetScore"
+        scoreText.text = "Puntuak: $score/$targetScore"
+        
+        // Dificultad progresiva: aumentamos velocidad cada 5 puntos
+        fallingSpeed = 20f + (score / 5) * 5f
     }
+
 
     private fun winGame() {
         isGameRunning = false

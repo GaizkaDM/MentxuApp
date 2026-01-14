@@ -171,7 +171,8 @@ class Parada6Activity : BaseMenuActivity() {
             Question(6, "Zeren inguruan antolatzen zen Santurtziko bizitza aspaldian?", 
                 listOf("Basogintzaren inguruan.", "Arrantzaren eta portuaren inguruan.", "Nekazaritzaren inguruan."), 1),
             Question(7, "Zergatik garrantzitsua da Santurtziko portua gaur egun?", 
-                listOf("Jolasparke handi bat duelako.", "Herriaren ikur delako y está ligado al mar.", "Itsasontziak daudelako."), 1),
+                listOf("Jolasparke handi bat duelako.", "Herriaren ikurra delako eta itsasoari lotuta dagoelako.", "Itsasontziak daudelako."), 1),
+
             Question(8, "Zer gogorazten du “Monumento a los niños y niñas de la guerra” eskulturak?", 
                 listOf("Gerra garaian ihes egin zuten haurrek.", "Oporretako bidaiak.", "Zientzia jaialdia."), 0)
         )

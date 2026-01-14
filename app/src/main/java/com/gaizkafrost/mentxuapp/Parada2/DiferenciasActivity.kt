@@ -36,7 +36,8 @@ class DiferenciasActivity : BaseMenuActivity() {
         diferenciasEncontradas++
         actualizarContador()
         
-        Toast.makeText(this, "¡Diferencia encontrada! ($diferenciasEncontradas/$totalDiferencias)", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Desberdintasuna aurkituta! ($diferenciasEncontradas/$totalDiferencias)", Toast.LENGTH_SHORT).show()
+
         
         // Verificar si se han encontrado todas las diferencias
         if (diferenciasEncontradas >= totalDiferencias) {
@@ -45,11 +46,13 @@ class DiferenciasActivity : BaseMenuActivity() {
     }
     
     private fun actualizarContador() {
-        tvContador.text = "Diferencias encontradas: $diferenciasEncontradas/$totalDiferencias"
+        tvContador.text = "Aurkitutako desberdintasunak: $diferenciasEncontradas/$totalDiferencias"
     }
 
+
     private fun juegoCompletado() {
-        Toast.makeText(this, "¡Felicidades! Has encontrado todas las diferencias", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Zorionak! Desberdintasun guztiak aurkitu dituzu", Toast.LENGTH_LONG).show()
+
         
         // Marcar la parada como completada
         val idParadaActual = intent.getIntExtra("ID_PARADA", -1)

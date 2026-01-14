@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">MentxuApp</string>
-    <string name="registrarse">Registrarse</string>
-    <string name="ayuda">Ayuda</string>
-    <string name="idioma">Idioma</string>
-    <string name="credenciales">Credenciales</string>
+    <string name="registrarse">Erregistratu</string>
+    <string name="ayuda">Laguntza</string>
+    <string name="idioma">Hizkuntza</string>
+    <string name="credenciales">Kredentzialak</string>
     <string name="ayudaTexto">Ongi etorri aplikazioaren aurkezpenera. Sakatu erregistratzeko botoia jolasten hasteko. Gozatu!</string>
-    <string name="nombre">Nombre:</string>
-    <string name="apellido">Apellido:</string>
+    <string name="nombre">Izena:</string>
+    <string name="apellido">Abizena:</string>
     <string name="dialog_title">Zure datuak sartu</string>
     <string name="dialog_comenzar">Hasi</string>
     <string name="dialog_cancelar">Atzera</string>
@@ -49,10 +49,10 @@
         Hurrengo geltokian eskultura bat aztertu beharko duzue, haren forman, kolorean eta xehetasun txiki-txikietan arreta guztia jarriz.
         Ume eta txakurraren eskultura honek herriaren iraganari eta itsasarekiko loturari omenaldia egiten dio.
         Garai batean, ura leku horretaraino heltzen zen, eta Santurtziko bizitza guztia arrantzaren eta portuaren inguruan antolatzen zen. Ondoren, benetako eskultura baten eta editatuta dagoen eskultura berberaren argazki biren arteko desberdintasunak bilatzea izango da hurrengo eginkizuna. Prest zaudete zuen ikusmen zorrotzena praktikan jartzeko?</string>
-    <string name="titulo_diferencias">Encuentra las diferencias</string>
-    <string name="instrucciones_diferencias">Encuentra las 7 diferencias entre las dos imágenes del puerto de Santurtzi. Toca en la imagen de la derecha para marcar las diferencias.</string>
-    <string name="contador_diferencias_inicio">Diferencias encontradas: 0/7</string>
-    <string name="boton_pista">Pista</string>
+    <string name="titulo_diferencias">Bilatu desberdintasunak</string>
+    <string name="instrucciones_diferencias">Bilatu Santurtziko portuko bi irudien arteko 7 desberdintasunak. Sakatu eskuineko irudian desberdintasunak markatzeko.</string>
+    <string name="contador_diferencias_inicio">Aurkitutako desberdintasunak: 0/7</string>
+    <string name="boton_pista">Laguntza</string>
 
     <!-- Parada 3: Agurtza itsasontzia -->
     <string name="textoExplicacion3">

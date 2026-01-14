@@ -71,7 +71,7 @@ class Presentacion : BaseMenuActivity() {
 
 
                     // Mostramos un mensaje temporal para confirmar que funciona
-                    Toast.makeText(this, "Usuario registrado: $nombre $apellido", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Erabiltzailea erregistratuta: $nombre $apellido", Toast.LENGTH_LONG).show()
 
                     dialog.dismiss()
                 } else {

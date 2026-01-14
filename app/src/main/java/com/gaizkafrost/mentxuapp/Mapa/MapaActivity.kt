@@ -69,18 +69,20 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
                     6 -> MenuAudio.navegarAParada(this@MapaActivity, 6, Parada6Activity::class.java)
 
                     else -> {
-                        Toast.makeText(this, "Juego para esta parada no implementado.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Geltoki honetako jokoa ez dago inplementatuta.", Toast.LENGTH_SHORT).show()
                     }
+
                 }
 
             } else {
                 // Si la parada está bloqueada o completada, informamos al usuario
                 val mensaje = when (paradaClicada?.estado) {
-                    EstadoParada.BLOQUEADA -> "Debes completar la parada anterior primero."
-                    EstadoParada.COMPLETADA -> "¡Ya has completado esta parada!"
-                    else -> "Esta parada no está disponible."
+                    EstadoParada.BLOQUEADA -> "Aurreko geltokia osatu behar duzu lehenago."
+                    EstadoParada.COMPLETADA -> "Geltoki hau osatu duzu jada!"
+                    else -> "Geltoki hau ez dago erabilgarri."
                 }
                 Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+
             }
             true // Indicamos que hemos gestionado el clic
         }

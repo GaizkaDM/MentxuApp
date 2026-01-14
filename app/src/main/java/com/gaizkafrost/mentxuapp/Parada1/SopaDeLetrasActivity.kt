@@ -52,7 +52,8 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
         if (!palabrasEncontradas.contains(palabra)) {
             palabrasEncontradas.add(palabra)
             
-            Toast.makeText(this, "¡Has encontrado: $palabra!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "$palabra aurkitu duzu!", Toast.LENGTH_SHORT).show()
+
             
             // Marcar la palabra en verde en la lista
             val index = palabrasAEncontrar.indexOf(palabra)
@@ -68,7 +69,8 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
     }
 
     private fun juegoCompletado() {
-        Toast.makeText(this, "¡Felicidades! Has completado la sopa de letras", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Zorionak! Hizki-sopa osatu duzu", Toast.LENGTH_LONG).show()
+
         
         // Marcar la parada como completada
         val idParadaActual = intent.getIntExtra("ID_PARADA", -1)
