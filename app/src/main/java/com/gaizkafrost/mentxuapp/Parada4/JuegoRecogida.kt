@@ -11,14 +11,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.ParadasRepository
 import com.gaizkafrost.mentxuapp.R
 import java.util.Random
 
-class JuegoRecogida : AppCompatActivity() {
+class JuegoRecogida : BaseMenuActivity() {
 
     private lateinit var gameContainer: ConstraintLayout
     private lateinit var player: ImageView
