@@ -142,9 +142,9 @@ class Parada6Activity : BaseMenuActivity() {
             val idParadaActual = intent.getIntExtra("ID_PARADA", 6)
             ParadasRepository.completarParada(idParadaActual)
 
-            // Cerrar la actividad después de 3 segundos para que vean el resultado
+            // Mostrar puntuación y cerrar la actividad después de 3 segundos
             resultArea.postDelayed({
-                finish()
+                showScoreResult(calculateScore())
             }, 3000)
         } else {
             resultArea.setTextColor(resources.getColor(android.R.color.holo_red_dark))

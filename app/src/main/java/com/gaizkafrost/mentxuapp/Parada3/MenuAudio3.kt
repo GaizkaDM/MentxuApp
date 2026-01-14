@@ -19,6 +19,7 @@ import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.R
 
 class MenuAudio3 : BaseMenuActivity() {
+    override var isScoringEnabled = false
 
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var playPauseButton: Button

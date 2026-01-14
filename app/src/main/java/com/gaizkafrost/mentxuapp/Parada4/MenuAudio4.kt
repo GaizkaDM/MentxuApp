@@ -14,10 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
-import coil.load
+import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.R
 
-class MenuAudio4 : AppCompatActivity() {
+class MenuAudio4 : BaseMenuActivity() {
+    override var isScoringEnabled = false
 
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var playPauseButton: Button

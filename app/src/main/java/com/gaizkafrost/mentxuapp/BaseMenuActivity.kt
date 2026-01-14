@@ -17,6 +17,16 @@ import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
  */
 abstract class BaseMenuActivity : AppCompatActivity() {
 
+    protected var startTime: Long = 0
+    protected open var isScoringEnabled: Boolean = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (isScoringEnabled) {
+            startTime = System.currentTimeMillis()
+        }
+    }
+
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         
@@ -29,6 +39,27 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         } catch (e: Exception) {
             // Si no hay toolbar en el layout, se usará el ActionBar por defecto
         }
+    }
+
+    /**
+     * Calcula la puntuación basada en el tiempo transcurrido.
+     * Puntuación = max(100, 1000 - (segundos * 2))
+     */
+    protected fun calculateScore(): Int {
+        val endTime = System.currentTimeMillis()
+        val secondsElapsed = (endTime - startTime) / 1000
+        val score = (1000 - (secondsElapsed * 2)).toInt()
+        return score.coerceAtLeast(100)
+    }
+
+    /**
+     * Lanza la pantalla de resultados con la puntuación calculada.
+     */
+    protected fun showScoreResult(score: Int) {
+        val intent = Intent(this, ScoreResultActivity::class.java)
+        intent.putExtra("EXTRA_SCORE", score)
+        startActivity(intent)
+        finish()
     }
 
     /**

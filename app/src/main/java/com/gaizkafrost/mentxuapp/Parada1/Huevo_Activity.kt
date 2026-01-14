@@ -73,6 +73,18 @@ class Huevo_Activity : BaseMenuActivity() {
             // Lanzar la sopa de letras después de encontrar el huevo
             val intent = Intent(this, SopaDeLetrasActivity::class.java)
             intent.putExtra("ID_PARADA", idParadaActual)
+            // NO usamos showScoreResult aquí porque queremos ir a la Sopa de Letras
+            // Pero el usuario dijo "cada actividad". Huevo_Activity es una actividad.
+            // Si muestro el resultado aquí, el botón "Continuar" me llevará al mapa.
+            // Entonces no iré a la Sopa de Letras.
+            // Quizás deba preguntar... o decidir.
+            // Generalmente "actividad" para el usuario es el minijuego completo.
+            // En Parada 1 hay dos. 
+            // Si el botón de cerrar lleva al mapa, entonces Huevo_Activity no debería mostrar score si va a Sopa de Letras.
+            // Pero el usuario explícitamente dijo "aparezca al terminar la actividad junto a un boton de Continuar que me lleve al mapa de nuevo".
+            // Si Huevo_Activity lleva a Sopa de Letras, NO es el comportamiento esperado ir al mapa.
+            // Así que para Huevo_Activity NO mostraré puntuación para no romper el flujo hacia Sopa de Letras.
+            
             startActivity(intent)
             finish() // Cierra esta actividad
         }, 2000) // 2000 milisegundos = 2 segundos

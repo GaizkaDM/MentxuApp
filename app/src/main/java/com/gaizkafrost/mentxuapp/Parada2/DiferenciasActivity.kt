@@ -60,9 +60,9 @@ class DiferenciasActivity : BaseMenuActivity() {
             ParadasRepository.completarParada(idParadaActual)
         }
         
-        // Cerrar la actividad después de 2 segundos
+        // Mostrar puntuación y cerrar la actividad después de 2 segundos
         diferenciasView.postDelayed({
-            finish()
+            showScoreResult(calculateScore())
         }, 2000)
     }
 }

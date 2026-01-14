@@ -21,6 +21,8 @@ import com.gaizkafrost.mentxuapp.R
 
 class MenuAudio : BaseMenuActivity() {
 
+    override var isScoringEnabled = false
+
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var playPauseButton: Button
     private lateinit var audioSeekBar: SeekBar

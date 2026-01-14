@@ -79,5 +79,11 @@
             android:exported="false"
             android:label="Parada 6: Puzlea eta Test-a" />
 
+        <!-- Puntuación y Resultados -->
+        <activity
+            android:name=".ScoreResultActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>

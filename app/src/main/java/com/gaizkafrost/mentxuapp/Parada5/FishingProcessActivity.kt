@@ -138,7 +138,7 @@ class FishingProcessActivity : BaseMenuActivity() {
 
             // Cerrar la actividad después de 2 segundos para dar tiempo a ver el mensaje
             recyclerView.postDelayed({
-                finish()
+                showScoreResult(calculateScore())
             }, 2000)
         } else {
             showFeedback("Urrats batzuk gaizki ordenatuta daude. Saiatu berriro.", false)

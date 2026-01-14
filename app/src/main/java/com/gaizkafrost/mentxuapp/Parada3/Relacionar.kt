@@ -164,8 +164,8 @@ class Relacionar : BaseMenuActivity() {
             val idParada = intent.getIntExtra("ID_PARADA", 3)
             com.gaizkafrost.mentxuapp.ParadasRepository.completarParada(idParada)
 
-            // Finalizar la actividad para volver al mapa
-            finish()
+            // Mostrar puntuación y cerrar la actividad
+            showScoreResult(calculateScore())
         }
     }
 

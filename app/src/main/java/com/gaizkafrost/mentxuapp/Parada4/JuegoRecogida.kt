@@ -220,7 +220,7 @@ class JuegoRecogida : AppCompatActivity() {
         // Mostrar botón de continuar
         btnContinuar.visibility = View.VISIBLE
         btnContinuar.setOnClickListener {
-            finish() // Volver al mapa
+            showScoreResult(calculateScore())
         }
 
         // Desactivar spawns y movimiento
