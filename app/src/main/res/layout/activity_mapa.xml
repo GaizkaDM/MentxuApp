@@ -10,28 +10,34 @@
 
     <include layout="@layout/toolbar" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium">
 
     <TextView
         android:id="@+id/titleTextView"
+        style="@style/TextosTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/mapCard"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/margin_medium"
         android:text="Puntos de Interés en Santurtzi"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+        android:textColor="#2C3E50" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mapCard"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_centerInParent="true"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        android:layout_marginTop="60dp"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation">
 
         <fragment
             android:id="@+id/map"
@@ -43,13 +49,17 @@
 
     <Button
         android:id="@+id/continueButton"
+        style="@style/Botones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/mapCard"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_large"
+        android:minWidth="160dp"
         android:text="Continuar" />
 
     </RelativeLayout>
+
+    </ScrollView>
 
 </LinearLayout>

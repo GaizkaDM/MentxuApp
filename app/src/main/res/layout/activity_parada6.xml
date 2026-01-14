@@ -9,9 +9,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="@dimen/toolbar_height"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
+        android:elevation="@dimen/card_elevation"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
@@ -25,26 +25,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/padding_medium">
 
             <!-- Sección del Puzle -->
             <TextView
                 android:id="@+id/puzzle_title"
+                style="@style/TextosTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Puzlea konpondu!"
                 android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 android:textColor="#2C3E50"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="@dimen/margin_medium" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/puzzle_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#DCDCDC"
-                android:padding="2dp"
+                android:padding="@dimen/padding_small"
+                android:layout_marginBottom="@dimen/margin_small"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:spanCount="5"
                 tools:listitem="@layout/item_puzzle_piece" />
@@ -55,7 +55,9 @@
                 android:layout_height="wrap_content"
                 android:text="Piezak trukatu puzlea osatzeko."
                 android:textAlignment="center"
-                android:layout_marginTop="8dp"
+                android:textSize="@dimen/text_size_body"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_large"
                 android:textColor="#7F8C8D" />
 
             <!-- Sección del Test (Inicialmente oculta) -->
@@ -64,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/margin_xlarge"
                 android:visibility="gone"
                 tools:visibility="visible">
 
@@ -72,24 +74,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="#BDC3C7"
-                    android:layout_marginBottom="24dp" />
+                    android:layout_marginBottom="@dimen/margin_large" />
 
                 <TextView
+                    style="@style/TextosDisplay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="AMALERAKO-TESTA"
                     android:textAlignment="center"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:textColor="#E67E22" />
+                    android:textColor="#E67E22"
+                    android:layout_marginBottom="@dimen/margin_small" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Erantzun ezazu hurrengo galdera hauek."
                     android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"
+                    android:textSize="@dimen/text_size_medium"
+                    android:layout_marginBottom="@dimen/margin_medium"
                     android:textColor="#34495E" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -101,23 +103,23 @@
 
                 <Button
                     android:id="@+id/btn_verify_test"
+                    style="@style/BotonesGrandes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Egiaztatu"
-                    android:layout_marginTop="24dp"
-                    android:padding="12dp"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:padding="@dimen/padding_medium"
                     android:backgroundTint="#27AE60"
                     android:textColor="#FFFFFF" />
 
                 <TextView
                     android:id="@+id/test_result_text"
+                    style="@style/TextosTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_xlarge"
                     android:visibility="gone" />
 
             </LinearLayout>

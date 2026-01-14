@@ -11,42 +11,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center">
+        android:padding="@dimen/padding_medium">
 
     <!-- Título -->
     <TextView
         android:id="@+id/tvTitulo"
+        style="@style/TextosDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="HIZKI-SOPA"
-        android:textSize="32sp"
-        android:textStyle="bold"
         android:textColor="#000000"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="@dimen/margin_small"/>
 
-    <!-- Vista de la sopa de letras -->
+    <!-- Vista de la sopa de letras - Ocupa la mayor parte del espacio -->
     <com.gaizkafrost.mentxuapp.Parada1.SopaDeLetrasView
         android:id="@+id/sopaDeLetrasView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#F5F5F5"
-        android:padding="4dp"/>
+        android:padding="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/margin_medium"/>
 
     <!-- Texto "Palabras a Encontrar:" -->
     <TextView
         android:id="@+id/tvPalabrasLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Palabras a Encontrar:"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="@dimen/margin_small"/>
 
-    <!-- Lista de palabras en 3 columnas -->
+    <!-- Lista de palabras en 3 columnas - Altura fija mínima -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ARRAUTZA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BIZIDUNA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HEGAZTIA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HEGOA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="KAIOA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LUMA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MOKOA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -150,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MOREA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OBIPAROA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
@@ -168,13 +168,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="UDALA"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_small"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp"/>
 
         </LinearLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
     </LinearLayout>
 

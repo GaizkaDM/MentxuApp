@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dimensiones optimizadas para tablets 10" y superiores (sw720dp) -->
+    
+    <!-- Márgenes y Padding amplios para pantallas grandes -->
+    <dimen name="margin_small">16dp</dimen>
+    <dimen name="margin_medium">32dp</dimen>
+    <dimen name="margin_large">48dp</dimen>
+    <dimen name="margin_xlarge">64dp</dimen>
+    
+    <dimen name="padding_small">16dp</dimen>
+    <dimen name="padding_medium">32dp</dimen>
+    <dimen name="padding_large">48dp</dimen>
+    <dimen name="padding_xlarge">64dp</dimen>
+    
+    <!-- Texto grande para pantallas grandes -->
+    <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_body">18sp</dimen>
+    <dimen name="text_size_medium">20sp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
+    <dimen name="text_size_title">28sp</dimen>
+    <dimen name="text_size_heading">32sp</dimen>
+    <dimen name="text_size_display">48sp</dimen>
+    
+    <!-- Componentes grandes -->
+    <dimen name="button_height">64dp</dimen>
+    <dimen name="button_height_large">80dp</dimen>
+    <dimen name="toolbar_height">72dp</dimen>
+    
+    <!-- Imágenes grandes -->
+    <dimen name="image_small">100dp</dimen>
+    <dimen name="image_medium">200dp</dimen>
+    <dimen name="image_large">360dp</dimen>
+    
+    <!-- Card -->
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    
+    <!-- Íconos -->
+    <dimen name="touch_target_min">64dp</dimen>
+    <dimen name="icon_size">40dp</dimen>
+</resources>
