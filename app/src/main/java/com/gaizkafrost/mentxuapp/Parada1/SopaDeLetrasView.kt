@@ -43,7 +43,7 @@ class SopaDeLetrasView @JvmOverloads constructor(
 
     private val rows = grid.size
     private val cols = grid[0].size
-    
+
     // Definición de palabras y sus posiciones
     private val palabras = mapOf(
         "ARRAUTZA" to WordLocation(8, 3, 8, 10, Direction.HORIZONTAL),  // 8 letras
@@ -59,34 +59,34 @@ class SopaDeLetrasView @JvmOverloads constructor(
     )
 
     private val palabrasEncontradas = mutableSetOf<String>()
-    
+
     private var cellSize = 0f
     private var gridOffsetX = 0f
     private var gridOffsetY = 0f
-    
+
     private val paintCellBackground = Paint().apply {
         color = Color.WHITE
         style = Paint.Style.FILL
     }
-    
+
     private val paintCell = Paint().apply {
         color = Color.DKGRAY
         style = Paint.Style.STROKE
         strokeWidth = 2f
     }
-    
+
     private val paintText = Paint().apply {
         color = Color.BLACK
         textAlign = Paint.Align.CENTER
         isAntiAlias = true
     }
-    
+
     private val paintSelected = Paint().apply {
         color = ContextCompat.getColor(context, R.color.naranja_seleccion)
         style = Paint.Style.FILL
         alpha = 180  // Más opaco para que se vea mejor
     }
-    
+
     private val paintFound = Paint().apply {
         color = ContextCompat.getColor(context, R.color.verde_completado)
         style = Paint.Style.FILL
@@ -101,49 +101,51 @@ class SopaDeLetrasView @JvmOverloads constructor(
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        
+
         val availableWidth = w - paddingLeft - paddingRight
         val availableHeight = h - paddingTop - paddingBottom
-        
+
         cellSize = min(availableWidth / cols.toFloat(), availableHeight / rows.toFloat())
-        
+
         gridOffsetX = paddingLeft + (availableWidth - cellSize * cols) / 2
         gridOffsetY = paddingTop + (availableHeight - cellSize * rows) / 2
-        
+
         paintText.textSize = cellSize * 0.6f
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        
-        // Dibujar las celdas encontradas primero
+
+        // 1. Dibujar la cuadrícula de fondo y los bordes
+        for (row in 0 until rows) {
+            for (col in 0 until cols) {
+                val x = gridOffsetX + col * cellSize
+                val y = gridOffsetY + row * cellSize
+                canvas.drawRect(x, y, x + cellSize, y + cellSize, paintCellBackground)
+                canvas.drawRect(x, y, x + cellSize, y + cellSize, paintCell)
+            }
+        }
+
+        // 2. Dibujar el resaltado de las palabras encontradas
         for ((palabra, location) in palabras) {
             if (palabrasEncontradas.contains(palabra)) {
                 drawWordHighlight(canvas, location, paintFound)
             }
         }
-        
-        // Dibujar las celdas seleccionadas actualmente
+
+        // 3. Dibujar la selección actual del usuario
         for (cell in selectedCells) {
             val (row, col) = cell
             val x = gridOffsetX + col * cellSize
             val y = gridOffsetY + row * cellSize
             canvas.drawRect(x, y, x + cellSize, y + cellSize, paintSelected)
         }
-        
-        // Dibujar la cuadrícula y las letras
+
+        // 4. Dibujar las letras encima de todo
         for (row in 0 until rows) {
             for (col in 0 until cols) {
                 val x = gridOffsetX + col * cellSize
                 val y = gridOffsetY + row * cellSize
-                
-                // Dibujar fondo de celda blanco
-                canvas.drawRect(x, y, x + cellSize, y + cellSize, paintCellBackground)
-                
-                // Dibujar borde de celda
-                canvas.drawRect(x, y, x + cellSize, y + cellSize, paintCell)
-                
-                // Dibujar letra
                 val letter = grid[row][col].toString()
                 val textX = x + cellSize / 2
                 val textY = y + cellSize / 2 - (paintText.descent() + paintText.ascent()) / 2
@@ -151,6 +153,7 @@ class SopaDeLetrasView @JvmOverloads constructor(
             }
         }
     }
+
 
     private fun drawWordHighlight(canvas: Canvas, location: WordLocation, paint: Paint) {
         val cells = location.getCells()
@@ -163,42 +166,46 @@ class SopaDeLetrasView @JvmOverloads constructor(
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (event.action == MotionEvent.ACTION_DOWN) {
-            val cell = getCellFromTouch(event.x, event.y) ?: return false
-            
-            if (startCell == null) {
-                // Primer click: marcar celda de inicio
+        val cell = getCellFromTouch(event.x, event.y) ?: return false
+
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
                 startCell = cell
                 currentCell = cell
                 updateSelectedCells()
                 invalidate()
-            } else {
-                // Segundo click: marcar celda final y validar
-                currentCell = cell
-                updateSelectedCells()
-                
-                // Si la selección es válida (línea recta), validar palabra
-                if (selectedCells.isNotEmpty()) {
-                    checkForWord()
-                }
-                
-                // Resetear selección
-                startCell = null
-                currentCell = null
-                selectedCells.clear()
-                invalidate()
+                return true
             }
-            
-            return true
+            MotionEvent.ACTION_MOVE -> {
+                if (startCell != null) {
+                    currentCell = cell
+                    updateSelectedCells()
+                    invalidate()
+                }
+                return true
+            }
+            MotionEvent.ACTION_UP -> {
+                if (startCell != null) {
+                    currentCell = cell
+                    updateSelectedCells()
+                    if (selectedCells.isNotEmpty()) {
+                        checkForWord()
+                    }
+                    startCell = null
+                    currentCell = null
+                    selectedCells.clear()
+                    invalidate()
+                }
+                return true
+            }
         }
-        
         return super.onTouchEvent(event)
     }
 
     private fun getCellFromTouch(x: Float, y: Float): Pair<Int, Int>? {
         val col = ((x - gridOffsetX) / cellSize).toInt()
         val row = ((y - gridOffsetY) / cellSize).toInt()
-        
+
         return if (row in 0 until rows && col in 0 until cols) {
             Pair(row, col)
         } else {
@@ -208,16 +215,16 @@ class SopaDeLetrasView @JvmOverloads constructor(
 
     private fun updateSelectedCells() {
         selectedCells.clear()
-        
+
         val start = startCell ?: return
         val current = currentCell ?: return
-        
+
         val (startRow, startCol) = start
         val (currentRow, currentCol) = current
-        
+
         val rowDiff = currentRow - startRow
         val colDiff = currentCol - startCol
-        
+
         // Determinar si es horizontal, vertical o diagonal
         val direction = when {
             rowDiff == 0 -> Direction.HORIZONTAL
@@ -228,12 +235,12 @@ class SopaDeLetrasView @JvmOverloads constructor(
             }
             else -> return // No es una dirección válida
         }
-        
+
         // Añadir todas las celdas en esa dirección
         val steps = maxOf(abs(rowDiff), abs(colDiff))
         val rowStep = if (rowDiff == 0) 0 else rowDiff / abs(rowDiff)
         val colStep = if (colDiff == 0) 0 else colDiff / abs(colDiff)
-        
+
         for (i in 0..steps) {
             val row = startRow + i * rowStep
             val col = startCol + i * colStep
@@ -243,17 +250,17 @@ class SopaDeLetrasView @JvmOverloads constructor(
 
     private fun checkForWord() {
         val selectedWord = buildSelectedWord()
-        
+
         android.util.Log.d("SopaDeLetras", "checkForWord: selectedWord='$selectedWord', selectedCells=$selectedCells")
-        
+
         for ((palabra, location) in palabras) {
             if (!palabrasEncontradas.contains(palabra)) {
                 val wordCells = location.getCells()
-                
+
                 android.util.Log.d("SopaDeLetras", "  Checking '$palabra': expected=$wordCells, selected=$selectedCells")
-                
+
                 // Comprobar si la selección coincide con la palabra (en cualquier dirección)
-                if (selectedCells == wordCells.toSet() || 
+                if (selectedCells == wordCells.toSet() ||
                     selectedCells == wordCells.reversed().toSet()) {
                     android.util.Log.d("SopaDeLetras", "  >>> FOUND: $palabra <<<")
                     palabrasEncontradas.add(palabra)
@@ -267,13 +274,13 @@ class SopaDeLetrasView @JvmOverloads constructor(
     private fun buildSelectedWord(): String {
         val start = startCell ?: return ""
         val current = currentCell ?: return ""
-        
+
         val sb = StringBuilder()
         for (cell in selectedCells.sortedWith(compareBy({ it.first }, { it.second }))) {
             val (row, col) = cell
             sb.append(grid[row][col])
         }
-        
+
         return sb.toString()
     }
 
@@ -286,27 +293,27 @@ class SopaDeLetrasView @JvmOverloads constructor(
     ) {
         fun getCells(): List<Pair<Int, Int>> {
             val cells = mutableListOf<Pair<Int, Int>>()
-            
+
             val rowStep = when (direction) {
                 Direction.VERTICAL -> 1
                 Direction.DIAGONAL_DOWN_RIGHT, Direction.DIAGONAL_DOWN_LEFT -> 1
                 else -> 0
             }
-            
+
             val colStep = when (direction) {
                 Direction.HORIZONTAL -> 1
                 Direction.DIAGONAL_DOWN_RIGHT -> 1
                 Direction.DIAGONAL_DOWN_LEFT -> -1
                 else -> 0
             }
-            
+
             var row = startRow
             var col = startCol
-            
+
             // Protección contra loops infinitos
             val maxIterations = maxOf(abs(endRow - startRow), abs(endCol - startCol)) + 1
             var iterations = 0
-            
+
             // Añadir celdas desde start hasta end (inclusive)
             while (iterations < maxIterations) {
                 cells.add(Pair(row, col))
@@ -315,15 +322,11 @@ class SopaDeLetrasView @JvmOverloads constructor(
                 col += colStep
                 iterations++
             }
-            
             return cells
         }
     }
 
     enum class Direction {
-        HORIZONTAL,
-        VERTICAL,
-        DIAGONAL_DOWN_RIGHT,
-        DIAGONAL_DOWN_LEFT
+        HORIZONTAL, VERTICAL, DIAGONAL_DOWN_RIGHT, DIAGONAL_DOWN_LEFT
     }
 }
