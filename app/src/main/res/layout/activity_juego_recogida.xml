@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Puntos: 0/10"
+            android:text="Puntuak: 0/10"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
@@ -31,11 +31,27 @@
         <!-- Personaje (Mentxu/Cesta) - MUCHO MÁS GRANDE -->
         <ImageView
             android:id="@+id/playerCharacter"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginBottom="120dp"
-            android:src="@drawable/mentxu_habla"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/mentxu_cesta"
             android:contentDescription="Mentxu recogiendo basura"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Botón Continuar (aparece al ganar) -->
+        <Button
+            android:id="@+id/btnContinuar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jarraitu"
+            android:textSize="24sp"
+            android:visibility="gone"
+            android:padding="20dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

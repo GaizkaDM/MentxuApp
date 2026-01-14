@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -22,10 +23,11 @@ class JuegoRecogida : AppCompatActivity() {
     private lateinit var gameContainer: ConstraintLayout
     private lateinit var player: ImageView
     private lateinit var scoreText: TextView
+    private lateinit var btnContinuar: Button
 
 
     private var score = 0
-    private val targetScore = 10
+    private val targetScore = 20
     private var isGameRunning = true
     private val fallingObjects = mutableListOf<ImageView>()
     private val handler = Handler(Looper.getMainLooper())
@@ -33,8 +35,9 @@ class JuegoRecogida : AppCompatActivity() {
     private val random = Random()
 
     // Control de movimiento
-    private var playerX = 0f
-    private val moveStep = 50f
+    private var lastTouchX = 0f
+    private var isDragging = false
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,12 +47,12 @@ class JuegoRecogida : AppCompatActivity() {
         gameContainer = findViewById(R.id.gameContainer)
         player = findViewById(R.id.playerCharacter)
         scoreText = findViewById(R.id.scoreText)
+        btnContinuar = findViewById(R.id.btnContinuar)
 
 
         // Obtener ancho de pantalla
         gameContainer.post {
             screenWidth = gameContainer.width
-            playerX = player.x
         }
 
         setupControls()
@@ -58,14 +61,28 @@ class JuegoRecogida : AppCompatActivity() {
     }
 
     private fun setupControls() {
-        // Movimiento por deslizamiento
+        // Movimiento por arrastre relativo (evita saltos)
         gameContainer.setOnTouchListener { _, event ->
             if (isGameRunning) {
                 when (event.action) {
-                    android.view.MotionEvent.ACTION_DOWN, android.view.MotionEvent.ACTION_MOVE -> {
-                        val newX = event.x - (player.width / 2)
-                        // Limitar dentro de los bordes de la pantalla
-                        player.x = newX.coerceIn(0f, (screenWidth - player.width).toFloat())
+                    android.view.MotionEvent.ACTION_DOWN -> {
+                        lastTouchX = event.x
+                        isDragging = true
+                    }
+                    android.view.MotionEvent.ACTION_MOVE -> {
+                        if (isDragging) {
+                            val deltaX = event.x - lastTouchX
+                            val newX = player.x + deltaX
+                            
+                            // Permitir un margen para bordes visuales
+                            val offset = player.width / 4f
+                            player.x = newX.coerceIn(-offset, screenWidth - player.width + offset)
+                            
+                            lastTouchX = event.x
+                        }
+                    }
+                    android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                        isDragging = false
                     }
                 }
             }
@@ -97,7 +114,7 @@ class JuegoRecogida : AppCompatActivity() {
             override fun run() {
                 if (!isGameRunning) return
                 spawnObject()
-                handler.postDelayed(this, 1500)
+                handler.postDelayed(this, 1000)
             }
         }, 1000)
     }
@@ -134,13 +151,14 @@ class JuegoRecogida : AppCompatActivity() {
         val iterator = fallingObjects.iterator()
         while (iterator.hasNext()) {
             val obj = iterator.next()
-            obj.y += 10 // Velocidad de caída
+            obj.y += 25 // Velocidad de caída
 
-            // Si sale de la pantalla por abajo, eliminar
-            if (obj.y > gameContainer.height) {
+            // Si sale de la pantalla por mucho (margen de seguridad para memoria)
+            if (obj.y > gameContainer.height + 500) {
                 gameContainer.removeView(obj)
                 iterator.remove()
             }
+
         }
     }
 
@@ -148,15 +166,18 @@ class JuegoRecogida : AppCompatActivity() {
         val playerRect = Rect()
         player.getGlobalVisibleRect(playerRect)
 
-        // Reducir la hitbox del jugador para que sea más justo
-        playerRect.inset(20, 20)
+        // Ajustar la hitbox para que sea solo la parte de abajo (donde está la cesta)
+        // El personaje mide 250dp, queremos que la colisión sea en los 100dp inferiores
+        playerRect.top = playerRect.bottom - 200
+        playerRect.inset(60, 0) // Un poco menos de margen lateral para equilibrar
+
 
         val iterator = fallingObjects.iterator()
         while (iterator.hasNext()) {
             val obj = iterator.next()
             val objRect = Rect()
             obj.getGlobalVisibleRect(objRect)
-            objRect.inset(10, 10)
+            objRect.inset(15, 15) // Hitbox de objeto ligeramente más grande para captura más fluida
 
             if (Rect.intersects(playerRect, objRect)) {
                 // Colisión detectada!
@@ -179,16 +200,22 @@ class JuegoRecogida : AppCompatActivity() {
 
     private fun winGame() {
         isGameRunning = false
-        Toast.makeText(this, "¡Bien hecho! Has limpiado el mar.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Oso ondo! Itsasoa garbitu duzu.", Toast.LENGTH_LONG).show()
 
         // Completar la parada 4
         ParadasRepository.completarParada(4)
 
         // Esperar un poco antes de dejar salir al usuario (o dejar que salga él)
         // Siguiendo el requerimiento manual: No cerramos.
-        scoreText.text = "¡COMPLETADO! ($score/$targetScore)"
+        scoreText.text = "GARAITUA! ($score/$targetScore)"
         scoreText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
         
+        // Mostrar botón de continuar
+        btnContinuar.visibility = View.VISIBLE
+        btnContinuar.setOnClickListener {
+            finish() // Volver al mapa
+        }
+
         // Desactivar spawns y movimiento
         handler.removeCallbacksAndMessages(null)
     }
