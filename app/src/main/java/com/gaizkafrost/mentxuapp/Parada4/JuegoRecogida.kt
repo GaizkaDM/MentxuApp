@@ -23,7 +23,6 @@ class JuegoRecogida : BaseMenuActivity() {
     private lateinit var gameContainer: ConstraintLayout
     private lateinit var player: ImageView
     private lateinit var scoreText: TextView
-    private lateinit var btnContinuar: Button
 
 
     private var score = 0
@@ -49,7 +48,6 @@ class JuegoRecogida : BaseMenuActivity() {
         gameContainer = findViewById(R.id.gameContainer)
         player = findViewById(R.id.playerCharacter)
         scoreText = findViewById(R.id.scoreText)
-        btnContinuar = findViewById(R.id.btnContinuar)
 
 
         // Obtener ancho de pantalla
@@ -212,16 +210,10 @@ class JuegoRecogida : BaseMenuActivity() {
         // Completar la parada 4
         ParadasRepository.completarParada(4)
 
-        // Esperar un poco antes de dejar salir al usuario (o dejar que salga él)
-        // Siguiendo el requerimiento manual: No cerramos.
-        scoreText.text = "GARAITUA! ($score/$targetScore)"
-        scoreText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
-        
-        // Mostrar botón de continuar
-        btnContinuar.visibility = View.VISIBLE
-        btnContinuar.setOnClickListener {
+        // Esperar un poco antes de mostrar la puntuación
+        handler.postDelayed({
             showScoreResult(calculateScore())
-        }
+        }, 1500)
 
         // Desactivar spawns y movimiento
         handler.removeCallbacksAndMessages(null)
