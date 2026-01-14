@@ -163,6 +163,9 @@ class Relacionar : BaseMenuActivity() {
             // Marcamos la parada como completada
             val idParada = intent.getIntExtra("ID_PARADA", 3)
             com.gaizkafrost.mentxuapp.ParadasRepository.completarParada(idParada)
+
+            // Finalizar la actividad para volver al mapa
+            finish()
         }
     }
 
