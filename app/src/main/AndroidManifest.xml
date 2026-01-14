@@ -57,6 +57,16 @@
             android:name=".Parada3.Relacionar"
             android:exported="false" />
 
+        <!-- Módulo Parada 4 -->
+        <activity
+            android:name=".Parada4.MenuAudio4"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Parada4.JuegoRecogida"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <!-- Módulo Parada 5 -->
         <activity
             android:name=".Parada5.FishingProcessActivity"
