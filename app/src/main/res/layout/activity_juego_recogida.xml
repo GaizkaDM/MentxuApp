@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Imagen de fondo con mejor calidad -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/puerto_fondo"
+        android:scaleType="centerCrop"
+        android:contentDescription="Fondo del puerto" />
+
+    <!-- Contenedor del juego encima del fondo -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Marcador de Puntuación -->
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Puntos: 0/10"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Personaje (Mentxu/Cesta) - MUCHO MÁS GRANDE -->
+        <ImageView
+            android:id="@+id/playerCharacter"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginBottom="120dp"
+            android:src="@drawable/mentxu_habla"
+            android:contentDescription="Mentxu recogiendo basura"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Controles MÁS GRANDES -->
+        <Button
+            android:id="@+id/btnLeft"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="32dp"
+            android:text="←"
+            android:textSize="36sp"
+            android:backgroundTint="#FF6200EE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnRight"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="32dp"
+            android:text="→"
+            android:textSize="36sp"
+            android:backgroundTint="#FF6200EE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
