@@ -62,7 +62,7 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
                     1 -> MenuAudio.navegarAParada(this, 1, Huevo_Activity::class.java)
                     2 -> MenuAudio.navegarAParada(this, 2, DiferenciasActivity::class.java)
                     3 -> MenuAudio.navegarAParada(this, 3, com.gaizkafrost.mentxuapp.Parada3.Relacionar::class.java)
-                    // 4 -> Proximamente...
+                    4 -> MenuAudio.navegarAParada(this, 4, JuegoRecogida::class.java)
                     5 -> MenuAudio.navegarAParada(this, 5, FishingProcessActivity::class.java)
                     6 -> MenuAudio.navegarAParada(this, 6, Parada6Activity::class.java)
                     else -> {
