@@ -3,7 +3,10 @@ package com.gaizkafrost.mentxuapp.Mapa
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.EstadoParada
 import com.gaizkafrost.mentxuapp.Parada
@@ -13,8 +16,9 @@ import com.gaizkafrost.mentxuapp.Parada2.DiferenciasActivity
 import com.gaizkafrost.mentxuapp.Parada5.FishingProcessActivity
 import com.gaizkafrost.mentxuapp.Parada6.Parada6Activity
 import com.gaizkafrost.mentxuapp.Parada4.JuegoRecogida
-import com.gaizkafrost.mentxuapp.ParadasRepository
-
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
+import com.gaizkafrost.mentxuapp.utils.Resource
 import com.gaizkafrost.mentxuapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,17 +27,28 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.launch
 
 class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var paradas: List<Parada> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mapa)
 
+        // Inicializar repository y preferences
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // Cargar paradas desde backend/cache
+        cargarParadas()
     }
 
     /**
@@ -90,10 +105,44 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santurtzi, 15f))
     }
 
+    private fun cargarParadas() {
+        val userId = userPrefs.userId
+        if (userId <= 0) {
+            Toast.makeText(this, "Error: Usuario no encontrado", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        lifecycleScope.launch {
+            repository.obtenerParadas(userId).collect { resource ->
+                when (resource) {
+                    is Resource.Loading -> {
+                        // Opcional: mostrar loading
+                    }
+                    is Resource.Success -> {
+                        resource.data?.let {
+                            paradas = it
+                            // Actualizar marcadores si el mapa ya está listo
+                            if (::mMap.isInitialized) {
+                                actualizarMarcadores()
+                            }
+                        }
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(
+                            this@MapaActivity,
+                            "Error al cargar paradas: ${resource.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
+    }
+
     private fun actualizarMarcadores() {
         mMap.clear() // Limpiamos el mapa antes de volver a dibujar los marcadores
 
-        val paradas = ParadasRepository.obtenerTodas()
+        if (paradas.isEmpty()) return
 
         paradas.forEach { parada ->
             val colorIcono = when (parada.estado) {
