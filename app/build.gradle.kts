@@ -17,8 +17,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         
-        // URL del backend - cambiar según entorno
-        buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:5000/api/\"")
+        // URL del backend - Apuntando a Railway (producción)
+        buildConfigField("String", "API_BASE_URL", "\"https://mentxubackend-production.up.railway.app/api/\"")
     }
 
     buildTypes {
@@ -28,7 +28,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "API_BASE_URL", "\"https://tu-servidor-produccion.com/api/\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://mentxubackend-production.up.railway.app/api/\"")
         }
     }
     
