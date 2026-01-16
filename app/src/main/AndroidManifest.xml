@@ -24,7 +24,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDo0Tm_jeeUarZlxx-DVXJ3AFPsLrjJrMc" />
         <activity
-            android:name=".Parada5.FishingProcessActivity"
+            android:name=".Presentacion"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -72,7 +72,7 @@
 
         <!-- Módulo Parada 5 -->
         <activity
-            android:name=".Presentacion"
+            android:name=".Parada5.FishingProcessActivity"
             android:exported="false"
             android:label="Arrantzaren prozesua" />
 
