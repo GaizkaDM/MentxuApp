@@ -5,8 +5,11 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gaizkafrost.mentxuapp.R
@@ -14,7 +17,7 @@ import com.google.android.material.textfield.TextInputLayout
 
 /**
  * Adapter for the fishing process steps list.
- * 
+ *
  * @param steps List of steps to display.
  * @param isDragAndDropMode Flag to switch between Numeric (False) and Drag & Drop (True) mode.
  */
@@ -26,8 +29,7 @@ class FishingAdapter(
     class StepViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgStep: ImageView = view.findViewById(R.id.imgStep)
         val tvDescription: TextView = view.findViewById(R.id.tvStepDescription)
-        val etOrder: EditText = view.findViewById(R.id.etOrder)
-        val tilOrder: TextInputLayout = view.findViewById(R.id.tilOrder)
+        val spinnerOrder: Spinner = view.findViewById(R.id.spinnerOrder)
         val imgDragHandle: ImageView = view.findViewById(R.id.imgDragHandle)
     }
 
@@ -46,26 +48,30 @@ class FishingAdapter(
 
         // Mode Switching UI Logic
         if (isDragAndDropMode) {
-            holder.tilOrder.visibility = View.GONE
+            holder.spinnerOrder.visibility = View.GONE
             holder.imgDragHandle.visibility = View.VISIBLE
         } else {
-            holder.tilOrder.visibility = View.VISIBLE
+            holder.spinnerOrder.visibility = View.VISIBLE
             holder.imgDragHandle.visibility = View.GONE
-            
-            // Numeric Mode Logic: Update the userOrder field when text changes
-            // Remove existing watchers to avoid loops
-            holder.etOrder.tag = null 
-            holder.etOrder.setText(step.userOrder)
-            holder.etOrder.tag = step
-            
-            holder.etOrder.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    val stepInTag = holder.etOrder.tag as? FishingStep
-                    stepInTag?.userOrder = s.toString()
+
+            // Numeric Mode Logic: Setup Spinner
+            val numbers = (0..steps.size).toList()
+            val adapter = ArrayAdapter(holder.itemView.context, android.R.layout.simple_spinner_item, numbers)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            holder.spinnerOrder.adapter = adapter
+
+            val currentSelection = step.userOrder.toIntOrNull() ?: 0
+            holder.spinnerOrder.setSelection(currentSelection)
+
+            holder.spinnerOrder.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    step.userOrder = numbers[position].toString()
                 }
-                override fun afterTextChanged(s: Editable?) {}
-            })
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    step.userOrder = "0"
+                }
+            }
         }
     }
 

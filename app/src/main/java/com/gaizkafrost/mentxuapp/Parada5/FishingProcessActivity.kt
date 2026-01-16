@@ -29,7 +29,7 @@ class FishingProcessActivity : BaseMenuActivity() {
     // --- CONFIGURATION FOR TEACHERS ---
     
     // Toggle between Mode A (Numeric = false) and Mode B (Drag & Drop = true)
-    private val IS_DRAG_AND_DROP_MODE = false 
+    private val IS_DRAG_AND_DROP_MODE = false
 
     // List of steps. You can add or remove steps here.
     // The "id" must be the correct sequence number (1, 2, 3...).

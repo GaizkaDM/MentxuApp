@@ -38,6 +38,16 @@
                 android:textColor="#2C3E50"
                 android:layout_marginBottom="@dimen/margin_medium" />
 
+            <TextView
+                android:id="@+id/puzzle_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sakatu pieza bat eta, ondoren, trukatu nahi duzun beste pieza bat."
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/margin_medium" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/puzzle_recycler"
                 android:layout_width="match_parent"

@@ -278,7 +278,7 @@ class Parada6Activity : BaseMenuActivity() {
             holder.rbC.text = q.options[2]
 
             holder.radioGroup.setOnCheckedChangeListener(null)
-            
+
             when (userAnswers[position]) {
                 0 -> holder.rbA.isChecked = true
                 1 -> holder.rbB.isChecked = true

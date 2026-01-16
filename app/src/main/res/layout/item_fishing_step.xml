@@ -12,62 +12,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp"
-        android:gravity="center_vertical">
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/imgStep"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"
             android:contentDescription="Imagen del paso de pesca"
+            android:scaleType="centerCrop"
             android:src="@android:drawable/ic_menu_gallery" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvStepDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Descripción del paso"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="?attr/colorOnSurface" />
+                android:textStyle="bold" />
 
-            <!-- Modo A - Input Numérico (Editable) -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilOrder"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="Orden"
-                app:hintEnabled="true">
+            <!-- Modo A - Spinner para seleccionar orden -->
+            <Spinner
+                android:id="@+id/spinnerOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_below="@+id/tvStepDescription"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:maxLength="1"
-                    android:textAlignment="center" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
         <!-- Icono para arrastrar (Modo B - Arrastrar y soltar) -->
         <ImageView
             android:id="@+id/imgDragHandle"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:contentDescription="Arrastrar para mover"
             android:padding="12dp"
             android:src="@drawable/ic_drag_handle"
-            android:contentDescription="Arrastrar para mover"
             android:visibility="gone" />
 
     </LinearLayout>
