@@ -6,13 +6,21 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
-import com.gaizkafrost.mentxuapp.ParadasRepository
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
+import com.gaizkafrost.mentxuapp.utils.Resource
 import com.gaizkafrost.mentxuapp.R
+import kotlinx.coroutines.launch
 
 class SopaDeLetrasActivity : BaseMenuActivity() {
 
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var idParadaActual: Int = 1
+    
     private lateinit var sopaDeLetrasView: SopaDeLetrasView
     private lateinit var tvPalabras: List<TextView>
     private val palabrasEncontradas = mutableSetOf<String>()
@@ -25,6 +33,10 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sopa_de_letras)
+
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+        idParadaActual = intent.getIntExtra("ID_PARADA", 1)
 
         sopaDeLetrasView = findViewById(R.id.sopaDeLetrasView)
         
@@ -70,15 +82,15 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
     private fun juegoCompletado() {
         Toast.makeText(this, "¡Felicidades! Has completado la sopa de letras", Toast.LENGTH_LONG).show()
         
-        // Marcar la parada como completada
-        val idParadaActual = intent.getIntExtra("ID_PARADA", -1)
-        if (idParadaActual != -1) {
-            ParadasRepository.completarParada(idParadaActual)
+        // Marcar la parada como completada en el Backend y Local
+        val userId = userPrefs.userId
+        lifecycleScope.launch {
+            repository.completarParada(userId, idParadaActual, 100)
+            
+            // Cerrar la actividad después de un breve retraso
+            sopaDeLetrasView.postDelayed({
+                finish()
+            }, 1500)
         }
-        
-        // Cerrar la actividad después de 2 segundos
-        sopaDeLetrasView.postDelayed({
-            finish()
-        }, 2000)
     }
 }

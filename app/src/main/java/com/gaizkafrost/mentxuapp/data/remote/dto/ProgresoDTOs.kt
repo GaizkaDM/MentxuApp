@@ -54,7 +54,20 @@ data class ProgresoItemResponse(
     @SerializedName("tiempo_empleado")
     val tiempoEmpleado: Int?,
     val intentos: Int?
-)
+) {
+    fun toEntity(): com.gaizkafrost.mentxuapp.data.local.entity.ProgresoEntity {
+        return com.gaizkafrost.mentxuapp.data.local.entity.ProgresoEntity(
+            id = id, // IMPORTANTE: Usar el ID del backend
+            usuarioId = usuarioId,
+            paradaId = paradaId,
+            estado = estado,
+            puntuacion = puntuacion ?: 0,
+            tiempoEmpleado = tiempoEmpleado,
+            intentos = intentos ?: 0,
+            sincronizado = true
+        )
+    }
+}
 
 data class EstadisticasGeneralesResponse(
     @SerializedName("total_usuarios")

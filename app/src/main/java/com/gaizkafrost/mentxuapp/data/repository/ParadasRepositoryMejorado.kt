@@ -49,29 +49,36 @@ class ParadasRepositoryMejorado(
             
             // 2. Intentar actualizar desde backend
             if (NetworkHelper.isNetworkAvailable(context)) {
-                val response = api.obtenerParadas()
-                if (response.isSuccessful) {
-                    response.body()?.let { paradasRemote ->
-                        // Guardar en cache local
+                // Primero: Actualizar paradas
+                val responseStops = api.obtenerParadas()
+                if (responseStops.isSuccessful) {
+                    responseStops.body()?.let { paradasRemote ->
                         val entities = paradasRemote.map { it.toEntity() }
                         paradaDao.insertarTodas(entities)
-                        
-                        // Emitir datos frescos del servidor
-                        val progresos = progresoDao.obtenerProgresoUsuario(usuarioId)
-                        val paradasConEstado = entities.map { entity ->
-                            val progresoParada = progresos.find { it.paradaId == entity.id }
-                            entity.copy(estado = progresoParada?.estado ?: "bloqueada").toParada()
-                        }
-                        emit(Resource.Success(paradasConEstado))
-                        Log.d(TAG, "Paradas actualizadas desde servidor: ${paradasConEstado.size}")
-                    }
-                } else {
-                    Log.w(TAG, "Error al obtener paradas del servidor: ${response.code()}")
-                    // Si ya tenemos datos locales, no emitir error
-                    if (paradasLocales.isEmpty()) {
-                        emit(Resource.Error("Error al obtener paradas: ${response.message()}"))
+                        Log.d(TAG, "Paradas actualizadas")
                     }
                 }
+
+                // Segundo: Actualizar progreso del usuario (CRITICAL)
+                val responseProgress = api.obtenerProgresoUsuario(usuarioId)
+                if (responseProgress.isSuccessful) {
+                    responseProgress.body()?.let { progressResponse ->
+                        val progressEntities = progressResponse.progreso.map { it.toEntity() }
+                        progresoDao.insertarTodos(progressEntities)
+                        Log.d(TAG, "Progreso actualizado: ${progressEntities.size} items")
+                    }
+                }
+                
+                // Cargar datos finales combinados después de sincronizar
+                val paradasLocalesActualizadas = paradaDao.obtenerTodas()
+                val progresosActualizados = progresoDao.obtenerProgresoUsuario(usuarioId)
+                
+                val paradasConEstado = paradasLocalesActualizadas.map { entity ->
+                    val progresoParada = progresosActualizados.find { it.paradaId == entity.id }
+                    entity.copy(estado = progresoParada?.estado ?: "bloqueada").toParada()
+                }
+                emit(Resource.Success(paradasConEstado))
+                Log.d(TAG, "Datos sincronizados emitidos")
             } else {
                 Log.d(TAG, "Sin conexión, usando datos locales")
                 // Si no hay red y no hay datos locales, error
