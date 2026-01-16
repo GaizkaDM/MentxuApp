@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
-import com.gaizkafrost.mentxuapp.ParadasRepository
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import com.gaizkafrost.mentxuapp.R
+import kotlinx.coroutines.launch
 
 class DiferenciasActivity : BaseMenuActivity() {
 
@@ -17,9 +20,17 @@ class DiferenciasActivity : BaseMenuActivity() {
     private val totalDiferencias = 7
     private var diferenciasEncontradas = 0
 
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var idParadaActual: Int = 2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diferencias)
+
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+        idParadaActual = intent.getIntExtra("ID_PARADA", 2)
 
         diferenciasView = findViewById(R.id.diferenciasView)
         tvContador = findViewById(R.id.tvContadorDiferencias)
@@ -54,15 +65,15 @@ class DiferenciasActivity : BaseMenuActivity() {
         Toast.makeText(this, "Zorionak! Desberdintasun guztiak aurkitu dituzu", Toast.LENGTH_LONG).show()
 
         
-        // Marcar la parada como completada
-        val idParadaActual = intent.getIntExtra("ID_PARADA", -1)
-        if (idParadaActual != -1) {
-            ParadasRepository.completarParada(idParadaActual)
+        // Marcar la parada como completada en el Backend y Local
+        val userId = userPrefs.userId
+        lifecycleScope.launch {
+            repository.completarParada(userId, idParadaActual, 100)
+            
+            // Mostrar puntuación y cerrar la actividad después de un breve retraso
+            diferenciasView.postDelayed({
+                showScoreResult(calculateScore())
+            }, 1500)
         }
-        
-        // Mostrar puntuación y cerrar la actividad después de 2 segundos
-        diferenciasView.postDelayed({
-            showScoreResult(calculateScore())
-        }, 2000)
     }
 }

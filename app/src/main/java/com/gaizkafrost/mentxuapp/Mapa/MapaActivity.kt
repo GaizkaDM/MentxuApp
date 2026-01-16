@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.EstadoParada
 import com.gaizkafrost.mentxuapp.Parada
@@ -16,6 +17,9 @@ import com.gaizkafrost.mentxuapp.Parada4.JuegoRecogida
 import com.gaizkafrost.mentxuapp.Parada4.MenuAudio4
 
 import com.gaizkafrost.mentxuapp.ParadasRepository
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
+import com.gaizkafrost.mentxuapp.utils.Resource
 
 import com.gaizkafrost.mentxuapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -25,17 +29,29 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.launch
 
 class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var paradasBackend: List<Parada> = emptyList()
+    private var usandoBackend = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mapa)
 
+        // Inicializar repository
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // Cargar paradas desde backend PostgreSQL
+        cargarParadasDesdeBackend()
     }
 
     /**
@@ -45,10 +61,9 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
      */
     override fun onResume() {
         super.onResume()
-        // Si el mapa ya está inicializado, actualiza los marcadores.
-        if (::mMap.isInitialized) {
-            actualizarMarcadores()
-        }
+        // Al volver al mapa, forzamos una recarga desde el backend/local
+        // para ver si alguna parada se ha completado.
+        cargarParadasDesdeBackend()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -94,10 +109,57 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santurtzi, 15f))
     }
 
-    private fun actualizarMarcadores() {
-        mMap.clear() // Limpiamos el mapa antes de volver a dibujar los marcadores
+    /**
+     * Intenta cargar paradas desde el backend
+     * Si falla, usa las paradas locales hardcodeadas
+     */
+    private fun cargarParadasDesdeBackend() {
+        val userId = userPrefs.userId
+        if (userId <= 0) {
+            // No hay usuario, usar paradas locales
+            return
+        }
 
-        val paradas = ParadasRepository.obtenerTodas()
+        lifecycleScope.launch {
+            try {
+                repository.obtenerParadas(userId).collect { resource ->
+                    when (resource) {
+                        is Resource.Success -> {
+                            resource.data?.let { paradas ->
+                                if (paradas.isNotEmpty()) {
+                                    paradasBackend = paradas
+                                    usandoBackend = true
+                                    
+                                    // Actualizar mapa si ya está listo
+                                    if (::mMap.isInitialized) {
+                                        actualizarMarcadores()
+                                    }
+                                }
+                            }
+                        }
+                        is Resource.Error -> {
+                            // Error: usar paradas locales
+                            usandoBackend = false
+                        }
+                        else -> {}
+                    }
+                }
+            } catch (e: Exception) {
+                // Cualquier error: usar paradas locales
+                usandoBackend = false
+            }
+        }
+    }
+
+    private fun actualizarMarcadores() {
+        mMap.clear()
+
+        // Usar paradas del backend si están disponibles, si no usar locales
+        val paradas = if (usandoBackend && paradasBackend.isNotEmpty()) {
+            paradasBackend
+        } else {
+            ParadasRepository.obtenerTodas()
+        }
 
         paradas.forEach { parada ->
             val colorIcono = when (parada.estado) {
