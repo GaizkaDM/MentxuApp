@@ -59,6 +59,10 @@ class FishingProcessActivity : BaseMenuActivity() {
     private lateinit var userPrefs: UserPreferences
     private var idParadaActual: Int = 5
 
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var idParadaActual: Int = 5
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fishing_process)

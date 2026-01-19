@@ -38,7 +38,7 @@ class JuegoRecogida : BaseMenuActivity() {
     private var fallingSpeed = 20f // Velocidad inicial
 
 
-    // Control de movimiento
+    // Control de movement
     private var lastTouchX = 0f
     private var isDragging = false
 
