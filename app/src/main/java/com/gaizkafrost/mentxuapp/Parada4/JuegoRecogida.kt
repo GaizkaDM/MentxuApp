@@ -14,8 +14,11 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
-import com.gaizkafrost.mentxuapp.ParadasRepository
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import com.gaizkafrost.mentxuapp.R
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import java.util.Random
 
 class JuegoRecogida : BaseMenuActivity() {
@@ -39,11 +42,19 @@ class JuegoRecogida : BaseMenuActivity() {
     private var lastTouchX = 0f
     private var isDragging = false
 
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var idParadaActual: Int = 4
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_juego_recogida)
+
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+        idParadaActual = intent.getIntExtra("ID_PARADA", 4)
 
         gameContainer = findViewById(R.id.gameContainer)
         player = findViewById(R.id.playerCharacter)
@@ -207,13 +218,16 @@ class JuegoRecogida : BaseMenuActivity() {
         isGameRunning = false
         Toast.makeText(this, "Oso ondo! Itsasoa garbitu duzu.", Toast.LENGTH_LONG).show()
 
-        // Completar la parada 4
-        ParadasRepository.completarParada(4)
-
-        // Esperar un poco antes de mostrar la puntuación
-        handler.postDelayed({
-            showScoreResult(calculateScore())
-        }, 1500)
+        // Marcamos la parada como completada en el Backend y Local
+        val userId = userPrefs.userId
+        lifecycleScope.launch {
+            repository.completarParada(userId, idParadaActual, 100)
+            
+            // Esperar un poco antes de mostrar la puntuación
+            handler.postDelayed({
+                showScoreResult(calculateScore())
+            }, 1000)
+        }
 
         // Desactivar spawns y movimiento
         handler.removeCallbacksAndMessages(null)

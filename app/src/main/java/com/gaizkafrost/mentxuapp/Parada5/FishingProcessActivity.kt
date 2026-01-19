@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
-import com.gaizkafrost.mentxuapp.ParadasRepository
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import com.gaizkafrost.mentxuapp.R
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 /**
  * Activity for the "Arrantzaren prozesua" (Fishing Process) minigame.
@@ -51,10 +54,18 @@ class FishingProcessActivity : BaseMenuActivity() {
     private lateinit var tvFeedback: TextView
     private lateinit var btnCheck: Button
     private lateinit var btnReset: Button
+    
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var idParadaActual: Int = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fishing_process)
+
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+        idParadaActual = intent.getIntExtra("ID_PARADA", 5)
 
         // Initialize UI components
         recyclerView = findViewById(R.id.rvFishingSteps)
@@ -132,14 +143,16 @@ class FishingProcessActivity : BaseMenuActivity() {
             showFeedback("Oso ondo! Arrantza prozesua ondo ordenatu duzu.", true)
             Toast.makeText(this, "Lan bikaina!", Toast.LENGTH_SHORT).show()
 
-            // Marcar la parada como completada
-            val idParadaActual = intent.getIntExtra("ID_PARADA", 5)
-            ParadasRepository.completarParada(idParadaActual)
-
-            // Cerrar la actividad después de 2 segundos para dar tiempo a ver el mensaje
-            recyclerView.postDelayed({
-                showScoreResult(calculateScore())
-            }, 2000)
+            // Marcamos la parada como completada en el Backend y Local
+            val userId = userPrefs.userId
+            lifecycleScope.launch {
+                repository.completarParada(userId, idParadaActual, 100)
+                
+                // Mostrar puntuación y cerrar la actividad después de un breve retraso
+                recyclerView.postDelayed({
+                    showScoreResult(calculateScore())
+                }, 1500)
+            }
         } else {
             showFeedback("Urrats batzuk gaizki ordenatuta daude. Saiatu berriro.", false)
         }

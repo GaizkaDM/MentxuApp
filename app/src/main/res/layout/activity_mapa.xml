@@ -24,39 +24,39 @@
         style="@style/TextosTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/mapCard"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_small"
         android:text="Puntos de Interés en Santurtzi"
         android:textColor="#2C3E50" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mapCard"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="60dp"
-        app:cardCornerRadius="@dimen/card_corner_radius"
-        app:cardElevation="@dimen/card_elevation">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mapCard"
+            android:layout_width="381dp"
+            android:layout_height="519dp"
+            android:layout_below="@id/titleTextView"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="523dp" />
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/continueButton"
-        style="@style/Botones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/mapCard"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_large"
-        android:minWidth="160dp"
-        android:text="Continuar" />
+        <Button
+            android:id="@+id/continueButton"
+            style="@style/Botones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mapCard"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:minWidth="160dp"
+            android:text="Continuar" />
 
     </RelativeLayout>
 
