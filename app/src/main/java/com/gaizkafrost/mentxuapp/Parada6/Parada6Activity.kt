@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
-import com.gaizkafrost.mentxuapp.ParadasRepository
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import com.gaizkafrost.mentxuapp.R
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 /**
  * Actividad para la Parada 6 del recorrido educativo.
@@ -32,9 +35,17 @@ class Parada6Activity : BaseMenuActivity() {
     private lateinit var quizRecyclerView: RecyclerView
     private lateinit var quizAdapter: QuizAdapter
 
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var idParadaActual: Int = 6
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parada6)
+
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+        idParadaActual = intent.getIntExtra("ID_PARADA", 6)
 
         setupPuzzle()
         setupQuiz()
@@ -138,14 +149,16 @@ class Parada6Activity : BaseMenuActivity() {
         if (correctCount == total) {
             resultArea.setTextColor(resources.getColor(android.R.color.holo_green_dark))
             
-            // Marcar la parada como completada
-            val idParadaActual = intent.getIntExtra("ID_PARADA", 6)
-            ParadasRepository.completarParada(idParadaActual)
-
-            // Mostrar puntuación y cerrar la actividad después de 3 segundos
-            resultArea.postDelayed({
-                showScoreResult(calculateScore())
-            }, 3000)
+            // Marcamos la parada como completada en el Backend y Local
+            val userId = userPrefs.userId
+            lifecycleScope.launch {
+                repository.completarParada(userId, idParadaActual, 100)
+                
+                // Mostrar puntuación y cerrar la actividad después de 3 segundos
+                resultArea.postDelayed({
+                    showScoreResult(calculateScore())
+                }, 3000)
+            }
         } else {
             resultArea.setTextColor(resources.getColor(android.R.color.holo_red_dark))
         }

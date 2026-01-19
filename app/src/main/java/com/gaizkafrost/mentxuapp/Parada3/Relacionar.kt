@@ -10,7 +10,11 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
+import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
+import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import com.gaizkafrost.mentxuapp.R
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 /**
  * Actividad principal que implementa un juego interactivo de emparejar (Drag & Drop).
@@ -27,9 +31,17 @@ class Relacionar : BaseMenuActivity() {
     private lateinit var objViews: List<TextView>
     private var remainingPairs = 7
 
+    private lateinit var repository: ParadasRepositoryMejorado
+    private lateinit var userPrefs: UserPreferences
+    private var idParadaActual: Int = 3
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_relacionar)
+
+        userPrefs = UserPreferences(this)
+        repository = ParadasRepositoryMejorado(this)
+        idParadaActual = intent.getIntExtra("ID_PARADA", 3)
 
         // Inicializamos las listas de vistas usando sus IDs
         val deskIds = listOf(
@@ -160,12 +172,14 @@ class Relacionar : BaseMenuActivity() {
         if (remainingPairs == 0) {
             Toast.makeText(this, "Zorionak! Jarduera garaitu duzu!", Toast.LENGTH_LONG).show()
             
-            // Marcamos la parada como completada
-            val idParada = intent.getIntExtra("ID_PARADA", 3)
-            com.gaizkafrost.mentxuapp.ParadasRepository.completarParada(idParada)
-
-            // Mostrar puntuación y cerrar la actividad
-            showScoreResult(calculateScore())
+            // Marcamos la parada como completada en el Backend y Local
+            val userId = userPrefs.userId
+            lifecycleScope.launch {
+                repository.completarParada(userId, idParadaActual, 100)
+                
+                // Mostrar puntuación y cerrar la actividad
+                showScoreResult(calculateScore())
+            }
         }
     }
 
