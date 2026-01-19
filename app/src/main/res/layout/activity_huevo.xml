@@ -19,14 +19,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="Busca el huevo en esta imagen"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:src="@drawable/imagen_con_huevo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintTop_toBottomOf="@id/instructions_text" />
 
     <!-- Zona clickeable para encontrar el huevo -->
     <View
