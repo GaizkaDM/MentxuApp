@@ -16,7 +16,7 @@ import com.gaizkafrost.mentxuapp.data.remote.api.RetrofitClient
 import com.gaizkafrost.mentxuapp.data.remote.dto.RankingItemResponse
 import kotlinx.coroutines.launch
 
-class RankingActivity : AppCompatActivity() {
+class RankingActivity : BaseMenuActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar

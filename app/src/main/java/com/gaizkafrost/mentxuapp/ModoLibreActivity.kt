@@ -2,7 +2,6 @@ package com.gaizkafrost.mentxuapp
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import com.gaizkafrost.mentxuapp.Parada1.SopaDeLetrasActivity
 import com.gaizkafrost.mentxuapp.Parada2.DiferenciasActivity
 import com.gaizkafrost.mentxuapp.Parada3.Relacionar
@@ -16,11 +15,6 @@ class ModoLibreActivity : BaseMenuActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modo_libre)
-
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener { finish() }
 
         setupCards()
     }
@@ -49,7 +43,7 @@ class ModoLibreActivity : BaseMenuActivity() {
     private fun launchGame(activityClass: Class<*>, idParada: Int) {
         val intent = Intent(this, activityClass)
         intent.putExtra("ID_PARADA", idParada)
-        intent.putExtra("IS_FREE_MODE", true) // Flag para indicar que es modo libre
+        intent.putExtra("IS_FREE_MODE", true)
         startActivity(intent)
     }
 }
