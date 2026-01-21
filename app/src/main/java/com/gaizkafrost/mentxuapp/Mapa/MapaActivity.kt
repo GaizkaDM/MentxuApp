@@ -53,16 +53,6 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
 
         // Cargar paradas desde backend PostgreSQL
         cargarParadasDesdeBackend()
-
-        // Configurar botones
-        findViewById<android.widget.Button>(R.id.continueButton)?.setOnClickListener {
-            Toast.makeText(this, "Hautatu puntu gorri bat mapan jolasteko!", Toast.LENGTH_SHORT).show()
-        }
-
-        findViewById<android.widget.Button>(R.id.btnRanking)?.setOnClickListener {
-            val intent = Intent(this, RankingActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     /**
@@ -187,10 +177,5 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
             )
             marker?.tag = parada // Asociamos el objeto Parada completo al marcador
         }
-    }
-
-    override fun onMenuCreated(menu: Menu) {
-        // Ocultar la opción "Mapa" ya que ya estamos en él
-        menu.findItem(R.id.action_mapa)?.isVisible = false
     }
 }

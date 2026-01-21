@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="" />
+
+    <item
+        android:id="@+id/nav_mapa"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="" />
+
+    <item
+        android:id="@+id/nav_ranking"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:title="" />
+
+    <item
+        android:id="@+id/nav_modo_libre"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="" />
+
+</menu>

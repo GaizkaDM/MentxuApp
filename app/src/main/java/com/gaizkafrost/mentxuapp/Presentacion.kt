@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -223,10 +222,5 @@ class Presentacion : BaseMenuActivity() {
             .setMessage(mensaje)
             .setPositiveButton(getString(R.string.ok)) { d, _ -> d.dismiss() }
             .show()
-    }
-
-    override fun onMenuCreated(menu: Menu) {
-        // Ocultar la opción "Mapa" en la pantalla de registro/presentación
-        menu.findItem(R.id.action_mapa)?.isVisible = false
     }
 }

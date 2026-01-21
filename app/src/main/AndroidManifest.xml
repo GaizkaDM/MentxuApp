@@ -100,5 +100,11 @@
             android:label="Juego Libre"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false"
+            android:label="Perfil"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>
