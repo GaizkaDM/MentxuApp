@@ -224,7 +224,10 @@ class JuegoRecogida : BaseMenuActivity() {
         val timeSpent = getElapsedTimeSeconds()
         
         lifecycleScope.launch {
-            repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
+            val isFreeMode = intent.getBooleanExtra("IS_FREE_MODE", false)
+            if (!isFreeMode) {
+                repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
+            }
             
             // Esperar un poco antes de mostrar la puntuación
             handler.postDelayed({

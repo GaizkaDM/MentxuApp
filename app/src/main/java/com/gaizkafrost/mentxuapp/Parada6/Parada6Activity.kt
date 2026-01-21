@@ -155,7 +155,10 @@ class Parada6Activity : BaseMenuActivity() {
             val timeSpent = getElapsedTimeSeconds()
             
             lifecycleScope.launch {
-                repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
+                val isFreeMode = intent.getBooleanExtra("IS_FREE_MODE", false)
+                if (!isFreeMode) {
+                    repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
+                }
                 
                 // Mostrar puntuación y cerrar la actividad después de 3 segundos
                 resultArea.postDelayed({

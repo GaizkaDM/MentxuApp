@@ -90,7 +90,10 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
         val timeSpent = getElapsedTimeSeconds()
         
         lifecycleScope.launch {
-            repository.completarParada(userId, idParadaActual, score, timeSpent)
+            val isFreeMode = intent.getBooleanExtra("IS_FREE_MODE", false)
+            if (!isFreeMode) {
+                repository.completarParada(userId, idParadaActual, score, timeSpent)
+            }
             
             // Mostrar puntuación y cerrar la actividad después de un breve retraso
             sopaDeLetrasView.postDelayed({
