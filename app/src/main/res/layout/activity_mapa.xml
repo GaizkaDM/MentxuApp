@@ -47,28 +47,17 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/continueButton"
-        style="@style/Botones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/mapCard"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_large"
-        android:minWidth="160dp"
-        android:text="Continuar" />
-
-    <Button
-        android:id="@+id/btnRanking"
-        style="@style/Botones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/continueButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:backgroundTint="@color/maritime_blue"
-        android:minWidth="160dp"
-        android:text="Ranking" />
+        <Button
+            android:id="@+id/btnRanking"
+            style="@style/Botones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mapCard"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:backgroundTint="@color/maritime_blue"
+            android:minWidth="160dp"
+            android:text="Ranking" />
 
     </RelativeLayout>
 
