@@ -99,8 +99,49 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
     }
 
     private fun showCongratsScreen() {
+        if (congratsContainer.visibility == android.view.View.VISIBLE) return
+
         mapContainer.visibility = android.view.View.GONE
         congratsContainer.visibility = android.view.View.VISIBLE
+
+        // Referencias a las vistas dentro del container
+        val trophyIcon = findViewById<android.view.View>(R.id.trophyIcon)
+        val congratsTitle = findViewById<android.view.View>(R.id.congratsTitle)
+        val congratsMessage = findViewById<android.view.View>(R.id.congratsMessage)
+
+        // Estado inicial para la animación (ocultos o pequeños)
+        trophyIcon.scaleX = 0f
+        trophyIcon.scaleY = 0f
+        congratsTitle.alpha = 0f
+        congratsTitle.translationY = 50f
+        congratsMessage.alpha = 0f
+        congratsMessage.translationY = 50f
+
+        // 1. Animar Trofeo (Efecto rebote)
+        trophyIcon.animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(800)
+            .setInterpolator(android.view.animation.OvershootInterpolator())
+            .start()
+
+        // 2. Animar Título (Fade in + Subir) con retraso
+        congratsTitle.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(600)
+            .setStartDelay(300)
+            .setInterpolator(android.view.animation.DecelerateInterpolator())
+            .start()
+
+        // 3. Animar Mensaje (Fade in + Subir) con más retraso
+        congratsMessage.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(600)
+            .setStartDelay(500)
+            .setInterpolator(android.view.animation.DecelerateInterpolator())
+            .start()
     }
 
     private fun showMapScreen() {
