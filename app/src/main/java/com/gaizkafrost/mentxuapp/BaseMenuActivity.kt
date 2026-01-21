@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 
 /**
@@ -84,11 +85,46 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        val modoLibreItem = menu?.findItem(R.id.action_modo_libre)
+        
+        // Comprobar si el juego está completado para mostrar el modo libre
+        val userPrefs = com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences(this)
+        val userId = userPrefs.userId
+        
+        if (userId > 0) {
+            val repository = com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado(this)
+            // Usamos corrutinas para comprobar el estado de forma asíncrona
+            // Nota: onPrepareOptionsMenu es síncrono, así que lo ideal sería tener esto cacheado
+            // Pero como es local, suele ser muy rápido. 
+            // Para ser correctos y no bloquear el UI, podemos ocultarlo por defecto
+            // y reactivarlo en el callback de una corrutina.
+            
+            // Si el modo libre está activado por defecto en el XML, lo ocultamos si no cumple
+            // Aquí lo simplificamos: el usuario debe haber terminado el juego.
+            lifecycleScope.launchWhenCreated {
+                val completado = repository.esJuegoCompletado(userId)
+                if (modoLibreItem?.isVisible != completado) {
+                    modoLibreItem?.isVisible = completado
+                }
+            }
+        } else {
+            modoLibreItem?.isVisible = false
+        }
+        
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_mapa -> {
                 val intent = Intent(this, MapaActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                true
+            }
+            R.id.action_modo_libre -> {
+                val intent = Intent(this, ModoLibreActivity::class.java)
                 startActivity(intent)
                 true
             }

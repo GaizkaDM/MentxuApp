@@ -14,6 +14,11 @@
                 android:icon="@android:drawable/ic_dialog_map"
                 app:iconTint="@color/purple" />
             <item
+                android:id="@+id/action_modo_libre"
+                android:title="Modo Libre (Juego Libre)"
+                android:icon="@android:drawable/ic_menu_gallery"
+                app:iconTint="@color/purple" />
+            <item
                 android:id="@+id/action_irten"
                 android:title="Irten"
                 android:icon="@android:drawable/ic_menu_close_clear_cancel"

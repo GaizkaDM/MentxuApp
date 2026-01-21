@@ -237,4 +237,24 @@ class ParadasRepositoryMejorado(
             0
         }
     }
+
+    /**
+     * Comprueba si el usuario ha completado todas las paradas (es decir, la última).
+     */
+    suspend fun esJuegoCompletado(usuarioId: Int): Boolean {
+        return try {
+            val paradas = paradaDao.obtenerTodas()
+            val ultimaParada = paradas.maxByOrNull { it.orden }
+            
+            if (ultimaParada != null) {
+                val progreso = progresoDao.obtenerProgresoPorParada(usuarioId, ultimaParada.id)
+                progreso?.estado == "completada"
+            } else {
+                false
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error al comprobar si el juego está completado", e)
+            false
+        }
+    }
 }
