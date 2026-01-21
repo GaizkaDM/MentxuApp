@@ -94,5 +94,11 @@
             android:label="Ranking"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ModoLibreActivity"
+            android:exported="false"
+            android:label="Juego Libre"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>
