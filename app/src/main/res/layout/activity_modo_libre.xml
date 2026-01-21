@@ -99,26 +99,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
 
-            <TextView
+            <!-- Header con imagen de Mentxu -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:text="Juego Libre"
-                android:textColor="@color/purple"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
 
-            <TextView
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🎮 Joko Librea"
+                        android:textColor="@color/purple"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Aukeratu minijoko bat berriro jolasteko!"
+                        android:textColor="#555555"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/mentxu_habla"
+                    android:contentDescription="Mentxu" />
+
+            </LinearLayout>
+
+            <!-- Separador decorativo -->
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="¡Elige un minijuego para jugar de nuevo!"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:layout_height="3dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/card_gradient_purple" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -126,41 +154,48 @@
                 android:alignmentMode="alignMargins"
                 android:columnCount="2">
 
-                <!-- Parada 1 -->
+                <!-- Parada 1: Sopa de Letras - Mint -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardSopa"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
                     <LinearLayout
-                        android:background="@drawable/bubble_background"
+                        android:background="@drawable/card_gradient_mint"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_3d_mint"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:layout_marginBottom="8dp" />
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
                             android:src="@android:drawable/ic_menu_edit"
-                            app:tint="@color/maritime_blue" />
+                            app:tint="#FFFFFF" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:gravity="center"
-                            android:text="Sopa de Letras"
+                            android:text="Letra Zopa"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Parada 1"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/scoreStop1"
                             android:layout_width="match_parent"
@@ -174,42 +209,48 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Parada 2 -->
+                <!-- Parada 2: Diferencias - Rosa -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardDiferencias"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
                     <LinearLayout
-                        android:background="@drawable/bubble_background"
-
+                        android:background="@drawable/card_gradient_pink"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_3d_pink"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:layout_marginBottom="8dp" />
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
                             android:src="@drawable/info"
-                            app:tint="@color/maritime_blue" />
+                            app:tint="#FFFFFF" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:gravity="center"
-                            android:text="Diferencias"
+                            android:text="Diferentziak"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Parada 2"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/scoreStop2"
                             android:layout_width="match_parent"
@@ -223,41 +264,48 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Parada 3 -->
+                <!-- Parada 3: Relacionar - Púrpura -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardRelacionar"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
                     <LinearLayout
-                        android:background="@drawable/bubble_background"
+                        android:background="@drawable/card_gradient_purple"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_3d_purple"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:layout_marginBottom="8dp" />
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
                             android:src="@android:drawable/ic_menu_sort_by_size"
-                            app:tint="@color/maritime_blue" />
+                            app:tint="#FFFFFF" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:gravity="center"
-                            android:text="Relacionar"
+                            android:text="Erlazionatu"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Parada 3"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/scoreStop3"
                             android:layout_width="match_parent"
@@ -271,40 +319,47 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Parada 4 -->
+                <!-- Parada 4: Recogida - Amarillo -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardRecogida"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
                     <LinearLayout
-                        android:background="@drawable/bubble_background"
+                        android:background="@drawable/card_gradient_yellow"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textColor="#555555"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_3d_yellow"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:layout_marginBottom="8dp" />
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
                             android:src="@drawable/bolsa_basura" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:gravity="center"
-                            android:text="Recogida"
+                            android:text="Bilketa"
+                            android:textColor="#555555"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Parada 4"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/scoreStop4"
                             android:layout_width="match_parent"
@@ -318,40 +373,47 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Parada 5 -->
+                <!-- Parada 5: Pesca - Lavanda -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardPesca"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
                     <LinearLayout
-                        android:background="@drawable/bubble_background"
+                        android:background="@drawable/card_gradient_lavender"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_3d_purple"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:layout_marginBottom="8dp" />
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
                             android:src="@drawable/pesca_4" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:gravity="center"
-                            android:text="Procesado"
+                            android:text="Prozesatzea"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Parada 5"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/scoreStop5"
                             android:layout_width="match_parent"
@@ -365,41 +427,48 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Parada 6 -->
+                <!-- Parada 6: Puzzle y Quiz - Mint -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardPuzzle"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
                     <LinearLayout
-                        android:background="@drawable/bubble_background"
+                        android:background="@drawable/card_gradient_mint"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_3d_mint"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:layout_marginBottom="8dp" />
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
                             android:src="@android:drawable/ic_menu_gallery"
-                            app:tint="@color/maritime_blue" />
+                            app:tint="#FFFFFF" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:gravity="center"
-                            android:text="Puzzle y Quiz"
+                            android:text="Puzzlea eta Testa"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Parada 6"
-                            android:textColor="@color/texto_secundario"
-                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/scoreStop6"
                             android:layout_width="match_parent"
@@ -414,13 +483,19 @@
                 </com.google.android.material.card.MaterialCardView>
 
             </GridLayout>
+
+            <!-- Espacio extra al final -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
         </LinearLayout>
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="110dp"
         android:background="@color/white"
         app:elevation="8dp"
         app:itemIconTint="@color/nav_item_color"
@@ -428,7 +503,6 @@
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
