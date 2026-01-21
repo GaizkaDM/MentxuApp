@@ -140,17 +140,20 @@ class FishingProcessActivity : BaseMenuActivity() {
         }
 
         if (isCorrect) {
+            val score = calculateScore()
+            val timeSpent = getElapsedTimeSeconds()
+            
             showFeedback("Oso ondo! Arrantza prozesua ondo ordenatu duzu.", true)
             Toast.makeText(this, "Lan bikaina!", Toast.LENGTH_SHORT).show()
 
             // Marcamos la parada como completada en el Backend y Local
             val userId = userPrefs.userId
             lifecycleScope.launch {
-                repository.completarParada(userId, idParadaActual, 100)
+                repository.completarParada(userId, idParadaActual, score, timeSpent)
                 
                 // Mostrar puntuación y cerrar la actividad después de un breve retraso
                 recyclerView.postDelayed({
-                    showScoreResult(calculateScore())
+                    showScoreResult(score)
                 }, 1500)
             }
         } else {

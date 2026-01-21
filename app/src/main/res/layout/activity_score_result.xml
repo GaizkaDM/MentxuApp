@@ -46,6 +46,18 @@
         app:layout_constraintTop_toBottomOf="@id/tvScoreLabel" />
 
     <Button
+        android:id="@+id/btnRanking"
+        style="@style/BotonesGrandes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Ikus Ranking-a"
+        android:backgroundTint="@color/maritime_blue"
+        app:layout_constraintBottom_toTopOf="@id/btnContinuar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btnContinuar"
         style="@style/BotonesGrandes"
         android:layout_width="0dp"

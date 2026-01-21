@@ -17,6 +17,11 @@ class ScoreResultActivity : AppCompatActivity() {
         
         findViewById<TextView>(R.id.tvScoreValue).text = score.toString()
 
+        findViewById<Button>(R.id.btnRanking).setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
+            startActivity(intent)
+        }
+
         findViewById<Button>(R.id.btnContinuar).setOnClickListener {
             // Regresar al mapa limpiando el stack
             val intent = Intent(this, MapaActivity::class.java)
