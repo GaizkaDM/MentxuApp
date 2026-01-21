@@ -257,4 +257,16 @@ class ParadasRepositoryMejorado(
             false
         }
     }
+
+    /**
+     * Obtiene todos los progresos de un usuario para mostrar puntuaciones.
+     */
+    suspend fun obtenerProgresosUsuario(usuarioId: Int): List<com.gaizkafrost.mentxuapp.data.local.entity.ProgresoEntity> {
+        return try {
+            progresoDao.obtenerProgresoUsuario(usuarioId)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error al obtener progresos del usuario", e)
+            emptyList()
+        }
+    }
 }

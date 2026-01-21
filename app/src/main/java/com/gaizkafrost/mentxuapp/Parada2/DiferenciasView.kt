@@ -39,6 +39,7 @@ class DiferenciasView @JvmOverloads constructor(
     private val diferenciasEncontradas = mutableSetOf<Int>()
     
     var onDiferenciaEncontrada: (() -> Unit)? = null
+    var onToqueErroneo: (() -> Unit)? = null // Callback para error
 
     init {
         // Cargar las imágenes
@@ -104,6 +105,8 @@ class DiferenciasView @JvmOverloads constructor(
                 val relativeX = (x - width / 2f) / (width / 2f)
                 val relativeY = y / height
                 
+                var acierto = false
+                
                 // Verificar si se tocó una diferencia
                 diferencias.forEachIndexed { index, diferencia ->
                     if (!diferenciasEncontradas.contains(index)) {
@@ -114,9 +117,18 @@ class DiferenciasView @JvmOverloads constructor(
                             diferenciasEncontradas.add(index)
                             onDiferenciaEncontrada?.invoke()
                             invalidate()
+                            acierto = true
                             return true
                         }
+                    } else if (relativeX >= diferencia.left && relativeX <= diferencia.right &&
+                        relativeY >= diferencia.top && relativeY <= diferencia.bottom) {
+                        // Si ya la encontró, no contamos como error ni acierto nuevo
+                        acierto = true
                     }
+                }
+                
+                if (!acierto) {
+                    onToqueErroneo?.invoke()
                 }
             }
         }

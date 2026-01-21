@@ -57,8 +57,35 @@ class ModoLibreActivity : BaseMenuActivity() {
             val isCompleted = repository.esJuegoCompletado(userId)
             if (isCompleted) {
                 showUnlockedState()
+                loadScores(userId)
             } else {
                 showLockedState()
+            }
+        }
+    }
+
+    private suspend fun loadScores(userId: Int) {
+        val progresos = repository.obtenerProgresosUsuario(userId)
+        
+        progresos.forEach { progreso ->
+            val scoreViewId = when(progreso.paradaId) {
+                1 -> R.id.scoreStop1
+                2 -> R.id.scoreStop2
+                3 -> R.id.scoreStop3
+                4 -> R.id.scoreStop4
+                5 -> R.id.scoreStop5
+                6 -> R.id.scoreStop6
+                else -> null
+            }
+            
+            scoreViewId?.let { id ->
+                val textView = findViewById<android.widget.TextView>(id)
+                // Mostrar solo si hay progreso real (estado completado o puntuación > 0)
+                if (progreso.puntuacion > 0 || progreso.estado == "completada") {
+                    val score = if (progreso.puntuacion > 0) progreso.puntuacion else 0
+                    textView.text = "Récord: $score"
+                    textView.visibility = View.VISIBLE
+                }
             }
         }
     }

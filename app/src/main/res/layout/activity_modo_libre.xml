@@ -161,6 +161,16 @@
                             android:text="Parada 1"
                             android:textColor="@color/texto_secundario"
                             android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/scoreStop1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/maritime_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -200,6 +210,16 @@
                             android:text="Parada 2"
                             android:textColor="@color/texto_secundario"
                             android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/scoreStop2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/maritime_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -238,6 +258,16 @@
                             android:text="Parada 3"
                             android:textColor="@color/texto_secundario"
                             android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/scoreStop3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/maritime_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -275,6 +305,16 @@
                             android:text="Parada 4"
                             android:textColor="@color/texto_secundario"
                             android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/scoreStop4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/maritime_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -312,6 +352,16 @@
                             android:text="Parada 5"
                             android:textColor="@color/texto_secundario"
                             android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/scoreStop5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/maritime_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -350,6 +400,16 @@
                             android:text="Parada 6"
                             android:textColor="@color/texto_secundario"
                             android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/scoreStop6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/maritime_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 

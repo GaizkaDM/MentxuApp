@@ -127,15 +127,24 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         return ((endTime - startTime) / 1000).toInt()
     }
 
+    protected var errorCount: Int = 0
+
+    protected fun addError() {
+        errorCount++
+    }
+
     protected fun calculateScore(): Int {
         val secondsElapsed = getElapsedTimeSeconds()
-        val score = (1000 - (secondsElapsed * 2))
-        return score.coerceAtLeast(100)
+        // Fórmula: 1000 base - (2 puntos por segundo) - (50 puntos por fallo)
+        val score = (1000 - (secondsElapsed * 2) - (errorCount * 50))
+        return score.coerceAtLeast(100) // Mínimo 100 puntos siempre
     }
 
     protected fun showScoreResult(score: Int) {
         val intent = Intent(this, ScoreResultActivity::class.java)
         intent.putExtra("EXTRA_SCORE", score)
+        intent.putExtra("EXTRA_ERRORS", errorCount) // Pasamos errores por si quieres mostrarlos
+        intent.putExtra("EXTRA_TIME", getElapsedTimeSeconds())
         startActivity(intent)
         finish()
     }

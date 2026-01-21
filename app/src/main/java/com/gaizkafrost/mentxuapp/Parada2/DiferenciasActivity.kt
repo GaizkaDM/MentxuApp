@@ -41,6 +41,12 @@ class DiferenciasActivity : BaseMenuActivity() {
         diferenciasView.onDiferenciaEncontrada = {
             diferenciaEncontrada()
         }
+
+        // Configurar listener para errores (toques en zonas incorrectas)
+        diferenciasView.onToqueErroneo = {
+            addError()
+            Toast.makeText(this, "Hori ez da desberdintasuna! (-50 puntu)", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun diferenciaEncontrada() {
