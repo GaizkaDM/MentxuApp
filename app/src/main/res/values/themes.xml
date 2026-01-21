@@ -55,12 +55,12 @@
 
     <style name="Botones.Mint">
         <item name="android:background">@drawable/button_3d_mint</item>
-        <item name="android:textColor">@color/maritime_blue</item>
+        <item name="android:textColor">@color/purple_dark</item>
     </style>
 
     <style name="Botones.Yellow">
         <item name="android:background">@drawable/button_3d_yellow</item>
-        <item name="android:textColor">@color/maritime_blue</item>
+        <item name="android:textColor">@color/purple_dark</item>
     </style>
 
     <style name="Botones.Pink">

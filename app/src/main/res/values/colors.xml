@@ -1,36 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colores neutros base -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red">#FF0101</color>
-    <color name="paletteRed1">#f00e1c</color>
-    <color name="paletteRed2">#ec322d</color>
     <color name="gray">#E5E5E5</color>
     <color name="midGray">#DBD8D8</color>
     <color name="darkGray">#303030</color>
-    <color name="blue">#6BAFF6</color>
-    <color name="midBlue">#2C72B6</color>
-    <color name="darkBlue">#4343E9</color>
-    <color name="paletteBlue1">#0069c0</color>
-    <color name="paletteBlue2">#137fd9</color>
-    <color name="paletteBlue3">#2196f3</color>
-    <color name="purple">#8A61FC</color>
-    <color name="purple_dark">#6948C4</color>
-    <color name="lavender">#BE93FF</color>
-    <color name="verde_completado">#4CAF50</color>
-    <color name="azul_activo">#2196F3</color>
-    <color name="naranja_seleccion">#FF9800</color>
-    <color name="rojo_activo">#F44336</color>
-    <color name="azul_secundario">#2196F3</color>
     <color name="fondo_app">#F5F5F5</color>
     <color name="texto_principal">#212121</color>
-    <color name="texto_secundario">#86d4c4</color>
-    <color name="maritime_blue">#1a237e</color>
+
+    <!-- Paleta Principal (5 colores) -->
+    <!-- Púrpura -->
+    <color name="purple">#8A61FC</color>
+    <color name="purple_dark">#6948C4</color>
+    
+    <!-- Lavanda -->
+    <color name="lavender">#BE93FF</color>
+    
+    <!-- Mint/Turquesa -->
     <color name="blue_green">#86d4c4</color>
     <color name="blue_green_dark">#60A697</color>
+    <color name="texto_secundario">#86d4c4</color>
+    
+    <!-- Amarillo -->
     <color name="yellow">#ffea8d</color>
     <color name="yellow_dark">#D1BE66</color>
+    
+    <!-- Rosa -->
     <color name="pink">#ff8aa3</color>
     <color name="pink_dark">#D1667E</color>
-    <color name="gold">#FFD700</color>
 </resources>

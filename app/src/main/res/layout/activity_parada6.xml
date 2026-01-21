@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="Puzlea konpondu!"
                 android:textAlignment="center"
-                android:textColor="#2C3E50"
+                android:textColor="@color/purple"
                 android:layout_marginBottom="@dimen/margin_medium" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:id="@+id/puzzle_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#DCDCDC"
+                android:background="@color/fondo_app"
                 android:padding="@dimen/padding_small"
                 android:layout_marginBottom="@dimen/margin_small"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -68,7 +68,7 @@
                 android:textSize="@dimen/text_size_body"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginBottom="@dimen/margin_large"
-                android:textColor="#7F8C8D" />
+                android:textColor="@color/purple_dark" />
 
             <!-- Sección del Test (Inicialmente oculta) -->
             <LinearLayout
@@ -83,7 +83,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#BDC3C7"
+                    android:background="@color/blue_green"
                     android:layout_marginBottom="@dimen/margin_large" />
 
                 <TextView
@@ -102,7 +102,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_medium"
                     android:layout_marginBottom="@dimen/margin_medium"
-                    android:textColor="#34495E" />
+                    android:textColor="@color/purple_dark" />
 
 
                 <androidx.recyclerview.widget.RecyclerView

@@ -49,7 +49,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:text="Cargando explicación..."
-                    android:textColor="#333333"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
             </ScrollView>
         </LinearLayout>

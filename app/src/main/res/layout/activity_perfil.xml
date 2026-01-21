@@ -47,7 +47,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/mentxu_cesta"
-                    android:background="@color/paletteBlue1" />
+                    android:background="@color/lavender" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -92,7 +92,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="🏆 Zure Lorpenak"
-                        android:textColor="@color/maritime_blue"
+                        android:textColor="@color/purple"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:gravity="center" />
@@ -123,7 +123,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
-                                android:textColor="@color/maritime_blue"
+                                android:textColor="@color/purple"
                                 android:textSize="36sp"
                                 android:textStyle="bold" />
 
@@ -141,7 +141,7 @@
                             android:layout_width="2dp"
                             android:layout_height="80dp"
                             android:layout_gravity="center"
-                            android:background="#E0E0E0" />
+                            android:background="@color/yellow" />
 
                         <!-- Puntos -->
                         <LinearLayout
@@ -163,7 +163,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
-                                android:textColor="@color/maritime_blue"
+                                android:textColor="@color/purple"
                                 android:textSize="36sp"
                                 android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
-                android:backgroundTint="#E74C3C"
+                android:backgroundTint="@color/pink"
                 android:text="🚪 Irten"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />

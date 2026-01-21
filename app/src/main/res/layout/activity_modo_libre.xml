@@ -32,7 +32,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@android:drawable/ic_lock_idle_lock"
-            app:tint="@color/maritime_blue"
+            app:tint="@color/purple"
             android:alpha="0.5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +49,7 @@
             android:layout_marginEnd="32dp"
             android:gravity="center"
             android:text="🔒 Joko Librea Blokeatuta"
-            android:textColor="@color/maritime_blue"
+            android:textColor="@color/purple"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/lockIcon"
@@ -202,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="@color/maritime_blue"
+                            android:textColor="@color/purple"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -257,7 +257,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="@color/maritime_blue"
+                            android:textColor="@color/purple"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -312,7 +312,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="@color/maritime_blue"
+                            android:textColor="@color/purple"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -366,7 +366,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="@color/maritime_blue"
+                            android:textColor="@color/purple"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -420,7 +420,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="@color/maritime_blue"
+                            android:textColor="@color/purple"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -475,7 +475,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="@color/maritime_blue"
+                            android:textColor="@color/purple"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:visibility="gone" />

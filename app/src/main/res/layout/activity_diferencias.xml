@@ -52,7 +52,7 @@
         android:layout_marginBottom="@dimen/margin_medium"
         android:gravity="center"
         android:text="@string/contador_diferencias_inicio"
-        android:textColor="@color/rojo_activo"
+        android:textColor="@color/pink"
         tools:text="Diferencias encontradas: 0/7" />
 
     <!-- Vista del juego de diferencias -->
