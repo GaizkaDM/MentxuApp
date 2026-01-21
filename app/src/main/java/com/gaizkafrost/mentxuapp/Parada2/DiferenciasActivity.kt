@@ -67,12 +67,15 @@ class DiferenciasActivity : BaseMenuActivity() {
         
         // Marcar la parada como completada en el Backend y Local
         val userId = userPrefs.userId
+        val score = calculateScore()
+        val timeSpent = getElapsedTimeSeconds()
+        
         lifecycleScope.launch {
-            repository.completarParada(userId, idParadaActual, 100)
+            repository.completarParada(userId, idParadaActual, score, timeSpent)
             
             // Mostrar puntuación y cerrar la actividad después de un breve retraso
             diferenciasView.postDelayed({
-                showScoreResult(calculateScore())
+                showScoreResult(score)
             }, 1500)
         }
     }

@@ -220,12 +220,15 @@ class JuegoRecogida : BaseMenuActivity() {
 
         // Marcamos la parada como completada en el Backend y Local
         val userId = userPrefs.userId
+        val finalScore = calculateScore()
+        val timeSpent = getElapsedTimeSeconds()
+        
         lifecycleScope.launch {
-            repository.completarParada(userId, idParadaActual, 100)
+            repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
             
             // Esperar un poco antes de mostrar la puntuación
             handler.postDelayed({
-                showScoreResult(calculateScore())
+                showScoreResult(finalScore)
             }, 1000)
         }
 

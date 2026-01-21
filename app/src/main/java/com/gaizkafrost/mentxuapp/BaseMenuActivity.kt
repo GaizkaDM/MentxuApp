@@ -42,13 +42,20 @@ abstract class BaseMenuActivity : AppCompatActivity() {
     }
 
     /**
+     * Obtiene el tiempo transcurrido en segundos desde que se creó la actividad.
+     */
+    protected fun getElapsedTimeSeconds(): Int {
+        val endTime = System.currentTimeMillis()
+        return ((endTime - startTime) / 1000).toInt()
+    }
+
+    /**
      * Calcula la puntuación basada en el tiempo transcurrido.
      * Puntuación = max(100, 1000 - (segundos * 2))
      */
     protected fun calculateScore(): Int {
-        val endTime = System.currentTimeMillis()
-        val secondsElapsed = (endTime - startTime) / 1000
-        val score = (1000 - (secondsElapsed * 2)).toInt()
+        val secondsElapsed = getElapsedTimeSeconds()
+        val score = (1000 - (secondsElapsed * 2))
         return score.coerceAtLeast(100)
     }
 

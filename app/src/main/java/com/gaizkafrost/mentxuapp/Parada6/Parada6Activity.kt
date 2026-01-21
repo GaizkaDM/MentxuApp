@@ -151,12 +151,15 @@ class Parada6Activity : BaseMenuActivity() {
             
             // Marcamos la parada como completada en el Backend y Local
             val userId = userPrefs.userId
+            val finalScore = calculateScore()
+            val timeSpent = getElapsedTimeSeconds()
+            
             lifecycleScope.launch {
-                repository.completarParada(userId, idParadaActual, 100)
+                repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
                 
                 // Mostrar puntuación y cerrar la actividad después de 3 segundos
                 resultArea.postDelayed({
-                    showScoreResult(calculateScore())
+                    showScoreResult(finalScore)
                 }, 3000)
             }
         } else {

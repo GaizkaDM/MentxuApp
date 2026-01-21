@@ -174,11 +174,14 @@ class Relacionar : BaseMenuActivity() {
             
             // Marcamos la parada como completada en el Backend y Local
             val userId = userPrefs.userId
+            val score = calculateScore()
+            val timeSpent = getElapsedTimeSeconds()
+            
             lifecycleScope.launch {
-                repository.completarParada(userId, idParadaActual, 100)
+                repository.completarParada(userId, idParadaActual, score, timeSpent)
                 
                 // Mostrar puntuación y cerrar la actividad
-                showScoreResult(calculateScore())
+                showScoreResult(score)
             }
         }
     }
