@@ -22,6 +22,7 @@ import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import com.gaizkafrost.mentxuapp.utils.Resource
 
 import com.gaizkafrost.mentxuapp.R
+import com.gaizkafrost.mentxuapp.RankingActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -52,6 +53,16 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
 
         // Cargar paradas desde backend PostgreSQL
         cargarParadasDesdeBackend()
+
+        // Configurar botones
+        findViewById<android.widget.Button>(R.id.continueButton)?.setOnClickListener {
+            Toast.makeText(this, "Hautatu puntu gorri bat mapan jolasteko!", Toast.LENGTH_SHORT).show()
+        }
+
+        findViewById<android.widget.Button>(R.id.btnRanking)?.setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /**

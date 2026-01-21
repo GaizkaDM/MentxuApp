@@ -32,6 +32,9 @@ interface MentxuApi {
     @GET("usuarios/{id}/progreso")
     suspend fun obtenerProgresoUsuario(@Path("id") id: Int): Response<ProgresoUsuarioResponse>
     
+    @GET("ranking")
+    suspend fun obtenerRanking(): Response<List<RankingItemResponse>>
+    
     // ==================== PROGRESO ====================
     
     @POST("progreso/completar")
