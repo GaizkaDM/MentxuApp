@@ -36,17 +36,53 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         setupBottomNavigation()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Actualizar el indicador cada vez que la actividad vuelve al frente
+        updateNavigationSelection()
+    }
+
     private fun setupBottomNavigation() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation) ?: return
 
-        // Marcar el ítem activo según la pantalla actual
-        when (this) {
-            is PerfilActivity -> bottomNav.selectedItemId = R.id.nav_perfil
-            is MapaActivity -> bottomNav.selectedItemId = R.id.nav_mapa
-            is RankingActivity -> bottomNav.selectedItemId = R.id.nav_ranking
-            is ModoLibreActivity -> bottomNav.selectedItemId = R.id.nav_modo_libre
+        // Primero marcar el ítem activo SIN listener para evitar navegación
+        val currentItemId = when (this) {
+            is PerfilActivity -> R.id.nav_perfil
+            is MapaActivity -> R.id.nav_mapa
+            is RankingActivity -> R.id.nav_ranking
+            is ModoLibreActivity -> R.id.nav_modo_libre
+            else -> null
         }
+        
+        // Establecer el ítem seleccionado antes de configurar el listener
+        currentItemId?.let { bottomNav.selectedItemId = it }
 
+        // Ahora configurar el listener de navegación
+        setupNavigationListener(bottomNav)
+    }
+
+    private fun updateNavigationSelection() {
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation) ?: return
+        
+        val currentItemId = when (this) {
+            is PerfilActivity -> R.id.nav_perfil
+            is MapaActivity -> R.id.nav_mapa
+            is RankingActivity -> R.id.nav_ranking
+            is ModoLibreActivity -> R.id.nav_modo_libre
+            else -> return
+        }
+        
+        // Solo actualizar si el ítem seleccionado es diferente
+        if (bottomNav.selectedItemId != currentItemId) {
+            // Desactivar temporalmente el listener para evitar navegación
+            bottomNav.setOnItemSelectedListener(null)
+            bottomNav.selectedItemId = currentItemId
+            // Re-configurar el listener
+            setupNavigationListener(bottomNav)
+        }
+    }
+
+    private fun setupNavigationListener(bottomNav: BottomNavigationView) {
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_perfil -> {
