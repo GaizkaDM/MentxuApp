@@ -63,19 +63,6 @@
         android:background="@android:color/white"
         android:layout_marginBottom="@dimen/margin_medium" />
 
-    <!-- Botón de ayuda -->
-    <Button
-        android:id="@+id/btnAyuda"
-        style="@style/Botones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:backgroundTint="@color/azul_secundario"
-        android:text="@string/boton_pista"
-        android:minWidth="120dp"
-        tools:text="Pista" />
-
     </LinearLayout>
 
     </ScrollView>
