@@ -47,9 +47,9 @@
 
     <Button
         android:id="@+id/btnRanking"
-        style="@style/BotonesGrandes"
+        style="@style/Botones.Yellow"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginBottom="16dp"
         android:text="Ikus Ranking-a"
         app:layout_constraintBottom_toTopOf="@id/btnContinuar"
@@ -58,9 +58,9 @@
 
     <Button
         android:id="@+id/btnContinuar"
-        style="@style/BotonesGrandes"
+        style="@style/Botones.Mint"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginBottom="40dp"
         android:text="Jarraitu"
         app:layout_constraintBottom_toBottomOf="parent"

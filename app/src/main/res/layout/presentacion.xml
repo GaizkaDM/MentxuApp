@@ -17,9 +17,9 @@
 
     <Button
         android:id="@+id/btnRegistrarse"
-        style="@style/BotonesGrandes"
+        style="@style/Botones.Mint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:text="@string/registrarse"
         android:layout_marginBottom="40dp"
         android:padding="12dp" />

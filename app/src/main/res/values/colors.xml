@@ -27,6 +27,9 @@
     <color name="texto_secundario">#86d4c4</color>
     <color name="maritime_blue">#1a237e</color>
     <color name="blue_green">#86d4c4</color>
+    <color name="blue_green_dark">#60A697</color>
     <color name="yellow">#ffea8d</color>
+    <color name="yellow_dark">#D1BE66</color>
     <color name="pink">#ff8aa3</color>
+    <color name="pink_dark">#D1667E</color>
 </resources>
