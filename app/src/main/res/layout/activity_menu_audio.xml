@@ -15,48 +15,49 @@
         android:layout_height="match_parent">
 
     <!-- Contenedor para el texto y el GIF -->
-    <LinearLayout
-        android:id="@+id/contentLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/playPauseButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:padding="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/playPauseButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Imagen/GIF de Mentxu hablando -->
-        <ImageView
-            android:id="@+id/gifMentxu"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/descripcion_mentxu_hablando"
-            tools:srcCompat="@drawable/mentxu_habla" />
-
-        <!-- Texto explicativo con scroll por si es largo -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bubble_background"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/tvExplicacion"
+            <!-- Imagen/GIF de Mentxu hablando -->
+            <ImageView
+                android:id="@+id/gifMentxu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cargando explicación..."
-                android:textColor="#333333"
-                android:textSize="18sp"
-                android:lineSpacingExtra="4sp"
-                android:fontFamily="sans-serif-medium" />
-        </ScrollView>
-    </LinearLayout>
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/descripcion_mentxu_hablando"
+                tools:srcCompat="@drawable/mentxu_habla" />
+
+            <!-- Texto explicativo con scroll por si es largo -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bubble_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvExplicacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Cargando explicación..."
+                    android:textColor="#333333"
+                    android:textSize="18sp" />
+            </ScrollView>
+        </LinearLayout>
 
     <!-- Botón para reproducir o pausar el audio -->
     <Button
         android:id="@+id/playPauseButton"
+        style="@style/Botones"
         android:layout_width="140dp"
         android:layout_height="64dp"
         android:layout_marginStart="24dp"
@@ -81,6 +82,7 @@
     <!-- Botón para continuar a la siguiente pantalla -->
     <Button
         android:id="@+id/continueButton"
+        style="@style/Botones"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"

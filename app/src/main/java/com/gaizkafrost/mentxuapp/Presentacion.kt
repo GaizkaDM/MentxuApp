@@ -70,7 +70,6 @@ class Presentacion : BaseMenuActivity() {
         val editTextApellido: EditText = dialogView.findViewById(R.id.editTextText2)
 
         val dialog = AlertDialog.Builder(this)
-            .setTitle(getString(R.string.dialog_title))
             .setView(dialogView)
             .setPositiveButton(getString(R.string.dialog_comenzar), null)
             .setNegativeButton(getString(R.string.dialog_cancelar)) { d, _ -> d.dismiss() }

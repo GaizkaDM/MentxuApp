@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="AMALERAKO-TESTA"
                     android:textAlignment="center"
-                    android:textColor="#E67E22"
+                    android:textColor="@color/blue_green"
                     android:layout_marginBottom="@dimen/margin_small" />
 
                 <TextView
@@ -104,23 +104,22 @@
                     android:layout_marginBottom="@dimen/margin_medium"
                     android:textColor="#34495E" />
 
+                <Button
+                    android:id="@+id/btn_verify_test"
+                    style="@style/BotonesGrandes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:padding="@dimen/padding_medium"
+                    android:text="Egiaztatu"
+                    android:textColor="#FFFFFF" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/quiz_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     tools:listitem="@layout/item_quiz_question" />
-
-                <Button
-                    android:id="@+id/btn_verify_test"
-                    style="@style/BotonesGrandes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Egiaztatu"
-                    android:layout_marginTop="@dimen/margin_large"
-                    android:padding="@dimen/padding_medium"
-                    android:backgroundTint="#27AE60"
-                    android:textColor="#FFFFFF" />
 
                 <TextView
                     android:id="@+id/test_result_text"
