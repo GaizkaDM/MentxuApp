@@ -8,6 +8,9 @@
     <color name="darkGray">#303030</color>
     <color name="fondo_app">#F5F5F5</color>
     <color name="texto_principal">#212121</color>
+    
+    <!-- Colores funcionales (no son de la paleta visual, pero necesarios para la UI) -->
+    <color name="verde_completado">#4CAF50</color>
 
     <!-- Paleta Principal (5 colores) -->
     <!-- Púrpura -->
