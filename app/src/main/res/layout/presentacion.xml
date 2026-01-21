@@ -13,7 +13,7 @@
         android:layout_height="323dp"
         android:layout_marginBottom="40dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/logo_mentxuapp" />
+        android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/btnRegistrarse"

@@ -7,7 +7,6 @@
     <string name="ayudaTexto">Ongi etorri aplikazioaren aurkezpenera. Sakatu erregistratzeko botoia jolasten hasteko. Gozatu!</string>
     <string name="nombre">Izena:</string>
     <string name="apellido">Abizena:</string>
-    <string name="dialog_title">Zure datuak sartu</string>
     <string name="dialog_comenzar">Hasi</string>
     <string name="dialog_cancelar">Atzera</string>
     <string name="desarrolladores">Garatzaileak:\n</string>

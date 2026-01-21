@@ -35,7 +35,7 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:text="Juego Libre"
-                android:textColor="@color/maritime_blue"
+                android:textColor="@color/purple"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
                 android:text="¡Elige un minijuego para jugar de nuevo!"
-                android:textColor="@color/texto_secundario"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <GridLayout
@@ -64,6 +64,7 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
                     <LinearLayout
+                        android:background="@drawable/bubble_background"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -101,6 +102,8 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
                     <LinearLayout
+                        android:background="@drawable/bubble_background"
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -138,6 +141,7 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
                     <LinearLayout
+                        android:background="@drawable/bubble_background"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -175,6 +179,7 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
                     <LinearLayout
+                        android:background="@drawable/bubble_background"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -211,6 +216,7 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
                     <LinearLayout
+                        android:background="@drawable/bubble_background"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -247,6 +253,7 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
                     <LinearLayout
+                        android:background="@drawable/bubble_background"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"

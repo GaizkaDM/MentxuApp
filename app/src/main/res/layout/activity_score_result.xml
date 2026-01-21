@@ -52,7 +52,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Ikus Ranking-a"
-        android:backgroundTint="@color/maritime_blue"
         app:layout_constraintBottom_toTopOf="@id/btnContinuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,9 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:text="Jarraitu"
-        android:backgroundTint="@color/paletteBlue1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
