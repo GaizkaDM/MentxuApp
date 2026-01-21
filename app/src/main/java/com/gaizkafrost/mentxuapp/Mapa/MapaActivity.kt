@@ -36,6 +36,8 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var repository: ParadasRepositoryMejorado
     private lateinit var userPrefs: UserPreferences
+    private lateinit var mapContainer: android.view.View
+    private lateinit var congratsContainer: android.view.View
     private var paradasBackend: List<Parada> = emptyList()
     private var usandoBackend = false
 
@@ -47,12 +49,19 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
         userPrefs = UserPreferences(this)
         repository = ParadasRepositoryMejorado(this)
 
+        // Inicializar vistas
+        mapContainer = findViewById(R.id.mapContainer)
+        congratsContainer = findViewById(R.id.congratsContainer)
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         // Cargar paradas desde backend PostgreSQL
         cargarParadasDesdeBackend()
+        
+        // Verificar estado de finalización
+        checkCompletionState()
     }
 
     /**
@@ -62,9 +71,41 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
      */
     override fun onResume() {
         super.onResume()
-        // Al volver al mapa, forzamos una recarga desde el backend/local
-        // para ver si alguna parada se ha completado.
+        // Al volver al mapa, verificar estado
         cargarParadasDesdeBackend()
+        checkCompletionState()
+    }
+
+    private fun checkCompletionState() {
+        val userId = userPrefs.userId
+        if (userId <= 0) return
+
+        lifecycleScope.launch {
+            try {
+                // Verificar si se completó todo el juego
+                // Usamos la misma lógica que en Modo Libre
+                val isCompleted = repository.esJuegoCompletado(userId)
+                
+                if (isCompleted) {
+                    showCongratsScreen()
+                } else {
+                    showMapScreen()
+                }
+            } catch (e: Exception) {
+                // En caso de error, mostramos el mapa por defecto
+                showMapScreen()
+            }
+        }
+    }
+
+    private fun showCongratsScreen() {
+        mapContainer.visibility = android.view.View.GONE
+        congratsContainer.visibility = android.view.View.VISIBLE
+    }
+
+    private fun showMapScreen() {
+        mapContainer.visibility = android.view.View.VISIBLE
+        congratsContainer.visibility = android.view.View.GONE
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
