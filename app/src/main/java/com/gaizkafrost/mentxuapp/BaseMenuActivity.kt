@@ -145,6 +145,11 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         intent.putExtra("EXTRA_SCORE", score)
         intent.putExtra("EXTRA_ERRORS", errorCount) // Pasamos errores por si quieres mostrarlos
         intent.putExtra("EXTRA_TIME", getElapsedTimeSeconds())
+        
+        // Propagar el flag de modo libre si existe en la actividad actual
+        val isFreeMode = this.intent.getBooleanExtra("IS_FREE_MODE", false)
+        intent.putExtra("IS_FREE_MODE", isFreeMode)
+        
         startActivity(intent)
         finish()
     }
