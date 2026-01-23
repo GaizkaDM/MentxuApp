@@ -23,10 +23,17 @@ class ScoreResultActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnContinuar).setOnClickListener {
-            // Regresar al mapa limpiando el stack
-            val intent = Intent(this, MapaActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
+            // Verificar si venimos del modo libre
+            val isFreeMode = intent.getBooleanExtra("IS_FREE_MODE", false)
+            
+            val targetIntent = if (isFreeMode) {
+                Intent(this, ModoLibreActivity::class.java)
+            } else {
+                Intent(this, MapaActivity::class.java)
+            }
+            
+            targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(targetIntent)
             finish()
         }
     }
