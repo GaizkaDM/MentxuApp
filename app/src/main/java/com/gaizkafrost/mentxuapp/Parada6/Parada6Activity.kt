@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.core.content.ContextCompat
 import com.gaizkafrost.mentxuapp.BaseMenuActivity
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
@@ -147,7 +148,7 @@ class Parada6Activity : BaseMenuActivity() {
         resultArea.text = "${correctCount}/${total} erantzun dituzu ondo!"
         
         if (correctCount == total) {
-            resultArea.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            resultArea.setTextColor(ContextCompat.getColor(this, R.color.blue_green))
             
             // Marcamos la parada como completada en el Backend y Local
             val userId = userPrefs.userId
@@ -166,7 +167,7 @@ class Parada6Activity : BaseMenuActivity() {
                 }, 3000)
             }
         } else {
-            resultArea.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+            resultArea.setTextColor(ContextCompat.getColor(this, R.color.pink))
         }
         
         quizAdapter.showFeedback()
@@ -320,7 +321,7 @@ class Parada6Activity : BaseMenuActivity() {
                 val isCorrect = userAnswers[position] == q.correctOptionIndex
                 if (isCorrect) {
                     holder.feedback.text = "Zuzena!"
-                    holder.feedback.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+                    holder.feedback.setTextColor(ContextCompat.getColor(this@Parada6Activity, R.color.blue_green))
                 } else {
                     val correctLetter = when(q.correctOptionIndex) {
                         0 -> "a"
@@ -328,7 +329,7 @@ class Parada6Activity : BaseMenuActivity() {
                         else -> "c"
                     }
                     holder.feedback.text = "Okerra. Erantzun zuzena: $correctLetter)"
-                    holder.feedback.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+                    holder.feedback.setTextColor(ContextCompat.getColor(this@Parada6Activity, R.color.pink))
                 }
             } else {
                 holder.feedback.visibility = View.GONE

@@ -82,13 +82,13 @@ class SopaDeLetrasView @JvmOverloads constructor(
     }
 
     private val paintSelected = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.naranja_seleccion)
+        color = ContextCompat.getColor(context, R.color.yellow)
         style = Paint.Style.FILL
         alpha = 180  // Más opaco para que se vea mejor
     }
 
     private val paintFound = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.verde_completado)
+        color = ContextCompat.getColor(context, R.color.blue_green)
         style = Paint.Style.FILL
         alpha = 150
     }

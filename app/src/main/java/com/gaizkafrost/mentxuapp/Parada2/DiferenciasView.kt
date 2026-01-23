@@ -49,7 +49,7 @@ class DiferenciasView @JvmOverloads constructor(
         // Configurar el paint para los círculos
         circlePaint.style = Paint.Style.STROKE
         circlePaint.strokeWidth = 8f
-        circlePaint.color = ContextCompat.getColor(context, R.color.verde_completado)
+        circlePaint.color = ContextCompat.getColor(context, R.color.blue_green)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -79,7 +79,7 @@ class DiferenciasView @JvmOverloads constructor(
         
         // Dibujar línea divisoria
         val linePaint = Paint()
-        linePaint.color = ContextCompat.getColor(context, R.color.rojo_activo)
+        linePaint.color = ContextCompat.getColor(context, R.color.pink)
         linePaint.strokeWidth = 4f
         canvas.drawLine(width / 2f, 0f, width / 2f, height.toFloat(), linePaint)
         

@@ -70,7 +70,7 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
             // Marcar la palabra en verde en la lista
             val index = palabrasAEncontrar.indexOf(palabra)
             if (index != -1 && index < tvPalabras.size) {
-                tvPalabras[index].setTextColor(ContextCompat.getColor(this, R.color.verde_completado))
+                tvPalabras[index].setTextColor(ContextCompat.getColor(this, R.color.blue_green))
             }
             
             // Verificar si se han encontrado todas las palabras

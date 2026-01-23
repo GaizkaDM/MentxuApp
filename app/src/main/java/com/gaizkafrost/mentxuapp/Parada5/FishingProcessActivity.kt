@@ -181,7 +181,7 @@ class FishingProcessActivity : BaseMenuActivity() {
     private fun showFeedback(message: String, success: Boolean) {
         tvFeedback.text = message
         tvFeedback.visibility = View.VISIBLE
-        val colorRes = if (success) android.R.color.holo_green_dark else android.R.color.holo_red_dark
+        val colorRes = if (success) R.color.blue_green else R.color.pink
         tvFeedback.setTextColor(ContextCompat.getColor(this, colorRes))
     }
 }
