@@ -1,5 +1,6 @@
 package com.gaizkafrost.mentxuapp.Mapa
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -39,27 +40,20 @@ class MapaActivity : BaseMenuActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // Cargar configuración de osmdroid (necesario antes de inflar el layout)
         val ctx = applicationContext
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
         
         setContentView(R.layout.activity_mapa)
 
-        // Inicializar repository
         userPrefs = UserPreferences(this)
         repository = ParadasRepositoryMejorado(this)
 
-        // Inicializar vistas
         mapContainer = findViewById(R.id.mapContainer)
         congratsContainer = findViewById(R.id.congratsContainer)
         mMapView = findViewById(R.id.map)
 
         setupMap()
-
-        // Cargar paradas desde backend PostgreSQL
         cargarParadasDesdeBackend()
-        
-        // Verificar estado de finalización
         checkCompletionState()
     }
 
@@ -68,11 +62,11 @@ class MapaActivity : BaseMenuActivity() {
         mMapView.setMultiTouchControls(true)
         
         val mapController = mMapView.controller
-        mapController.setZoom(15.0)
+        mapController.setZoom(16.5) // Un poco más de zoom para ver mejor los puntos
         
-        // Centrar la cámara en Santurtzi
-        val santurtzi = GeoPoint(43.329, -3.029)
-        mapController.setCenter(santurtzi)
+        // Centro calculado de los puntos de interés
+        val centroPuntos = GeoPoint(43.3288, -3.0283)
+        mapController.setCenter(centroPuntos)
         
         actualizarMarcadores()
     }
@@ -80,7 +74,6 @@ class MapaActivity : BaseMenuActivity() {
     override fun onResume() {
         super.onResume()
         mMapView.onResume()
-        // Al volver al mapa, verificar estado
         cargarParadasDesdeBackend()
         checkCompletionState()
     }
@@ -198,18 +191,18 @@ class MapaActivity : BaseMenuActivity() {
             marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             marker.title = parada.nombre
             
-            // Personalizar icono según estado
-            val colorRes = when (parada.estado) {
-                EstadoParada.ACTIVA -> android.R.color.holo_red_light
-                EstadoParada.COMPLETADA -> android.R.color.holo_green_light
-                EstadoParada.BLOQUEADA -> android.R.color.darker_gray
+            // 🎨 Definir el color de forma explícita
+            val tintColor = when (parada.estado) {
+                EstadoParada.ACTIVA -> Color.RED          // 🔴 Roja para la actual
+                EstadoParada.COMPLETADA -> Color.GREEN     // 🟢 Verde para las terminadas
+                EstadoParada.BLOQUEADA -> Color.GRAY       // 🔘 Gris para las bloqueadas
             }
             
-            // Usar el icono por defecto de osmdroid y tintarlo
-            val icon = marker.icon
-            if (icon != null) {
-                val tintedIcon = DrawableCompat.wrap(icon).mutate()
-                DrawableCompat.setTint(tintedIcon, ContextCompat.getColor(this, colorRes))
+            // Crear un nuevo icono mutado para cada marcador (para que no compartan estado)
+            val defaultIcon = ContextCompat.getDrawable(this, org.osmdroid.library.R.drawable.marker_default)
+            defaultIcon?.let {
+                val tintedIcon = DrawableCompat.wrap(it).mutate()
+                DrawableCompat.setTint(tintedIcon, tintColor)
                 marker.icon = tintedIcon
             }
 
@@ -227,7 +220,7 @@ class MapaActivity : BaseMenuActivity() {
                 } else {
                     val mensaje = when (parada.estado) {
                         EstadoParada.BLOQUEADA -> "Aurreko geltokia osatu behar duzu lehenago."
-                        EstadoParada.COMPLETADA -> "Geltoki hau osatu duzu jada!"
+                        EstadoParada.COMPLETADA -> "Geltoki hau osatu duzu jada! (Completada - Verde)"
                         else -> "Geltoki hau ez dago erabilgarri."
                     }
                     Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
