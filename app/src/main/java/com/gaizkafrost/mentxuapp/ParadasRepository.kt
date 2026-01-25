@@ -1,17 +1,15 @@
 package com.gaizkafrost.mentxuapp
 
-import com.google.android.gms.maps.model.LatLng
-
 object ParadasRepository {
 
     // Lista privada de paradas
     private val paradas = mutableListOf(
-        Parada(1, "Santurtziko Udala (Mentxu)", LatLng(43.328833, -3.032944)),
-        Parada(2, "“El niño y el perro” eskultura", LatLng(43.328833, -3.032306)),
-        Parada(3, "Agurtza itsasontzia", LatLng(43.327000, -3.023778)),
-        Parada(4, "Itsas-museoa", LatLng(43.330639, -3.030750)),
-        Parada(5, "Itsas-portua", LatLng(43.330417, -3.030722)),
-        Parada(6, "“Monumento niños y niñas de la guerra” eskultura", LatLng(43.330500, -3.029917))
+        Parada(1, "Santurtziko Udala (Mentxu)", 43.328833, -3.032944),
+        Parada(2, "“El niño y el perro” eskultura", 43.328833, -3.032306),
+        Parada(3, "Agurtza itsasontzia", 43.327000, -3.023778),
+        Parada(4, "Itsas-museoa", 43.330639, -3.030750),
+        Parada(5, "Itsas-portua", 43.330417, -3.030722),
+        Parada(6, "“Monumento niños y niñas de la guerra” eskultura", 43.330500, -3.029917)
     )
 
     init {
