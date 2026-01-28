@@ -24,16 +24,17 @@ class DiferenciasView @JvmOverloads constructor(
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+
     // Coordenadas de las diferencias (relativas a la imagen, de 0.0 a 1.0)
     // Áreas ampliadas para facilitar el toque
     private val diferencias = listOf(
-        RectF(0.25f, 0.85f, 0.55f, 0.98f),   // Zapatos del niño
-        RectF(0.40f, 0.7f, 0.9f, 0.95f),   // Escoba
-        RectF(0.45f, 0.5f, 0.6f, 0.65f),   // Maceta con flores
-        RectF(0.63f, 0.58f, 0.73f, 0.7f),   // Pañuelo del perro
-        RectF(0.7f, 0.35f, 0.78f, 0.45f),   // Pájaro en la cabeza del perro
-        RectF(0.25f, 0.4f, 0.5f, 0.6f),    // Color de la camiseta
-        RectF(0.75f, 0.7f, 0.85f, 0.8f)     // Cola del perro
+        RectF(0.25f, 0.75f, 0.45f, 0.90f),   // Zapatos del niño
+        RectF(0.47f, 0.70f, 0.65f, 0.95f),   // Escoba
+        RectF(0.45f, 0.30f, 0.55f, 0.45f),   // Maceta con flores
+        RectF(0.63f, 0.32f, 0.73f, 0.40f),   // Pañuelo del perro
+        RectF(0.65f, 0.15f, 0.73f, 0.25f),   // Pájaro en la cabeza del perro
+        RectF(0.20f, 0.25f, 0.4f, 0.50f),    // Color de la camiseta
+        RectF(0.7f, 0.4f, 0.75f, 0.5f)     // Cola del perro
     )
 
     private val diferenciasEncontradas = mutableSetOf<Int>()
@@ -82,6 +83,7 @@ class DiferenciasView @JvmOverloads constructor(
         linePaint.color = ContextCompat.getColor(context, R.color.pink)
         linePaint.strokeWidth = 4f
         canvas.drawLine(width / 2f, 0f, width / 2f, height.toFloat(), linePaint)
+
 
         // Dibujar círculos en las diferencias encontradas
         diferenciasEncontradas.forEach { index ->
