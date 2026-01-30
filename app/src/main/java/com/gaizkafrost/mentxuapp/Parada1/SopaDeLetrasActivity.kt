@@ -95,10 +95,32 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
                 repository.completarParada(userId, idParadaActual, score, timeSpent)
             }
             
-            // Mostrar puntuación y cerrar la actividad después de un breve retraso
-            sopaDeLetrasView.postDelayed({
-                showScoreResult(score)
-            }, 1500)
+            // Registrar el intento para estadísticas
+            repository.registrarIntento(
+                usuarioId = userId,
+                paradaId = idParadaActual,
+                tipoActividad = "sopa_letras",
+                puntuacion = score,
+                tiempoSegundos = timeSpent
+            )
+            
+            // Verificar si hay nuevos logros desbloqueados
+            val nuevosLogros = repository.verificarLogros(userId)
+            
+            if (nuevosLogros.isNotEmpty()) {
+                // Mostrar popup de logros antes de la puntuación
+                com.gaizkafrost.mentxuapp.utils.LogroDialogHelper.mostrarLogrosEnCola(
+                    this@SopaDeLetrasActivity,
+                    nuevosLogros
+                ) {
+                    showScoreResult(score)
+                }
+            } else {
+                // Sin logros nuevos, mostrar puntuación después de breve retraso
+                sopaDeLetrasView.postDelayed({
+                    showScoreResult(score)
+                }, 1500)
+            }
         }
     }
 }

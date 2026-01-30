@@ -161,10 +161,33 @@ class Parada6Activity : BaseMenuActivity() {
                     repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
                 }
                 
-                // Mostrar puntuación y cerrar la actividad después de 3 segundos
-                resultArea.postDelayed({
-                    showScoreResult(finalScore)
-                }, 3000)
+                // Registrar el intento para estadísticas
+                repository.registrarIntento(
+                    usuarioId = userId,
+                    paradaId = idParadaActual,
+                    tipoActividad = "puzzle",
+                    puntuacion = finalScore,
+                    tiempoSegundos = timeSpent
+                )
+                
+                // Verificar si hay nuevos logros desbloqueados
+                val nuevosLogros = repository.verificarLogros(userId)
+                
+                if (nuevosLogros.isNotEmpty()) {
+                    // Mostrar popup de logros antes de la puntuación
+                    com.gaizkafrost.mentxuapp.utils.LogroDialogHelper.mostrarLogrosEnCola(
+                        this@Parada6Activity,
+                        nuevosLogros
+                    ) {
+                        // Después de mostrar todos los logros, mostrar puntuación
+                        showScoreResult(finalScore)
+                    }
+                } else {
+                    // Sin logros nuevos, mostrar puntuación después de 3 segundos
+                    resultArea.postDelayed({
+                        showScoreResult(finalScore)
+                    }, 3000)
+                }
             }
         } else {
             resultArea.setTextColor(ContextCompat.getColor(this, R.color.pink))

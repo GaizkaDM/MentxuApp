@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="@drawable/dialog_rounded_background">
+
+    <!-- Icono de celebración -->
+    <TextView
+        android:id="@+id/emoji_celebracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🎉"
+        android:textSize="48sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tv_titulo_logro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Logro Desbloqueado!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFD700"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Icono del logro -->
+    <TextView
+        android:id="@+id/tv_icono_logro"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="🏆"
+        android:textSize="48sp"
+        android:background="@drawable/logro_background_circle"
+        android:layout_marginVertical="16dp"/>
+
+    <!-- Nombre del logro -->
+    <TextView
+        android:id="@+id/tv_nombre_logro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Primer Paso"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Descripción del logro -->
+    <TextView
+        android:id="@+id/tv_descripcion_logro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Has completado tu primera parada!"
+        android:textSize="14sp"
+        android:textColor="#CCCCCC"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Puntos ganados -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"/>
+
+        <TextView
+            android:id="@+id/tv_puntos_logro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"
+            android:layout_marginStart="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" pts"
+            android:textSize="16sp"
+            android:textColor="#4CAF50"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <!-- Botón Continuar -->
+    <Button
+        android:id="@+id/btn_continuar"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="¡Genial!"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FFD700"
+        android:textColor="#000000"/>
+
+</LinearLayout>

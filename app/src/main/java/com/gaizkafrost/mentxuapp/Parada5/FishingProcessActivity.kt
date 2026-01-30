@@ -154,10 +154,30 @@ class FishingProcessActivity : BaseMenuActivity() {
                     repository.completarParada(userId, idParadaActual, score, timeSpent)
                 }
                 
-                // Mostrar puntuación y cerrar la actividad después de un breve retraso
-                recyclerView.postDelayed({
-                    showScoreResult(score)
-                }, 1500)
+                // Registrar el intento para estadísticas
+                repository.registrarIntento(
+                    usuarioId = userId,
+                    paradaId = idParadaActual,
+                    tipoActividad = "pesca",
+                    puntuacion = score,
+                    tiempoSegundos = timeSpent
+                )
+                
+                // Verificar si hay nuevos logros desbloqueados
+                val nuevosLogros = repository.verificarLogros(userId)
+                
+                if (nuevosLogros.isNotEmpty()) {
+                    com.gaizkafrost.mentxuapp.utils.LogroDialogHelper.mostrarLogrosEnCola(
+                        this@FishingProcessActivity,
+                        nuevosLogros
+                    ) {
+                        showScoreResult(score)
+                    }
+                } else {
+                    recyclerView.postDelayed({
+                        showScoreResult(score)
+                    }, 1500)
+                }
             }
         } else {
             showFeedback("Urrats batzuk gaizki ordenatuta daude. Saiatu berriro.", false)

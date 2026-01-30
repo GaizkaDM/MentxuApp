@@ -229,10 +229,30 @@ class JuegoRecogida : BaseMenuActivity() {
                 repository.completarParada(userId, idParadaActual, finalScore, timeSpent)
             }
             
-            // Esperar un poco antes de mostrar la puntuación
-            handler.postDelayed({
-                showScoreResult(finalScore)
-            }, 1000)
+            // Registrar el intento para estadísticas
+            repository.registrarIntento(
+                usuarioId = userId,
+                paradaId = idParadaActual,
+                tipoActividad = "recogida",
+                puntuacion = finalScore,
+                tiempoSegundos = timeSpent
+            )
+            
+            // Verificar si hay nuevos logros desbloqueados
+            val nuevosLogros = repository.verificarLogros(userId)
+            
+            if (nuevosLogros.isNotEmpty()) {
+                com.gaizkafrost.mentxuapp.utils.LogroDialogHelper.mostrarLogrosEnCola(
+                    this@JuegoRecogida,
+                    nuevosLogros
+                ) {
+                    showScoreResult(finalScore)
+                }
+            } else {
+                handler.postDelayed({
+                    showScoreResult(finalScore)
+                }, 1000)
+            }
         }
 
         // Desactivar spawns y movimiento

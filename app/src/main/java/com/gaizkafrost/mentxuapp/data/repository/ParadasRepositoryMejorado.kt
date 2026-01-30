@@ -269,4 +269,94 @@ class ParadasRepositoryMejorado(
             emptyList()
         }
     }
+    
+    // ==================== LOGROS ====================
+    
+    /**
+     * Verificar y obtener nuevos logros desbloqueados
+     * Llama al backend para verificar si el usuario ha desbloqueado nuevos logros
+     * 
+     * @return Lista de logros recién desbloqueados, o lista vacía si no hay nuevos
+     */
+    suspend fun verificarLogros(usuarioId: Int): List<com.gaizkafrost.mentxuapp.data.remote.dto.LogroDesbloqueado> {
+        if (!NetworkHelper.isNetworkAvailable(context)) {
+            Log.d(TAG, "Sin conexión, no se pueden verificar logros")
+            return emptyList()
+        }
+        
+        return try {
+            val response = api.verificarLogros(usuarioId)
+            if (response.isSuccessful) {
+                val nuevosLogros = response.body()?.nuevosLogros ?: emptyList()
+                Log.d(TAG, "Verificación de logros: ${nuevosLogros.size} nuevos desbloqueados")
+                nuevosLogros
+            } else {
+                Log.w(TAG, "Error al verificar logros: ${response.code()}")
+                emptyList()
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error al verificar logros", e)
+            emptyList()
+        }
+    }
+    
+    /**
+     * Obtener todos los logros del usuario (desbloqueados y pendientes)
+     */
+    suspend fun obtenerLogrosUsuario(usuarioId: Int): com.gaizkafrost.mentxuapp.data.remote.dto.LogrosUsuarioResponse? {
+        if (!NetworkHelper.isNetworkAvailable(context)) {
+            return null
+        }
+        
+        return try {
+            val response = api.obtenerLogrosUsuario(usuarioId)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error al obtener logros", e)
+            null
+        }
+    }
+    
+    /**
+     * Registrar un intento de actividad (para estadísticas avanzadas)
+     */
+    suspend fun registrarIntento(
+        usuarioId: Int,
+        paradaId: Int,
+        tipoActividad: String,
+        puntuacion: Int,
+        tiempoSegundos: Int,
+        resultado: String = "exito",
+        errores: Int = 0,
+        pistasUsadas: Int = 0
+    ) {
+        if (!NetworkHelper.isNetworkAvailable(context)) {
+            Log.d(TAG, "Sin conexión, intento no registrado")
+            return
+        }
+        
+        try {
+            val request = com.gaizkafrost.mentxuapp.data.remote.dto.RegistrarIntentoRequest(
+                usuarioId = usuarioId,
+                paradaId = paradaId,
+                tipoActividad = tipoActividad,
+                puntuacion = puntuacion,
+                tiempoSegundos = tiempoSegundos,
+                resultado = resultado,
+                errores = errores,
+                pistasUsadas = pistasUsadas
+            )
+            
+            val response = api.registrarIntento(request)
+            if (response.isSuccessful) {
+                Log.d(TAG, "Intento registrado: ${response.body()?.numeroIntento}")
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error al registrar intento", e)
+        }
+    }
 }

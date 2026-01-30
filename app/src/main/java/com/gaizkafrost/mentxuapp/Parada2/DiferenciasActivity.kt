@@ -82,10 +82,30 @@ class DiferenciasActivity : BaseMenuActivity() {
                 repository.completarParada(userId, idParadaActual, score, timeSpent)
             }
             
-            // Mostrar puntuación y cerrar la actividad después de un breve retraso
-            diferenciasView.postDelayed({
-                showScoreResult(score)
-            }, 1500)
+            // Registrar el intento para estadísticas
+            repository.registrarIntento(
+                usuarioId = userId,
+                paradaId = idParadaActual,
+                tipoActividad = "diferencias",
+                puntuacion = score,
+                tiempoSegundos = timeSpent
+            )
+            
+            // Verificar si hay nuevos logros desbloqueados
+            val nuevosLogros = repository.verificarLogros(userId)
+            
+            if (nuevosLogros.isNotEmpty()) {
+                com.gaizkafrost.mentxuapp.utils.LogroDialogHelper.mostrarLogrosEnCola(
+                    this@DiferenciasActivity,
+                    nuevosLogros
+                ) {
+                    showScoreResult(score)
+                }
+            } else {
+                diferenciasView.postDelayed({
+                    showScoreResult(score)
+                }, 1500)
+            }
         }
     }
 }

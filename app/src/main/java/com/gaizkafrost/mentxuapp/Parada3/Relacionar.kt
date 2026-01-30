@@ -183,8 +183,28 @@ class Relacionar : BaseMenuActivity() {
                     repository.completarParada(userId, idParadaActual, score, timeSpent)
                 }
                 
-                // Mostrar puntuación y cerrar la actividad
-                showScoreResult(score)
+                // Registrar el intento para estadísticas
+                repository.registrarIntento(
+                    usuarioId = userId,
+                    paradaId = idParadaActual,
+                    tipoActividad = "relacionar",
+                    puntuacion = score,
+                    tiempoSegundos = timeSpent
+                )
+                
+                // Verificar si hay nuevos logros desbloqueados
+                val nuevosLogros = repository.verificarLogros(userId)
+                
+                if (nuevosLogros.isNotEmpty()) {
+                    com.gaizkafrost.mentxuapp.utils.LogroDialogHelper.mostrarLogrosEnCola(
+                        this@Relacionar,
+                        nuevosLogros
+                    ) {
+                        showScoreResult(score)
+                    }
+                } else {
+                    showScoreResult(score)
+                }
             }
         }
     }
