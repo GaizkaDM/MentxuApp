@@ -71,4 +71,20 @@ interface MentxuApi {
      */
     @POST("/estadisticas/api/stats/intentos")
     suspend fun registrarIntento(@Body request: RegistrarIntentoRequest): Response<RegistrarIntentoResponse>
+    
+    // ==================== SESIONES ====================
+    
+    /**
+     * Registrar una nueva sesión de usuario
+     * POST /estadisticas/api/stats/sesiones
+     */
+    @POST("/estadisticas/api/stats/sesiones")
+    suspend fun registrarSesion(@Body request: RegistrarSesionRequest): Response<RegistrarSesionResponse>
+    
+    /**
+     * Cerrar una sesión activa
+     * POST /estadisticas/api/stats/sesiones/{id}/cerrar
+     */
+    @POST("/estadisticas/api/stats/sesiones/{sesionId}/cerrar")
+    suspend fun cerrarSesion(@Path("sesionId") sesionId: Int): Response<CerrarSesionResponse>
 }

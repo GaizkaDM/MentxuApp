@@ -9,6 +9,7 @@ object Constants {
     const val KEY_USER_APELLIDO = "user_apellido"
     const val KEY_DEVICE_ID = "device_id"
     const val KEY_FIRST_TIME = "first_time"
+    const val KEY_SESSION_ID = "session_id"
     
     // API Endpoints (ya están en MentxuApi, esto es por si se necesitan como constantes)
     const val ENDPOINT_PARADAS = "paradas"

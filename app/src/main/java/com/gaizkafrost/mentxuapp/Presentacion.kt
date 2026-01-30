@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
 import com.gaizkafrost.mentxuapp.data.remote.api.RetrofitClient
+import com.gaizkafrost.mentxuapp.data.remote.dto.RegistrarSesionRequest
 import com.gaizkafrost.mentxuapp.data.remote.dto.UsuarioRequest
 import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import com.gaizkafrost.mentxuapp.utils.Resource
@@ -41,8 +42,11 @@ class Presentacion : BaseMenuActivity() {
         userPrefs = UserPreferences(this)
         repository = ParadasRepositoryMejorado(this)
 
-        // Si ya hay un usuario registrado, ir directamente al mapa
+        // Si ya hay un usuario registrado, registrar sesión e ir al mapa
         if (userPrefs.hasUser()) {
+            // Registrar sesión en background
+            registrarSesionUsuario(userPrefs.userId)
+            
             val intent = Intent(this, MapaActivity::class.java)
             startActivity(intent)
             finish()
@@ -121,6 +125,9 @@ class Presentacion : BaseMenuActivity() {
                         userPrefs.deviceId = deviceId
                         userPrefs.isFirstTime = false
 
+                        // Registrar sesión en el backend
+                        registrarSesionUsuario(userResponse.usuario.id)
+
                         // Cerrar diálogo
                         dialog.dismiss()
 
@@ -182,6 +189,39 @@ class Presentacion : BaseMenuActivity() {
                     }
                     else -> {}
                 }
+            }
+        }
+    }
+
+    /**
+     * Registra una nueva sesión de usuario en el backend
+     * Esto permite trackear estadísticas de uso de la app
+     */
+    private fun registrarSesionUsuario(usuarioId: Int) {
+        lifecycleScope.launch {
+            try {
+                val api = RetrofitClient.api
+                val deviceInfo = android.os.Build.MODEL + " - Android " + android.os.Build.VERSION.RELEASE
+                val request = RegistrarSesionRequest(
+                    usuarioId = usuarioId,
+                    tipoDispositivo = "android",
+                    deviceInfo = deviceInfo
+                )
+                
+                val response = api.registrarSesion(request)
+                
+                if (response.isSuccessful) {
+                    response.body()?.let { sesionResponse ->
+                        // Guardar el ID de sesión para poder cerrarla después
+                        userPrefs.sessionId = sesionResponse.sesion.id
+                        android.util.Log.d("Presentacion", "Sesión registrada: ${sesionResponse.sesion.id}")
+                    }
+                } else {
+                    android.util.Log.e("Presentacion", "Error al registrar sesión: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                // No mostrar error al usuario, solo loguear
+                android.util.Log.e("Presentacion", "Error de conexión al registrar sesión: ${e.message}")
             }
         }
     }

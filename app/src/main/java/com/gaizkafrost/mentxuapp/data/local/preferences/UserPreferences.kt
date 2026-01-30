@@ -49,6 +49,11 @@ class UserPreferences(context: Context) {
         get() = sharedPreferences.getBoolean(Constants.KEY_FIRST_TIME, true)
         set(value) = sharedPreferences.edit().putBoolean(Constants.KEY_FIRST_TIME, value).apply()
     
+    // ID de la sesión activa (para sistema de estadísticas)
+    var sessionId: Int
+        get() = sharedPreferences.getInt(Constants.KEY_SESSION_ID, -1)
+        set(value) = sharedPreferences.edit().putInt(Constants.KEY_SESSION_ID, value).apply()
+    
     // Verificar si hay usuario logueado
     fun hasUser(): Boolean = userId > 0
     
@@ -58,6 +63,7 @@ class UserPreferences(context: Context) {
             remove(Constants.KEY_USER_ID)
             remove(Constants.KEY_USER_NOMBRE)
             remove(Constants.KEY_USER_APELLIDO)
+            remove(Constants.KEY_SESSION_ID)
             apply()
         }
     }
