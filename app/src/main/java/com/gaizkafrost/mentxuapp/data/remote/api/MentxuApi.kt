@@ -55,20 +55,20 @@ interface MentxuApi {
      * Verificar y desbloquear logros automáticamente
      * POST /estadisticas/api/logros/verificar/{usuario_id}
      */
-    @POST("../estadisticas/api/logros/verificar/{usuarioId}")
+    @POST("/estadisticas/api/logros/verificar/{usuarioId}")
     suspend fun verificarLogros(@Path("usuarioId") usuarioId: Int): Response<VerificarLogrosResponse>
     
     /**
      * Obtener logros del usuario
      * GET /estadisticas/api/logros/usuario/{usuario_id}
      */
-    @GET("../estadisticas/api/logros/usuario/{usuarioId}")
+    @GET("/estadisticas/api/logros/usuario/{usuarioId}")
     suspend fun obtenerLogrosUsuario(@Path("usuarioId") usuarioId: Int): Response<LogrosUsuarioResponse>
     
     /**
      * Registrar un intento/actividad
      * POST /estadisticas/api/stats/intentos
      */
-    @POST("../estadisticas/api/stats/intentos")
+    @POST("/estadisticas/api/stats/intentos")
     suspend fun registrarIntento(@Body request: RegistrarIntentoRequest): Response<RegistrarIntentoResponse>
 }
