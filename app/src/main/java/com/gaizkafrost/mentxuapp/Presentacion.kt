@@ -1,18 +1,27 @@
 package com.gaizkafrost.mentxuapp
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.gaizkafrost.mentxuapp.adapter.AvatarAdapter
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
 import com.gaizkafrost.mentxuapp.data.remote.api.RetrofitClient
@@ -67,10 +76,154 @@ class Presentacion : BaseMenuActivity() {
         }
     }
 
+    // Variable para almacenar el avatar seleccionado actualmente
+    private var currentSelectedAvatar: AvatarAdapter.AvatarItem? = null
+
     private fun mostrarDialogoDeRegistro() {
+        // Crear diálogo personalizado con layout compacto
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_registro)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(true)
+
+        // Referencias a elementos del layout
+        val editTextNombre: EditText = dialog.findViewById(R.id.editTextNombre)
+        val editTextApellido: EditText = dialog.findViewById(R.id.editTextApellido)
+        val cardAvatarSelector: CardView = dialog.findViewById(R.id.cardAvatarSelector)
+        val imgSelectedAvatar: ImageView = dialog.findViewById(R.id.imgSelectedAvatar)
+        val btnCancelar: Button = dialog.findViewById(R.id.btnCancelar)
+        val btnConfirmar: Button = dialog.findViewById(R.id.btnConfirmar)
+
+        // Inicializar avatar por defecto
+        val avatars = AvatarAdapter.getDefaultAvatars()
+        currentSelectedAvatar = avatars.firstOrNull()
+        currentSelectedAvatar?.let { imgSelectedAvatar.setImageResource(it.resourceId) }
+
+        // Click en avatar abre el selector de avatares
+        cardAvatarSelector.setOnClickListener {
+            mostrarSelectorDeAvatar { selectedAvatar ->
+                currentSelectedAvatar = selectedAvatar
+                imgSelectedAvatar.setImageResource(selectedAvatar.resourceId)
+            }
+        }
+
+        // Configurar selectores de color con CardViews
+        var selectedColor = "azul"
+        val colorCards = mapOf(
+            R.id.cardColorRojo to "rojo",
+            R.id.cardColorAzul to "azul",
+            R.id.cardColorVerde to "verde",
+            R.id.cardColorAmarillo to "amarillo",
+            R.id.cardColorMorado to "morado",
+            R.id.cardColorNaranja to "naranja"
+        )
+
+        fun updateColorSelection(selectedId: Int) {
+            colorCards.keys.forEach { id ->
+                val card = dialog.findViewById<CardView>(id)
+                if (id == selectedId) {
+                    card.cardElevation = 12f
+                    card.scaleX = 1.15f
+                    card.scaleY = 1.15f
+                    selectedColor = colorCards[id] ?: "azul"
+                } else {
+                    card.cardElevation = 4f
+                    card.scaleX = 1.0f
+                    card.scaleY = 1.0f
+                }
+            }
+        }
+
+        // Configurar click listeners para colores
+        colorCards.keys.forEach { id ->
+            dialog.findViewById<CardView>(id).setOnClickListener {
+                updateColorSelection(id)
+            }
+        }
+
+        // Seleccionar azul por defecto
+        updateColorSelection(R.id.cardColorAzul)
+
+        // Botones
+        btnCancelar.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnConfirmar.setOnClickListener {
+            val nombre = editTextNombre.text.toString().trim()
+            val apellido = editTextApellido.text.toString().trim()
+            val avatar = currentSelectedAvatar?.id ?: "mentxu_default"
+
+            if (nombre.isNotEmpty() && apellido.isNotEmpty()) {
+                btnConfirmar.isEnabled = false
+                registrarUsuario(nombre, apellido, avatar, selectedColor, dialog)
+            } else {
+                Toast.makeText(this, getString(R.string.error_campos_vacios), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog.show()
+    }
+
+    /**
+     * Muestra el diálogo selector de avatar en una ventana emergente separada
+     */
+    private fun mostrarSelectorDeAvatar(onAvatarSelected: (AvatarAdapter.AvatarItem) -> Unit) {
+        val avatarDialog = Dialog(this)
+        avatarDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        avatarDialog.setContentView(R.layout.dialog_avatar_picker)
+        avatarDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        avatarDialog.window?.setLayout(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        avatarDialog.setCancelable(true)
+
+        val recyclerAvatars: RecyclerView = avatarDialog.findViewById(R.id.recyclerAvatars)
+        val btnSelectAvatar: Button = avatarDialog.findViewById(R.id.btnSelectAvatar)
+
+        val avatars = AvatarAdapter.getDefaultAvatars()
+        var tempSelectedAvatar = currentSelectedAvatar ?: avatars.firstOrNull()
+
+        val avatarAdapter = AvatarAdapter(avatars) { avatar, _ ->
+            tempSelectedAvatar = avatar
+        }
+
+        // Configurar grid con 3 columnas
+        recyclerAvatars.layoutManager = GridLayoutManager(this, 3)
+        recyclerAvatars.adapter = avatarAdapter
+
+        // Pre-seleccionar el avatar actual
+        val currentIndex = avatars.indexOfFirst { it.id == currentSelectedAvatar?.id }
+        if (currentIndex >= 0) {
+            avatarAdapter.setSelectedPosition(currentIndex)
+        }
+
+        btnSelectAvatar.setOnClickListener {
+            tempSelectedAvatar?.let { avatar ->
+                onAvatarSelected(avatar)
+            }
+            avatarDialog.dismiss()
+        }
+
+        avatarDialog.show()
+    }
+
+    /**
+     * Versión simple del diálogo de registro (fallback)
+     */
+    private fun mostrarDialogoDeRegistroSimple() {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.ventana_emergente, null)
         val editTextNombre: EditText = dialogView.findViewById(R.id.editTextText)
         val editTextApellido: EditText = dialogView.findViewById(R.id.editTextText2)
+        
+        var selectedColor = "azul"
+        var selectedAvatar = "mentxu_default"
 
         val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -85,11 +238,8 @@ class Presentacion : BaseMenuActivity() {
                 val apellido = editTextApellido.text.toString().trim()
 
                 if (nombre.isNotEmpty() && apellido.isNotEmpty()) {
-                    // Deshabilitar botón mientras se registra
                     botonComenzar.isEnabled = false
-                    
-                    // Registrar usuario en el backend
-                    registrarUsuario(nombre, apellido, dialog)
+                    registrarUsuario(nombre, apellido, selectedAvatar, selectedColor, dialog)
                 } else {
                     Toast.makeText(this, getString(R.string.error_campos_vacios), Toast.LENGTH_SHORT).show()
                 }
@@ -99,19 +249,49 @@ class Presentacion : BaseMenuActivity() {
     }
 
     /**
-     * Registra al usuario en el backend Flask
+     * Registra al usuario en el backend Flask (para Dialog personalizado)
      */
-    private fun registrarUsuario(nombre: String, apellido: String, dialog: AlertDialog) {
+    private fun registrarUsuario(nombre: String, apellido: String, avatar: String, color: String, dialog: Dialog) {
+        registrarUsuarioInterno(nombre, apellido, avatar, color) { success ->
+            if (success) {
+                dialog.dismiss()
+            }
+        }
+    }
+
+    /**
+     * Registra al usuario en el backend Flask (para AlertDialog)
+     */
+    private fun registrarUsuario(nombre: String, apellido: String, avatar: String, color: String, dialog: AlertDialog) {
+        registrarUsuarioInterno(nombre, apellido, avatar, color) { success ->
+            if (success) {
+                dialog.dismiss()
+            } else {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = true
+            }
+        }
+    }
+
+    /**
+     * Lógica interna de registro de usuario
+     */
+    private fun registrarUsuarioInterno(
+        nombre: String, 
+        apellido: String, 
+        avatar: String, 
+        color: String, 
+        onComplete: (Boolean) -> Unit
+    ) {
         // Generar device ID único
         val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
         lifecycleScope.launch {
             try {
                 // Mostrar toast de "Registrando..."
-                Toast.makeText(this@Presentacion, "Registrando usuario...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Presentacion, "Erregistratzen...", Toast.LENGTH_SHORT).show()
 
                 val api = RetrofitClient.api
-                val request = UsuarioRequest(nombre, apellido, deviceId)
+                val request = UsuarioRequest(nombre, apellido, deviceId, avatar, color)
                 val response = api.registrarUsuario(request)
 
                 if (response.isSuccessful) {
@@ -120,7 +300,9 @@ class Presentacion : BaseMenuActivity() {
                         userPrefs.saveUser(
                             id = userResponse.usuario.id,
                             nombre = nombre,
-                            apellido = apellido
+                            apellido = apellido,
+                            avatar = avatar,
+                            color = color
                         )
                         userPrefs.deviceId = deviceId
                         userPrefs.isFirstTime = false
@@ -128,18 +310,18 @@ class Presentacion : BaseMenuActivity() {
                         // Registrar sesión en el backend
                         registrarSesionUsuario(userResponse.usuario.id)
 
-                        // Cerrar diálogo
-                        dialog.dismiss()
-
                         // Mostrar éxito
                         Toast.makeText(
                             this@Presentacion,
-                            "¡Registro exitoso! Bienvenido $nombre",
+                            "Ongi etorri $nombre! 🎉",
                             Toast.LENGTH_LONG
                         ).show()
 
-                        // Cargar paradas (opcional, el mapa las cargará también)
+                        // Cargar paradas
                         cargarParadasIniciales()
+
+                        // Callback de éxito
+                        onComplete(true)
 
                         // Abrir mapa
                         val intent = Intent(this@Presentacion, MapaActivity::class.java).apply {
@@ -153,19 +335,19 @@ class Presentacion : BaseMenuActivity() {
                     // Error del servidor
                     Toast.makeText(
                         this@Presentacion,
-                        "Error al registrar: ${response.code()}",
+                        "Errorea erregistratzean: ${response.code()}",
                         Toast.LENGTH_LONG
                     ).show()
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = true
+                    onComplete(false)
                 }
             } catch (e: Exception) {
                 // Error de conexión
                 Toast.makeText(
                     this@Presentacion,
-                    "Error de conexión: ${e.localizedMessage}\n\nAsegúrate que el backend esté corriendo",
+                    "Konexio errorea: ${e.localizedMessage}",
                     Toast.LENGTH_LONG
                 ).show()
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = true
+                onComplete(false)
             }
         }
     }

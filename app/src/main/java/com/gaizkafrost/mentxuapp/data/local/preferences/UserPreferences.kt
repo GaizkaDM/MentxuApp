@@ -54,6 +54,16 @@ class UserPreferences(context: Context) {
         get() = sharedPreferences.getInt(Constants.KEY_SESSION_ID, -1)
         set(value) = sharedPreferences.edit().putInt(Constants.KEY_SESSION_ID, value).apply()
     
+    // Avatar del usuario
+    var userAvatar: String
+        get() = sharedPreferences.getString(Constants.KEY_USER_AVATAR, "perro") ?: "perro"
+        set(value) = sharedPreferences.edit().putString(Constants.KEY_USER_AVATAR, value).apply()
+    
+    // Color favorito del usuario
+    var userColor: String
+        get() = sharedPreferences.getString(Constants.KEY_USER_COLOR, "azul") ?: "azul"
+        set(value) = sharedPreferences.edit().putString(Constants.KEY_USER_COLOR, value).apply()
+    
     // Verificar si hay usuario logueado
     fun hasUser(): Boolean = userId > 0
     
@@ -64,16 +74,20 @@ class UserPreferences(context: Context) {
             remove(Constants.KEY_USER_NOMBRE)
             remove(Constants.KEY_USER_APELLIDO)
             remove(Constants.KEY_SESSION_ID)
+            remove(Constants.KEY_USER_AVATAR)
+            remove(Constants.KEY_USER_COLOR)
             apply()
         }
     }
     
     // Guardar usuario completo
-    fun saveUser(id: Int, nombre: String, apellido: String) {
+    fun saveUser(id: Int, nombre: String, apellido: String, avatar: String = "perro", color: String = "azul") {
         sharedPreferences.edit().apply {
             putInt(Constants.KEY_USER_ID, id)
             putString(Constants.KEY_USER_NOMBRE, nombre)
             putString(Constants.KEY_USER_APELLIDO, apellido)
+            putString(Constants.KEY_USER_AVATAR, avatar)
+            putString(Constants.KEY_USER_COLOR, color)
             apply()
         }
     }

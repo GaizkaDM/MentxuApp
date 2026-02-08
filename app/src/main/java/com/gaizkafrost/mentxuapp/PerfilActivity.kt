@@ -3,6 +3,7 @@ package com.gaizkafrost.mentxuapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
@@ -24,6 +25,9 @@ class PerfilActivity : BaseMenuActivity() {
         // Mostrar datos del usuario
         findViewById<TextView>(R.id.tvNombre).text = userPrefs.userNombre ?: "Usuario"
         findViewById<TextView>(R.id.tvApellido).text = userPrefs.userApellido ?: ""
+
+        // Cargar avatar del usuario
+        cargarAvatarUsuario()
 
         // Cargar estadísticas
         cargarEstadisticas()
@@ -58,6 +62,30 @@ class PerfilActivity : BaseMenuActivity() {
                 findViewById<TextView>(R.id.tvParadasCompletadas).text = "0"
                 findViewById<TextView>(R.id.tvPuntuacionTotal).text = "0"
             }
+        }
+    }
+
+    /**
+     * Carga el avatar del usuario basado en su preferencia guardada
+     */
+    private fun cargarAvatarUsuario() {
+        val avatarId = userPrefs.userAvatar
+        val avatarResource = getAvatarDrawable(avatarId)
+        findViewById<ImageView>(R.id.ivAvatar).setImageResource(avatarResource)
+    }
+
+    /**
+     * Convierte el ID del avatar guardado al recurso drawable correspondiente
+     */
+    private fun getAvatarDrawable(avatarId: String): Int {
+        return when (avatarId) {
+            "mentxu_default" -> R.drawable.mentxu_victoria
+            "mentxu_bombera" -> R.drawable.mentxu_bombera
+            "mentxu_mecanica" -> R.drawable.mentxu_mecanica
+            "mentxu_medica" -> R.drawable.mentxu_medica
+            "mentxu_policia" -> R.drawable.mentxu_policia
+            "mentxu_profesor" -> R.drawable.mentxu_profesor
+            else -> R.drawable.mentxu_victoria // Por defecto
         }
     }
 }
