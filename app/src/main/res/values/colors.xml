@@ -33,4 +33,11 @@
     <!-- Rosa -->
     <color name="pink">#ff8aa3</color>
     <color name="pink_dark">#D1667E</color>
+    
+    <!-- Colores adicionales para layouts de tablet -->
+    <color name="gold">#FFD700</color>
+    <color name="maritime_blue">#2C3E50</color>
+    <color name="paletteBlue1">#3498DB</color>
+    <color name="rojo_activo">#E74C3C</color>
+    <color name="azul_secundario">#5DADE2</color>
 </resources>
