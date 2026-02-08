@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="12dp"
+    android:layout_marginHorizontal="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pregunta de ejemplo?"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:layout_marginBottom="20dp" />
+
+        <RadioGroup
+            android:id="@+id/options_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/option_a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Opción A"
+                android:textSize="20sp"
+                android:padding="12dp" />
+
+            <RadioButton
+                android:id="@+id/option_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Opción B"
+                android:textSize="20sp"
+                android:padding="12dp" />
+
+            <RadioButton
+                android:id="@+id/option_c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Opción C"
+                android:textSize="20sp"
+                android:padding="12dp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

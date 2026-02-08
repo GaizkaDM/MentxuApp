@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_app"
+    android:orientation="vertical"
+    tools:context=".Parada2.DiferenciasActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/tvTitulo"
+                style="@style/TextosTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:text="@string/titulo_diferencias"
+                android:textColor="@color/texto_principal"
+                android:textSize="32sp"
+                tools:text="Encuentra las diferencias" />
+
+            <!-- Instrucciones -->
+            <TextView
+                android:id="@+id/tvInstrucciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:text="@string/instrucciones_diferencias"
+                android:textColor="@color/texto_secundario"
+                android:textSize="20sp"
+                tools:text="Encuentra las 7 diferencias entre las dos imágenes. Toca en la imagen de la derecha para marcarlas." />
+
+            <!-- Contador de diferencias -->
+            <TextView
+                android:id="@+id/tvContadorDiferencias"
+                style="@style/TextosTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:text="@string/contador_diferencias_inicio"
+                android:textColor="@color/rojo_activo"
+                android:textSize="28sp"
+                tools:text="Diferencias encontradas: 0/7" />
+
+            <!-- Vista del juego de diferencias - Altura aumentada para Tablet -->
+            <com.gaizkafrost.mentxuapp.Parada2.DiferenciasView
+                android:id="@+id/diferenciasView"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:background="@android:color/white"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Botón de ayuda -->
+            <Button
+                android:id="@+id/btnAyuda"
+                style="@style/Botones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/azul_secundario"
+                android:text="@string/boton_pista"
+                android:padding="16dp"
+                android:textSize="20sp"
+                android:minWidth="160dp"
+                tools:text="Pista" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

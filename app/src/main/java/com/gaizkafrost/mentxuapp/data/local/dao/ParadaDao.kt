@@ -26,26 +26,22 @@ interface ParadaDao {
     suspend fun obtenerParadaActiva(): ParadaEntity?
     
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertar(parada: ParadaEntity)
+    suspend fun insertar(parada: ParadaEntity): Long
     
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertarTodas(paradas: List<ParadaEntity>)
+    suspend fun insertarTodas(paradas: List<ParadaEntity>): List<Long>
     
     @Update
-    suspend fun actualizar(parada: ParadaEntity)
+    suspend fun actualizar(parada: ParadaEntity): Int
     
     @Query("UPDATE paradas SET estado = :nuevoEstado WHERE id = :id")
-    suspend fun actualizarEstado(id: Int, nuevoEstado: String)
+    suspend fun actualizarEstado(id: Int, nuevoEstado: String): Int
     
     @Delete
-    suspend fun eliminar(parada: ParadaEntity)
+    suspend fun eliminar(parada: ParadaEntity): Int
     
     @Query("DELETE FROM paradas")
-    suspend fun eliminarTodas()
+    suspend fun eliminarTodas(): Int
     
-    @Query("SELECT COUNT(*) FROM paradas")
-    suspend fun contarParadas(): Int
-    
-    @Query("SELECT COUNT(*) FROM paradas WHERE estado = 'completada'")
-    suspend fun contarCompletadas(): Int
+
 }

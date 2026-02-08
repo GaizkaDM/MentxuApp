@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:strokeColor="@color/material_dynamic_neutral90"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Larger image for Tablet -->
+        <ImageView
+            android:id="@+id/imgStep"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:contentDescription="Imagen del paso de pesca"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvStepDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción del paso"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <!-- Modo A - Spinner para seleccionar orden -->
+            <Spinner
+                android:id="@+id/spinnerOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_below="@+id/tvStepDescription"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="16dp" />
+
+        </RelativeLayout>
+
+        <!-- Icono para arrastrar (Modo B - Arrastrar y soltar) -->
+        <ImageView
+            android:id="@+id/imgDragHandle"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Arrastrar para mover"
+            android:padding="16dp"
+            android:src="@drawable/ic_drag_handle"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
