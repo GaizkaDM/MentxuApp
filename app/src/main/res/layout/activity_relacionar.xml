@@ -59,78 +59,14 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.95" />
 
-        <!-- Columna de Descripciones -->
-        <TextView
-            android:id="@+id/Deskribapena1"
-            style="@style/Tile.Description"
-            android:text="@string/deskribapena1"
-            app:layout_constraintBottom_toTopOf="@id/Deskribapena2"
-            app:layout_constraintEnd_toStartOf="@+id/gVer2"
-            app:layout_constraintStart_toStartOf="@+id/gVer1"
-            app:layout_constraintTop_toTopOf="@+id/gHor1" />
-
-        <TextView
-            android:id="@+id/Deskribapena2"
-            style="@style/Tile.Description"
-            android:text="@string/deskribapena2"
-            app:layout_constraintBottom_toTopOf="@id/Deskribapena3"
-            app:layout_constraintEnd_toStartOf="@+id/gVer2"
-            app:layout_constraintStart_toStartOf="@+id/gVer1"
-            app:layout_constraintTop_toBottomOf="@+id/Deskribapena1" />
-
-        <TextView
-            android:id="@+id/Deskribapena3"
-            style="@style/Tile.Description"
-            android:text="@string/deskribapena3"
-            app:layout_constraintBottom_toTopOf="@id/Deskribapena4"
-            app:layout_constraintEnd_toStartOf="@+id/gVer2"
-            app:layout_constraintStart_toStartOf="@+id/gVer1"
-            app:layout_constraintTop_toBottomOf="@+id/Deskribapena2" />
-
-        <TextView
-            android:id="@+id/Deskribapena4"
-            style="@style/Tile.Description"
-            android:text="@string/deskribapena4"
-            app:layout_constraintBottom_toTopOf="@+id/Deskribapena5"
-            app:layout_constraintEnd_toStartOf="@+id/gVer2"
-            app:layout_constraintStart_toStartOf="@+id/gVer1"
-            app:layout_constraintTop_toBottomOf="@+id/Deskribapena3" />
-
-        <TextView
-            android:id="@+id/Deskribapena5"
-            style="@style/Tile.Description"
-            android:text="@string/deskribapena5"
-            app:layout_constraintBottom_toTopOf="@+id/Deskribapena6"
-            app:layout_constraintEnd_toStartOf="@+id/gVer2"
-            app:layout_constraintStart_toStartOf="@+id/gVer1"
-            app:layout_constraintTop_toBottomOf="@+id/Deskribapena4" />
-
-        <TextView
-            android:id="@+id/Deskribapena6"
-            style="@style/Tile.Description"
-            android:text="@string/deskribapena6"
-            app:layout_constraintBottom_toTopOf="@+id/Deskribapena7"
-            app:layout_constraintEnd_toStartOf="@+id/gVer2"
-            app:layout_constraintStart_toStartOf="@+id/gVer1"
-            app:layout_constraintTop_toBottomOf="@+id/Deskribapena5" />
-
-        <TextView
-            android:id="@+id/Deskribapena7"
-            style="@style/Tile.Description"
-            android:text="@string/deskribapena7"
-            app:layout_constraintBottom_toTopOf="@+id/gHor2"
-            app:layout_constraintEnd_toStartOf="@+id/gVer2"
-            app:layout_constraintStart_toStartOf="@+id/gVer1"
-            app:layout_constraintTop_toBottomOf="@+id/Deskribapena6" />
-
-        <!-- Columna de Objetos -->
+        <!-- Columna de Objetos (Ahora a la Izquierda) -->
         <TextView
             android:id="@+id/objeto1"
             style="@style/Tile.Object"
             android:text="@string/objeto1"
             app:layout_constraintBottom_toTopOf="@id/objeto2"
-            app:layout_constraintEnd_toStartOf="@+id/gVer4"
-            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintEnd_toStartOf="@+id/gVer2"
+            app:layout_constraintStart_toStartOf="@+id/gVer1"
             app:layout_constraintTop_toTopOf="@+id/gHor1" />
 
         <TextView
@@ -138,8 +74,8 @@
             style="@style/Tile.Object"
             android:text="@string/objeto2"
             app:layout_constraintBottom_toTopOf="@id/objeto3"
-            app:layout_constraintEnd_toStartOf="@+id/gVer4"
-            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintEnd_toStartOf="@+id/gVer2"
+            app:layout_constraintStart_toStartOf="@+id/gVer1"
             app:layout_constraintTop_toBottomOf="@id/objeto1" />
 
         <TextView
@@ -147,8 +83,8 @@
             style="@style/Tile.Object"
             android:text="@string/objeto3"
             app:layout_constraintBottom_toTopOf="@id/objeto4"
-            app:layout_constraintEnd_toStartOf="@+id/gVer4"
-            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintEnd_toStartOf="@+id/gVer2"
+            app:layout_constraintStart_toStartOf="@+id/gVer1"
             app:layout_constraintTop_toBottomOf="@id/objeto2" />
 
         <TextView
@@ -156,8 +92,8 @@
             style="@style/Tile.Object"
             android:text="@string/objeto4"
             app:layout_constraintBottom_toTopOf="@id/objeto5"
-            app:layout_constraintEnd_toStartOf="@+id/gVer4"
-            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintEnd_toStartOf="@+id/gVer2"
+            app:layout_constraintStart_toStartOf="@+id/gVer1"
             app:layout_constraintTop_toBottomOf="@id/objeto3" />
 
         <TextView
@@ -165,8 +101,8 @@
             style="@style/Tile.Object"
             android:text="@string/objeto5"
             app:layout_constraintBottom_toTopOf="@id/objeto6"
-            app:layout_constraintEnd_toStartOf="@+id/gVer4"
-            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintEnd_toStartOf="@+id/gVer2"
+            app:layout_constraintStart_toStartOf="@+id/gVer1"
             app:layout_constraintTop_toBottomOf="@id/objeto4" />
 
         <TextView
@@ -174,8 +110,8 @@
             style="@style/Tile.Object"
             android:text="@string/objeto6"
             app:layout_constraintBottom_toTopOf="@id/objeto7"
-            app:layout_constraintEnd_toStartOf="@+id/gVer4"
-            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintEnd_toStartOf="@+id/gVer2"
+            app:layout_constraintStart_toStartOf="@+id/gVer1"
             app:layout_constraintTop_toBottomOf="@id/objeto5" />
 
         <TextView
@@ -183,9 +119,73 @@
             style="@style/Tile.Object"
             android:text="@string/objeto7"
             app:layout_constraintBottom_toTopOf="@id/gHor2"
+            app:layout_constraintEnd_toStartOf="@+id/gVer2"
+            app:layout_constraintStart_toStartOf="@+id/gVer1"
+            app:layout_constraintTop_toBottomOf="@id/objeto6" />
+
+        <!-- Columna de Descripciones (Ahora a la Derecha) -->
+        <TextView
+            android:id="@+id/Deskribapena1"
+            style="@style/Tile.Description"
+            android:text="@string/deskribapena1"
+            app:layout_constraintBottom_toTopOf="@id/Deskribapena2"
             app:layout_constraintEnd_toStartOf="@+id/gVer4"
             app:layout_constraintStart_toStartOf="@+id/gVer3"
-            app:layout_constraintTop_toBottomOf="@id/objeto6" />
+            app:layout_constraintTop_toTopOf="@+id/gHor1" />
+
+        <TextView
+            android:id="@+id/Deskribapena2"
+            style="@style/Tile.Description"
+            android:text="@string/deskribapena2"
+            app:layout_constraintBottom_toTopOf="@id/Deskribapena3"
+            app:layout_constraintEnd_toStartOf="@+id/gVer4"
+            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintTop_toBottomOf="@+id/Deskribapena1" />
+
+        <TextView
+            android:id="@+id/Deskribapena3"
+            style="@style/Tile.Description"
+            android:text="@string/deskribapena3"
+            app:layout_constraintBottom_toTopOf="@id/Deskribapena4"
+            app:layout_constraintEnd_toStartOf="@+id/gVer4"
+            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintTop_toBottomOf="@+id/Deskribapena2" />
+
+        <TextView
+            android:id="@+id/Deskribapena4"
+            style="@style/Tile.Description"
+            android:text="@string/deskribapena4"
+            app:layout_constraintBottom_toTopOf="@+id/Deskribapena5"
+            app:layout_constraintEnd_toStartOf="@+id/gVer4"
+            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintTop_toBottomOf="@+id/Deskribapena3" />
+
+        <TextView
+            android:id="@+id/Deskribapena5"
+            style="@style/Tile.Description"
+            android:text="@string/deskribapena5"
+            app:layout_constraintBottom_toTopOf="@+id/Deskribapena6"
+            app:layout_constraintEnd_toStartOf="@+id/gVer4"
+            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintTop_toBottomOf="@+id/Deskribapena4" />
+
+        <TextView
+            android:id="@+id/Deskribapena6"
+            style="@style/Tile.Description"
+            android:text="@string/deskribapena6"
+            app:layout_constraintBottom_toTopOf="@+id/Deskribapena7"
+            app:layout_constraintEnd_toStartOf="@+id/gVer4"
+            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintTop_toBottomOf="@+id/Deskribapena5" />
+
+        <TextView
+            android:id="@+id/Deskribapena7"
+            style="@style/Tile.Description"
+            android:text="@string/deskribapena7"
+            app:layout_constraintBottom_toTopOf="@+id/gHor2"
+            app:layout_constraintEnd_toStartOf="@+id/gVer4"
+            app:layout_constraintStart_toStartOf="@+id/gVer3"
+            app:layout_constraintTop_toBottomOf="@+id/Deskribapena6" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
