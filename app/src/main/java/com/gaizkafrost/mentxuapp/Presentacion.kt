@@ -118,9 +118,7 @@ class Presentacion : BaseMenuActivity() {
             R.id.cardColorRojo to "rojo",
             R.id.cardColorAzul to "azul",
             R.id.cardColorVerde to "verde",
-            R.id.cardColorAmarillo to "amarillo",
-            R.id.cardColorMorado to "morado",
-            R.id.cardColorNaranja to "naranja"
+            R.id.cardColorAmarillo to "amarillo"
         )
 
         fun updateColorSelection(selectedId: Int) {
