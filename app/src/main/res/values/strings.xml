@@ -12,6 +12,10 @@
     <string name="desarrolladores">Garatzaileak:\n</string>
     <string name="clientes">Bezero: \n</string>
     <string name="error_campos_vacios">Mezedez, zure datuak bete.</string>
+    <string name="dialog_hint_nombre">Izena</string>
+    <string name="dialog_hint_apellido">Abizena</string>
+    <string name="dialog_select_avatar">Aukeratu zure avatarra:</string>
+    <string name="dialog_select_color">Aukeratu zure kolorea:</string>
     <string name="ok">OK</string>
     <string name="descripcion_mentxu_hablando" />
     <string name="deskribapena1">Goiko zatia, bertatik ibiltzeko erabiltzen dugu. </string>

@@ -9,6 +9,7 @@ import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
 import coil.ImageLoader
 import coil.decode.GifDecoder
@@ -24,6 +25,7 @@ class MenuAudio3 : BaseMenuActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var playPauseButton: Button
     private lateinit var audioSeekBar: SeekBar
+    private lateinit var tvExplicacion: TextView
     private lateinit var handler: Handler
     private var gifAnimatable: Animatable? = null
 
@@ -58,13 +60,11 @@ class MenuAudio3 : BaseMenuActivity() {
         // --- 2. Inicializar componentes de la UI ---
         playPauseButton = findViewById(R.id.playPauseButton)
         audioSeekBar = findViewById(R.id.audioSeekBar)
+        tvExplicacion = findViewById(R.id.tvExplicacion)
         val continueButton: Button = findViewById(R.id.continueButton)
 
-        // --- 3. Preparar el reproductor de audio ---
-        mediaPlayer = MediaPlayer.create(this, R.raw.audioa3)
-        mediaPlayer?.setOnPreparedListener {
-            audioSeekBar.max = it.duration
-        }
+        // --- 3. Cargar Texto y Audio Dinámicamente ---
+        configurarRecursos()
 
         // Listener para cuando el audio termina
         mediaPlayer?.setOnCompletionListener {
@@ -123,6 +123,34 @@ class MenuAudio3 : BaseMenuActivity() {
                 audioSeekBar.progress = it.currentPosition
                 handler.postDelayed({ updateSeekBar() }, 1000)
             }
+        }
+    }
+
+    private fun configurarRecursos() {
+        val idParada = 3 // Parada fija o vía intent
+
+        // Cargar Texto dinámicamente: R.string.textoExplicacionX
+        val textoResId = resources.getIdentifier("textoExplicacion$idParada", "string", packageName)
+        if (textoResId != 0) {
+            tvExplicacion.setText(textoResId)
+        } else {
+            tvExplicacion.text = "Ez da azalpenik aurkitu $idParada geltokirako"
+        }
+
+        // Cargar Audio dinámicamente: R.raw.audioaX
+        val audioResId = resources.getIdentifier("audioa$idParada", "raw", packageName)
+        if (audioResId != 0) {
+            mediaPlayer = MediaPlayer.create(this, audioResId)
+            mediaPlayer?.setOnPreparedListener {
+                audioSeekBar.max = it.duration
+            }
+            mediaPlayer?.setOnCompletionListener {
+                playPauseButton.text = "▶"
+                gifAnimatable?.stop()
+                audioSeekBar.progress = 0
+            }
+        } else {
+            Toast.makeText(this, "Ez da audiorik aurkitu $idParada geltokirako", Toast.LENGTH_SHORT).show()
         }
     }
 

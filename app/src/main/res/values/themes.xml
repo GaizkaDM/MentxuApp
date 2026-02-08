@@ -81,11 +81,38 @@
     </style>
     
     <style name="EditTexts">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/midGray</item>
         <item name="android:backgroundTint">@color/black</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:minHeight">@dimen/touch_target_min</item>
+    </style>
+
+    <style name="Tile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="Tile.Description" parent="TextosCuerpo">
+        <item name="android:background">@drawable/tile_lavender</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="Tile.Object" parent="Textos">
+        <item name="android:background">@drawable/tile_mint</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
     </style>
 
     <!-- Tema base de la aplicación. -->

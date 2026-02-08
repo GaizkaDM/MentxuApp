@@ -8,7 +8,10 @@ data class UsuarioRequest(
     val nombre: String,
     val apellido: String,
     @SerializedName("device_id")
-    val deviceId: String
+    val deviceId: String,
+    val avatar: String = "perro",
+    @SerializedName("color_favorito")
+    val colorFavorito: String = "azul"
 )
 
 // ==================== RESPONSE ====================
@@ -25,5 +28,8 @@ data class UsuarioDataResponse(
     @SerializedName("fecha_registro")
     val fechaRegistro: String?,
     @SerializedName("device_id")
-    val deviceId: String?
+    val deviceId: String?,
+    val avatar: String?,
+    @SerializedName("color_favorito")
+    val colorFavorito: String?
 )
