@@ -54,6 +54,9 @@ class Parada6Activity : BaseMenuActivity() {
         findViewById<Button>(R.id.btn_verify_test).setOnClickListener {
             checkQuizAnswers()
         }
+
+        // Sistema de pistas
+        setupHint("Puzzlea osatzeko, arrastatu piezak laukira. Testean, gogoratu Mentxuk azaldutakoa.")
     }
 
     // =========================================================================

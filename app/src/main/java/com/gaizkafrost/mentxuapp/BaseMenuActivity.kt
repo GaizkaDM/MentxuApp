@@ -2,6 +2,11 @@ package com.gaizkafrost.mentxuapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
@@ -15,6 +20,7 @@ abstract class BaseMenuActivity : AppCompatActivity() {
 
     protected var startTime: Long = 0
     protected open var isScoringEnabled: Boolean = true
+    private var hintText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,5 +158,53 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         
         startActivity(intent)
         finish()
+    }
+
+    // --- SISTEMA DE PISTAS ---
+
+    /**
+     * Configura una pista para la actividad actual.
+     * Si se llama a este método, aparecerá un icono de bombilla en la Toolbar.
+     */
+    protected fun setupHint(text: String) {
+        this.hintText = text
+        invalidateOptionsMenu()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if (hintText != null) {
+            menuInflater.inflate(R.menu.hint_menu, menu)
+            return true
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_hint -> {
+                showHintDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showHintDialog() {
+        hintText?.let { text ->
+            val builder = AlertDialog.Builder(this)
+            val inflater = layoutInflater
+            val dialogView = inflater.inflate(R.layout.ayuda, null)
+            
+            val tvAyuda = dialogView.findViewById<TextView>(R.id.ayudaTexto)
+            tvAyuda.text = text
+            
+            val dialog = builder.setView(dialogView).create()
+            
+            dialogView.findViewById<View>(R.id.cerrar).setOnClickListener {
+                dialog.dismiss()
+            }
+            
+            dialog.show()
+        }
     }
 }

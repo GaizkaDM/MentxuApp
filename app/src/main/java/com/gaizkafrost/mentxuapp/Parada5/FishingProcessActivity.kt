@@ -80,6 +80,9 @@ class FishingProcessActivity : BaseMenuActivity() {
 
         // Start the game by shuffling steps
         resetGame()
+
+        // Sistema de pistas
+        setupHint("Ordenatu irudiak arrantza-prozesuaren sekuentzia logikoaren arabera (lehenengo arrantzatzea, gero sailkatzea eta azkenik saltzea).")
     }
 
     private fun setupRecyclerView() {

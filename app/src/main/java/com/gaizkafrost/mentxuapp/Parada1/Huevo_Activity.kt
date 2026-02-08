@@ -47,6 +47,8 @@ class Huevo_Activity : BaseMenuActivity() {
             Toast.makeText(this, "Ia-ia! Jarraitu bilatzen...", Toast.LENGTH_SHORT).show()
         }
 
+        // Sistema de pistas
+        setupHint("Begiratu arretaz udaletxearen goiko aldean.")
     }
 
     private fun huevoEncontrado(huevoEncontrado: ImageView) {

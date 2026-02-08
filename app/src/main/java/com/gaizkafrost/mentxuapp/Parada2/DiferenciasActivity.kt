@@ -47,6 +47,9 @@ class DiferenciasActivity : BaseMenuActivity() {
             addError()
             Toast.makeText(this, "Hori ez da desberdintasuna! (-50 puntu)", Toast.LENGTH_SHORT).show()
         }
+
+        // Sistema de pistas
+        setupHint("Arreta jarri xehetasunetan: koloreak, objektu falta edo tamaina desberdinak.")
     }
 
     private fun diferenciaEncontrada() {
