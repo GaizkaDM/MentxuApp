@@ -1,7 +1,6 @@
 package com.gaizkafrost.mentxuapp.data.remote.dto
 
 import com.gaizkafrost.mentxuapp.data.local.entity.ParadaEntity
-import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName
 
 // ==================== RESPONSE ====================
@@ -39,10 +38,7 @@ data class ParadaResponse(
         )
     }
     
-    /**
-     * Helper para obtener LatLng para Google Maps
-     */
-    fun getLatLng(): LatLng = LatLng(latitud, longitud)
+
 }
 
 data class EstadisticasParadaResponse(

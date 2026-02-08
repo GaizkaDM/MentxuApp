@@ -39,6 +39,16 @@ class UserPreferences(context: Context) {
         get() = sharedPreferences.getString(Constants.KEY_USER_APELLIDO, null)
         set(value) = sharedPreferences.edit().putString(Constants.KEY_USER_APELLIDO, value).apply()
     
+    // Avatar del usuario (identificación visual)
+    var userAvatar: String?
+        get() = sharedPreferences.getString(Constants.KEY_USER_AVATAR, "perro")
+        set(value) = sharedPreferences.edit().putString(Constants.KEY_USER_AVATAR, value).apply()
+    
+    // Color favorito del usuario (identificación visual)
+    var userColor: String?
+        get() = sharedPreferences.getString(Constants.KEY_USER_COLOR, "azul")
+        set(value) = sharedPreferences.edit().putString(Constants.KEY_USER_COLOR, value).apply()
+    
     // Device ID único
     var deviceId: String?
         get() = sharedPreferences.getString(Constants.KEY_DEVICE_ID, null)
@@ -63,17 +73,21 @@ class UserPreferences(context: Context) {
             remove(Constants.KEY_USER_ID)
             remove(Constants.KEY_USER_NOMBRE)
             remove(Constants.KEY_USER_APELLIDO)
+            remove(Constants.KEY_USER_AVATAR)
+            remove(Constants.KEY_USER_COLOR)
             remove(Constants.KEY_SESSION_ID)
             apply()
         }
     }
     
-    // Guardar usuario completo
-    fun saveUser(id: Int, nombre: String, apellido: String) {
+    // Guardar usuario completo (con identificación visual)
+    fun saveUser(id: Int, nombre: String, apellido: String, avatar: String = "perro", color: String = "azul") {
         sharedPreferences.edit().apply {
             putInt(Constants.KEY_USER_ID, id)
             putString(Constants.KEY_USER_NOMBRE, nombre)
             putString(Constants.KEY_USER_APELLIDO, apellido)
+            putString(Constants.KEY_USER_AVATAR, avatar)
+            putString(Constants.KEY_USER_COLOR, color)
             apply()
         }
     }

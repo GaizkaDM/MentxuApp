@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -15,10 +17,19 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Cargar local.properties manualmente
+        val localProperties = Properties()
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localProperties.load(localPropertiesFile.inputStream())
+        }
         
         // URL del backend - Apuntando a Railway (producción)
         buildConfigField("String", "API_BASE_URL", "\"https://mentxubackend-production.up.railway.app/api/\"")
+        
+        // Token público de Mapbox para el mapa
+        val mapboxToken = localProperties.getProperty("MAPBOX_ACCESS_TOKEN") ?: ""
+        buildConfigField("String", "MAPBOX_ACCESS_TOKEN", "\"$mapboxToken\"")
     }
 
     buildTypes {
@@ -46,16 +57,15 @@ android {
 }
 
 dependencies {
+    // Mapbox SDK (Reemplaza a Google Maps)
+    implementation("com.mapbox.maps:android:11.9.0")
+    
     // Core Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    
-    // Google Maps
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation(libs.play.services.maps)
     
     // Image Loading
     implementation("io.coil-kt:coil:2.7.0")

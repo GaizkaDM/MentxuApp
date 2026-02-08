@@ -23,17 +23,28 @@ import com.gaizkafrost.mentxuapp.utils.Resource
 
 import com.gaizkafrost.mentxuapp.R
 import com.gaizkafrost.mentxuapp.RankingActivity
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.gaizkafrost.mentxuapp.BuildConfig
+import com.mapbox.common.MapboxOptions
+import com.mapbox.geojson.Point
+import com.mapbox.maps.CameraOptions
+import com.mapbox.maps.MapView
+import com.mapbox.maps.Style
+import com.mapbox.maps.plugin.animation.camera
+import com.mapbox.maps.plugin.annotation.annotations
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
+import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import kotlinx.coroutines.launch
+import android.graphics.BitmapFactory
+import com.mapbox.maps.plugin.annotation.generated.OnPointAnnotationClickListener
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Bitmap
+import androidx.core.content.ContextCompat
 
-class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
-    private lateinit var mMap: GoogleMap
+class MapaActivity : BaseMenuActivity() {
+    private lateinit var mapView: MapView
+    private var pointAnnotationManager: PointAnnotationManager? = null
     private lateinit var repository: ParadasRepositoryMejorado
     private lateinit var userPrefs: UserPreferences
     private lateinit var mapContainer: android.view.View
@@ -42,21 +53,33 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
     private var usandoBackend = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Configurar el token de Mapbox antes de inflar la vista
+        MapboxOptions.accessToken = BuildConfig.MAPBOX_ACCESS_TOKEN
+        
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mapa)
-
         // Inicializar repository
         userPrefs = UserPreferences(this)
         repository = ParadasRepositoryMejorado(this)
-
         // Inicializar vistas
         mapContainer = findViewById(R.id.mapContainer)
         congratsContainer = findViewById(R.id.congratsContainer)
-
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-
+        mapView = findViewById(R.id.mapView)
+        
+        // Cargar el estilo y configurar el mapa
+        mapView.mapboxMap.loadStyle(Style.MAPBOX_STREETS) { style ->
+            // El estilo está cargado
+            inicializarGestorAnotaciones()
+            actualizarMarcadores()
+        }
+        // Centrar la cámara en Santurtzi
+        val santurtzi = Point.fromLngLat(-3.029, 43.329)
+        mapView.mapboxMap.setCamera(
+            CameraOptions.Builder()
+                .center(santurtzi)
+                .zoom(14.0)
+                .build()
+        )
         // Cargar paradas desde backend PostgreSQL
         cargarParadasDesdeBackend()
         
@@ -149,47 +172,41 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
         congratsContainer.visibility = android.view.View.GONE
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        actualizarMarcadores() // Dibuja los marcadores por primera vez
+    private fun inicializarGestorAnotaciones() {
+        if (pointAnnotationManager == null) {
+            pointAnnotationManager = mapView.annotations.createPointAnnotationManager()
+            
+            pointAnnotationManager?.addClickListener(OnPointAnnotationClickListener { annotation ->
+                val paradaClicada = annotation.getData()?.asJsonObject?.let { json ->
+                    // Reconstruir objeto parada desde los datos guardados en la anotación si es necesario
+                    // Pero aquí podemos usar el ID que guardamos
+                    val id = json.get("id")?.asInt
+                    paradasBackend.find { it.id == id } ?: ParadasRepository.obtenerTodas().find { it.id == id }
+                }
 
-        // Listener para cuando se hace clic en un marcador
-        mMap.setOnMarkerClickListener { marker ->
-            // Obtenemos el objeto Parada asociado al marcador
-            val paradaClicada = marker.tag as? Parada
-
-            if (paradaClicada != null && paradaClicada.estado == EstadoParada.ACTIVA) {
-                // --- LÓGICA DE NAVEGACIÓN CENTRALIZADA EN MENUAUDIO ---
-                when (paradaClicada.id) {
-                    1 -> MenuAudio.navegarAParada(this@MapaActivity, 1, Huevo_Activity::class.java)
-                    2 -> MenuAudio.navegarAParada(this@MapaActivity, 2, DiferenciasActivity::class.java)
-                    3 -> MenuAudio.navegarAParada(this@MapaActivity, 3, com.gaizkafrost.mentxuapp.Parada3.Relacionar::class.java)
-                    4 -> MenuAudio.navegarAParada(this@MapaActivity, 4, JuegoRecogida::class.java)
-                    5 -> MenuAudio.navegarAParada(this@MapaActivity, 5, FishingProcessActivity::class.java)
-                    6 -> MenuAudio.navegarAParada(this@MapaActivity, 6, Parada6Activity::class.java)
-
-                    else -> {
-                        Toast.makeText(this, "Geltoki honetako jokoa ez dago inplementatuta.", Toast.LENGTH_SHORT).show()
+                if (paradaClicada != null && paradaClicada.estado == EstadoParada.ACTIVA) {
+                    when (paradaClicada.id) {
+                        1 -> MenuAudio.navegarAParada(this@MapaActivity, 1, Huevo_Activity::class.java)
+                        2 -> MenuAudio.navegarAParada(this@MapaActivity, 2, DiferenciasActivity::class.java)
+                        3 -> MenuAudio.navegarAParada(this@MapaActivity, 3, com.gaizkafrost.mentxuapp.Parada3.Relacionar::class.java)
+                        4 -> MenuAudio.navegarAParada(this@MapaActivity, 4, JuegoRecogida::class.java)
+                        5 -> MenuAudio.navegarAParada(this@MapaActivity, 5, FishingProcessActivity::class.java)
+                        6 -> MenuAudio.navegarAParada(this@MapaActivity, 6, Parada6Activity::class.java)
+                        else -> {
+                            Toast.makeText(this, "Geltoki honetako jokoa ez dago inplementatuta.", Toast.LENGTH_SHORT).show()
+                        }
                     }
-
+                } else {
+                    val mensaje = when (paradaClicada?.estado) {
+                        EstadoParada.BLOQUEADA -> "Aurreko geltokia osatu behar duzu lehenago."
+                        EstadoParada.COMPLETADA -> "Geltoki hau osatu duzu jada!"
+                        else -> "Geltoki hau ez dago erabilgarri."
+                    }
+                    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
                 }
-
-            } else {
-                // Si la parada está bloqueada o completada, informamos al usuario
-                val mensaje = when (paradaClicada?.estado) {
-                    EstadoParada.BLOQUEADA -> "Aurreko geltokia osatu behar duzu lehenago."
-                    EstadoParada.COMPLETADA -> "Geltoki hau osatu duzu jada!"
-                    else -> "Geltoki hau ez dago erabilgarri."
-                }
-                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
-
-            }
-            true // Indicamos que hemos gestionado el clic
+                true
+            })
         }
-
-        // Centrar la cámara en Santurtzi
-        val santurtzi = LatLng(43.329, -3.029)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santurtzi, 15f))
     }
 
     /**
@@ -214,7 +231,7 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
                                     usandoBackend = true
                                     
                                     // Actualizar mapa si ya está listo
-                                    if (::mMap.isInitialized) {
+                                    if (::mapView.isInitialized) {
                                         actualizarMarcadores()
                                     }
                                 }
@@ -235,7 +252,8 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
     }
 
     private fun actualizarMarcadores() {
-        mMap.clear()
+        val manager = pointAnnotationManager ?: return
+        manager.deleteAll()
 
         // Usar paradas del backend si están disponibles, si no usar locales
         val paradas = if (usandoBackend && paradasBackend.isNotEmpty()) {
@@ -245,19 +263,50 @@ class MapaActivity : BaseMenuActivity(), OnMapReadyCallback {
         }
 
         paradas.forEach { parada ->
-            val colorIcono = when (parada.estado) {
-                EstadoParada.ACTIVA -> BitmapDescriptorFactory.HUE_RED // Rojo para la activa
-                EstadoParada.COMPLETADA -> BitmapDescriptorFactory.HUE_GREEN // Verde para las completadas
-                EstadoParada.BLOQUEADA -> BitmapDescriptorFactory.HUE_VIOLET // Violeta para las bloqueadas
+            // Mapbox usa iconos por nombre en el estilo o bitmaps externos
+            // Por simplicidad usaremos un marcador por defecto si no hay iconos cargados
+            // Pero para seguir el esquema de colores, creamos PointAnnotationOptions
+            
+            val point = Point.fromLngLat(parada.longitud, parada.latitud)
+            val jsonObject = com.google.gson.JsonObject()
+            jsonObject.addProperty("id", parada.id)
+
+            // Definir color según estado
+            val color = when (parada.estado) {
+                EstadoParada.ACTIVA -> android.graphics.Color.RED
+                EstadoParada.COMPLETADA -> android.graphics.Color.GREEN
+                EstadoParada.BLOQUEADA -> android.graphics.Color.MAGENTA
             }
 
-            val marker = mMap.addMarker(
-                MarkerOptions()
-                    .position(parada.latLng)
-                    .title(parada.nombre)
-                    .icon(BitmapDescriptorFactory.defaultMarker(colorIcono))
-            )
-            marker?.tag = parada // Asociamos el objeto Parada completo al marcador
+            val bitmap = crearBitmapMarcador(color)
+
+            val pointAnnotationOptions = PointAnnotationOptions()
+                .withPoint(point)
+                .withData(jsonObject)
+                .withIconImage(bitmap)
+
+            manager.create(pointAnnotationOptions)
         }
+    }
+
+    /**
+     * Crea un Bitmap circular simple para usar como marcador
+     */
+    private fun crearBitmapMarcador(color: Int): Bitmap {
+        val size = 60
+        val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        val paint = Paint()
+        
+        // Dibujar sombra/borde blanco
+        paint.color = android.graphics.Color.WHITE
+        paint.isAntiAlias = true
+        canvas.drawCircle(size / 2f, size / 2f, size / 2f, paint)
+        
+        // Dibujar círculo de color
+        paint.color = color
+        canvas.drawCircle(size / 2f, size / 2f, size / 2.5f, paint)
+        
+        return bitmap
     }
 }

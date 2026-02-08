@@ -1,6 +1,8 @@
 package com.gaizkafrost.mentxuapp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -8,14 +10,18 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
 import com.gaizkafrost.mentxuapp.data.remote.api.RetrofitClient
+import com.gaizkafrost.mentxuapp.data.remote.dto.AvatarOptions
+import com.gaizkafrost.mentxuapp.data.remote.dto.ColorOptions
 import com.gaizkafrost.mentxuapp.data.remote.dto.RegistrarSesionRequest
 import com.gaizkafrost.mentxuapp.data.remote.dto.UsuarioRequest
 import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
@@ -71,6 +77,69 @@ class Presentacion : BaseMenuActivity() {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.ventana_emergente, null)
         val editTextNombre: EditText = dialogView.findViewById(R.id.editTextText)
         val editTextApellido: EditText = dialogView.findViewById(R.id.editTextText2)
+        val containerAvatares: LinearLayout = dialogView.findViewById(R.id.containerAvatares)
+        val containerColores: LinearLayout = dialogView.findViewById(R.id.containerColores)
+
+        // Variables para guardar la selección
+        var avatarSeleccionado = "perro"
+        var colorSeleccionado = "azul"
+        var avatarViewSeleccionado: TextView? = null
+        var colorViewSeleccionado: View? = null
+
+        // Crear botones de avatares (emojis)
+        AvatarOptions.avatares.forEach { (nombre, emoji) ->
+            val avatarView = TextView(this).apply {
+                text = emoji
+                textSize = 32f
+                setPadding(16, 8, 16, 8)
+                setOnClickListener {
+                    // Deseleccionar anterior
+                    avatarViewSeleccionado?.alpha = 0.5f
+                    // Seleccionar nuevo
+                    this.alpha = 1f
+                    avatarViewSeleccionado = this
+                    avatarSeleccionado = nombre
+                }
+                alpha = if (nombre == "perro") 1f else 0.5f
+                if (nombre == "perro") avatarViewSeleccionado = this
+            }
+            containerAvatares.addView(avatarView)
+        }
+
+        // Crear círculos de colores
+        ColorOptions.colores.forEach { (nombre, hexColor) ->
+            val colorView = View(this).apply {
+                val size = (56 * resources.displayMetrics.density).toInt()
+                layoutParams = LinearLayout.LayoutParams(size, size).apply {
+                    marginEnd = (12 * resources.displayMetrics.density).toInt()
+                }
+                background = GradientDrawable().apply {
+                    shape = GradientDrawable.OVAL
+                    setColor(Color.parseColor(hexColor))
+                    setStroke((3 * resources.displayMetrics.density).toInt(), Color.WHITE)
+                }
+                setOnClickListener {
+                    // Deseleccionar anterior
+                    (colorViewSeleccionado?.background as? GradientDrawable)?.setStroke(
+                        (3 * resources.displayMetrics.density).toInt(), Color.WHITE
+                    )
+                    // Seleccionar nuevo
+                    (this.background as? GradientDrawable)?.setStroke(
+                        (4 * resources.displayMetrics.density).toInt(), Color.BLACK
+                    )
+                    colorViewSeleccionado = this
+                    colorSeleccionado = nombre
+                }
+                // Preseleccionar azul
+                if (nombre == "azul") {
+                    colorViewSeleccionado = this
+                    (this.background as? GradientDrawable)?.setStroke(
+                        (4 * resources.displayMetrics.density).toInt(), Color.BLACK
+                    )
+                }
+            }
+            containerColores.addView(colorView)
+        }
 
         val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -88,8 +157,8 @@ class Presentacion : BaseMenuActivity() {
                     // Deshabilitar botón mientras se registra
                     botonComenzar.isEnabled = false
                     
-                    // Registrar usuario en el backend
-                    registrarUsuario(nombre, apellido, dialog)
+                    // Registrar usuario en el backend con avatar y color
+                    registrarUsuario(nombre, apellido, avatarSeleccionado, colorSeleccionado, dialog)
                 } else {
                     Toast.makeText(this, getString(R.string.error_campos_vacios), Toast.LENGTH_SHORT).show()
                 }
@@ -101,7 +170,13 @@ class Presentacion : BaseMenuActivity() {
     /**
      * Registra al usuario en el backend Flask
      */
-    private fun registrarUsuario(nombre: String, apellido: String, dialog: AlertDialog) {
+    private fun registrarUsuario(
+        nombre: String, 
+        apellido: String, 
+        avatar: String,
+        color: String,
+        dialog: AlertDialog
+    ) {
         // Generar device ID único
         val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
@@ -111,16 +186,18 @@ class Presentacion : BaseMenuActivity() {
                 Toast.makeText(this@Presentacion, "Registrando usuario...", Toast.LENGTH_SHORT).show()
 
                 val api = RetrofitClient.api
-                val request = UsuarioRequest(nombre, apellido, deviceId)
+                val request = UsuarioRequest(nombre, apellido, deviceId, avatar, color)
                 val response = api.registrarUsuario(request)
 
                 if (response.isSuccessful) {
                     response.body()?.let { userResponse ->
-                        // Guardar usuario en SharedPreferences encriptadas
+                        // Guardar usuario en SharedPreferences encriptadas (con avatar y color)
                         userPrefs.saveUser(
                             id = userResponse.usuario.id,
                             nombre = nombre,
-                            apellido = apellido
+                            apellido = apellido,
+                            avatar = avatar,
+                            color = color
                         )
                         userPrefs.deviceId = deviceId
                         userPrefs.isFirstTime = false
@@ -131,10 +208,11 @@ class Presentacion : BaseMenuActivity() {
                         // Cerrar diálogo
                         dialog.dismiss()
 
-                        // Mostrar éxito
+                        // Mostrar éxito con emoji del avatar
+                        val emoji = AvatarOptions.getEmoji(avatar)
                         Toast.makeText(
                             this@Presentacion,
-                            "¡Registro exitoso! Bienvenido $nombre",
+                            "$emoji ¡Ongi etorri $nombre!",
                             Toast.LENGTH_LONG
                         ).show()
 
