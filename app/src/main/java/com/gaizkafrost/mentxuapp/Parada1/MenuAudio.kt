@@ -50,6 +50,9 @@ class MenuAudio : BaseMenuActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!resources.getBoolean(R.bool.is_tablet)) {
+            requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         setContentView(R.layout.activity_menu_audio)
 
         val idParada = intent.getIntExtra(EXTRA_ID_PARADA, 1)

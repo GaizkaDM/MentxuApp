@@ -96,6 +96,8 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
             val isFreeMode = intent.getBooleanExtra("IS_FREE_MODE", false)
             if (!isFreeMode) {
                 repository.completarParada(userId, idParadaActual, score, timeSpent)
+                // Actualizar también el repositorio en memoria para reflejar cambios inmediatos en el mapa si se usa fallback
+                com.gaizkafrost.mentxuapp.ParadasRepository.completarParada(idParadaActual)
             }
             
             // Registrar el intento para estadísticas

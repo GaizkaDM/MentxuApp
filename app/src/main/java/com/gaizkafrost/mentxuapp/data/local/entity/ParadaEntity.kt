@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.gaizkafrost.mentxuapp.Parada
 import com.gaizkafrost.mentxuapp.EstadoParada
-import com.google.android.gms.maps.model.LatLng
+import com.mapbox.geojson.Point
 
 /**
  * Entidad de Room para almacenar paradas localmente (offline cache)
@@ -31,7 +31,7 @@ data class ParadaEntity(
         return Parada(
             id = id,
             nombre = nombreCorto ?: nombre,
-            latLng = LatLng(latitud, longitud),
+            ubicacion = Point.fromLngLat(longitud, latitud),
             estado = when (estado) {
                 "activa" -> EstadoParada.ACTIVA
                 "completada" -> EstadoParada.COMPLETADA

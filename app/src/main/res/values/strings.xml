@@ -101,4 +101,6 @@
         Has gaitezen, arrantzale trebeak!
     </string>
 
+    <string name="mapbox_access_token">pk.eyJ1Ijoic3J0b2Zyb3N0eSIsImEiOiJjbWw3eGlqdTAwMWpzM2VzYm9mb3BzZ214In0.IYzuxDpLTFzkRAe9yrbIDw</string>
+
 </resources>

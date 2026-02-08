@@ -41,11 +41,14 @@
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_elevation">
 
-                <fragment
-                    android:id="@+id/map"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                <com.mapbox.maps.MapView
+                    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/mapView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    mapbox:mapbox_cameraTargetLat="43.329"
+                    mapbox:mapbox_cameraTargetLng="-3.029"
+                    mapbox:mapbox_cameraZoom="14.0" />
 
             </com.google.android.material.card.MaterialCardView>
 
