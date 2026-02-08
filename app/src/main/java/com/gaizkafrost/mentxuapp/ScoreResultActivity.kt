@@ -11,6 +11,9 @@ class ScoreResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!resources.getBoolean(R.bool.is_tablet)) {
+            requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         setContentView(R.layout.activity_score_result)
 
         val score = intent.getIntExtra("EXTRA_SCORE", 0)

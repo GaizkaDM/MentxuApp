@@ -80,6 +80,8 @@ class DiferenciasActivity : BaseMenuActivity() {
             val isFreeMode = intent.getBooleanExtra("IS_FREE_MODE", false)
             if (!isFreeMode) {
                 repository.completarParada(userId, idParadaActual, score, timeSpent)
+                // Actualizar fallback
+                com.gaizkafrost.mentxuapp.ParadasRepository.completarParada(idParadaActual)
             }
             
             // Registrar el intento para estadísticas

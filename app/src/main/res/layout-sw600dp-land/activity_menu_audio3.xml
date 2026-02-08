@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/Fondo"
+    tools:context=".Parada3.MenuAudio3">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="24dp"
+        android:background="#FFFFFF">
+
+        <!-- Left Column: Mentxu Image -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:paddingEnd="24dp">
+            
+            <ImageView
+                android:id="@+id/gifMentxu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@drawable/mentxu_habla"
+                android:contentDescription="@string/descripcion_mentxu_hablando" />
+        </FrameLayout>
+
+        <!-- Right Column: Content & Controls -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
+
+            <!-- Text Content -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/bubble_background"
+                android:padding="24dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tvExplicacion"
+                    style="@style/TextosCuerpo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6sp"
+                    android:textSize="20sp"
+                    android:text="Cargando explicación..."
+                    android:textColor="@color/black" />
+            </ScrollView>
+
+            <!-- Audio Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/playPauseButton"
+                    style="@style/Botones"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:text="▶"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <SeekBar
+                    android:id="@+id/audioSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp" />
+            </LinearLayout>
+
+            <!-- Continue Button -->
+            <Button
+                android:id="@+id/continueButton"
+                style="@style/Botones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Continuar"
+                android:textSize="20sp"
+                android:padding="16dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

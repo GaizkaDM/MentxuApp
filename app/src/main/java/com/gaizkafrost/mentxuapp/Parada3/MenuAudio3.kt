@@ -31,6 +31,9 @@ class MenuAudio3 : BaseMenuActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!resources.getBoolean(R.bool.is_tablet)) {
+            requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         setContentView(R.layout.activity_menu_audio3)
 
         // --- 1. Cargar el GIF animado ---

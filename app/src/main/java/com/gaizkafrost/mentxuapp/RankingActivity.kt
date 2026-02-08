@@ -24,6 +24,9 @@ class RankingActivity : BaseMenuActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!resources.getBoolean(R.bool.is_tablet)) {
+            requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         setContentView(R.layout.activity_ranking)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -42,22 +45,73 @@ class RankingActivity : BaseMenuActivity() {
     }
 
     private fun fetchRanking() {
-        progressBar.visibility = View.VISIBLE
+        // 1. Cargar caché primero (si existe) para mostrar algo rápido
+        val cachedRanking = getCachedRanking()
+        if (cachedRanking.isNotEmpty()) {
+            adapter.submitList(cachedRanking)
+        } else {
+            progressBar.visibility = View.VISIBLE
+        }
+
+        // 2. Intentar actualizar desde la red
         lifecycleScope.launch {
             try {
                 val response = RetrofitClient.api.obtenerRanking()
                 progressBar.visibility = View.GONE
+                
                 if (response.isSuccessful) {
-                    response.body()?.let {
-                        adapter.submitList(it)
+                    response.body()?.let { rankingList ->
+                        // Actualizar UI
+                        adapter.submitList(rankingList)
+                        // Guardar en caché para la próxima vez
+                        saveRankingToCache(rankingList)
                     }
                 } else {
-                    Toast.makeText(this@RankingActivity, "Error al cargar ranking", Toast.LENGTH_SHORT).show()
+                    if (cachedRanking.isEmpty()) {
+                        Toast.makeText(this@RankingActivity, "Error al cargar ranking", Toast.LENGTH_SHORT).show()
+                    }
                 }
             } catch (e: Exception) {
                 progressBar.visibility = View.GONE
-                Toast.makeText(this@RankingActivity, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                if (cachedRanking.isEmpty()) {
+                    Toast.makeText(this@RankingActivity, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@RankingActivity, "Modo offline: Ranking gordea erabiltzen", Toast.LENGTH_SHORT).show()
+                }
             }
+        }
+    }
+
+    // --- Métodos de Caché (SharedPreferences) ---
+
+    private fun saveRankingToCache(rankingList: List<RankingItemResponse>) {
+        try {
+            val sharedPreferences = getSharedPreferences("mentxu_cache", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            val gson = com.google.gson.Gson()
+            val json = gson.toJson(rankingList)
+            editor.putString("cached_ranking", json)
+            editor.apply()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun getCachedRanking(): List<RankingItemResponse> {
+        return try {
+            val sharedPreferences = getSharedPreferences("mentxu_cache", MODE_PRIVATE)
+            val json = sharedPreferences.getString("cached_ranking", null)
+            
+            if (json != null) {
+                val gson = com.google.gson.Gson()
+                val type = object : com.google.gson.reflect.TypeToken<List<RankingItemResponse>>() {}.type
+                gson.fromJson(json, type)
+            } else {
+                emptyList()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
         }
     }
 }

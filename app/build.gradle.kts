@@ -19,6 +19,12 @@ android {
         
         // URL del backend - Apuntando a Railway (producción)
         buildConfigField("String", "API_BASE_URL", "\"https://mentxubackend-production.up.railway.app/api/\"")
+        
+        ndk {
+            // Excluimos x86_64 para evitar el error de alineación de 16KB en Mapbox
+            abiFilters.add("armeabi-v7a")
+            abiFilters.add("arm64-v8a")
+        }
     }
 
     buildTypes {
@@ -43,6 +49,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
 }
 
 dependencies {
@@ -53,9 +65,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     
-    // Google Maps
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation(libs.play.services.maps)
+    // Mapbox Maps SDK v11
+    implementation("com.mapbox.maps:android:11.9.0")
     
     // Image Loading
     implementation("io.coil-kt:coil:2.7.0")

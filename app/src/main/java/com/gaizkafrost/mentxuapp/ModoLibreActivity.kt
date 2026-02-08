@@ -29,6 +29,9 @@ class ModoLibreActivity : BaseMenuActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!resources.getBoolean(R.bool.is_tablet)) {
+            requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         setContentView(R.layout.activity_modo_libre)
 
         userPrefs = UserPreferences(this)
