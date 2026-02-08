@@ -12,15 +12,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="@dimen/padding_medium">
 
-    <!-- Contenedor para el texto y el GIF -->
+        <!-- Contenedor para el texto y el GIF -->
         <LinearLayout
             android:id="@+id/contentLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:padding="24dp"
+            android:padding="@dimen/padding_small"
             app:layout_constraintBottom_toTopOf="@+id/playPauseButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +33,7 @@
                 android:id="@+id/gifMentxu"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="@dimen/margin_medium"
                 android:contentDescription="@string/descripcion_mentxu_hablando"
                 tools:srcCompat="@drawable/mentxu_habla" />
 
@@ -40,58 +42,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bubble_background"
-                android:padding="16dp">
+                android:padding="@dimen/padding_medium">
 
                 <TextView
                     android:id="@+id/tvExplicacion"
+                    style="@style/TextosCuerpo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="4sp"
                     android:text="Cargando explicación..."
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textColor="@color/black" />
             </ScrollView>
         </LinearLayout>
 
-    <!-- Botón para reproducir o pausar el audio -->
-    <Button
-        android:id="@+id/playPauseButton"
-        style="@style/Botones"
-        android:layout_width="140dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="▶"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/continueButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Botón para reproducir o pausar el audio -->
+        <Button
+            android:id="@+id/playPauseButton"
+            style="@style/Botones"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:paddingBottom="12dp"
+            android:text="▶"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_heading"
+            app:layout_constraintBottom_toTopOf="@+id/continueButton"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Barra de progreso para el audio -->
-    <SeekBar
-        android:id="@+id/audioSeekBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/playPauseButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playPauseButton"
-        app:layout_constraintTop_toTopOf="@+id/playPauseButton" />
+        <!-- Barra de progreso para el audio -->
+        <SeekBar
+            android:id="@+id/audioSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_medium"
+            app:layout_constraintBottom_toBottomOf="@+id/playPauseButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/playPauseButton"
+            app:layout_constraintTop_toTopOf="@+id/playPauseButton" />
 
-    <!-- Botón para continuar a la siguiente pantalla -->
-    <Button
-        android:id="@+id/continueButton"
-        style="@style/Botones"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Continuar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Botón para continuar a la siguiente pantalla -->
+        <Button
+            android:id="@+id/continueButton"
+            style="@style/Botones"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:text="Continuar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
