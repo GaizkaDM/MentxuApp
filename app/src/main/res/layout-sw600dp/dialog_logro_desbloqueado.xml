@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="32dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="16dp"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ivIconoLogro"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@android:drawable/btn_star_big_on"
+            app:tint="@color/gold"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/tvTituloDialogo"
+            style="@style/TextosTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Logro Desbloqueado!"
+            android:textColor="@color/maritime_blue"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvNombreLogro"
+            style="@style/Textos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Logro"
+            android:textColor="#333333"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvDescripcionLogro"
+            style="@style/Textos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción de cómo se consiguió este logro."
+            android:textColor="#666666"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+        <Button
+            android:id="@+id/btnAceptar"
+            style="@style/Botones.Mint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genial"
+            android:textSize="24sp"
+            android:paddingHorizontal="48dp"
+            android:paddingVertical="16dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

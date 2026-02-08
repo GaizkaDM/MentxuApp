@@ -23,23 +23,23 @@ interface ProgresoDao {
     suspend fun obtenerNoSincronizados(): List<ProgresoEntity>
     
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertar(progreso: ProgresoEntity)
+    suspend fun insertar(progreso: ProgresoEntity): Long
     
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertarTodos(progresos: List<ProgresoEntity>)
+    suspend fun insertarTodos(progresos: List<ProgresoEntity>): List<Long>
     
     @Update
-    suspend fun actualizar(progreso: ProgresoEntity)
+    suspend fun actualizar(progreso: ProgresoEntity): Int
     
     @Query("UPDATE progreso SET sincronizado = 1 WHERE id = :id")
-    suspend fun marcarComoSincronizado(id: Int)
+    suspend fun marcarComoSincronizado(id: Int): Int
     
     @Query("UPDATE progreso SET estado = :nuevoEstado WHERE usuarioId = :usuarioId AND paradaId = :paradaId")
-    suspend fun actualizarEstado(usuarioId: Int, paradaId: Int, nuevoEstado: String)
+    suspend fun actualizarEstado(usuarioId: Int, paradaId: Int, nuevoEstado: String): Int
     
     @Delete
-    suspend fun eliminar(progreso: ProgresoEntity)
+    suspend fun eliminar(progreso: ProgresoEntity): Int
     
     @Query("DELETE FROM progreso WHERE usuarioId = :usuarioId")
-    suspend fun eliminarProgresoUsuario(usuarioId: Int)
+    suspend fun eliminarProgresoUsuario(usuarioId: Int): Int
 }
