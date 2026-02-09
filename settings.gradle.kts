@@ -35,7 +35,19 @@ dependencyResolutionManagement {
                                 localProperties.load(stream)
                             }
                         }
-                        localProperties.getProperty("MAPBOX_DOWNLOADS_TOKEN") ?: "MISSING_TOKEN"
+                        // Limpiar espacios en blanco y obtener token
+                        val token = localProperties.getProperty("MAPBOX_DOWNLOADS_TOKEN")?.trim() ?: "MISSING_TOKEN"
+                        
+                        // DIAGNÓSTICO PARA COMPAÑEROS
+                        if (token == "MISSING_TOKEN" || token.isEmpty()) {
+                            println("❌ ERROR CRÍTICO: No se encuentra MAPBOX_DOWNLOADS_TOKEN en local.properties ni gradle.properties")
+                        } else if (!token.startsWith("sk.")) {
+                            println("⚠️ ADVERTENCIA: El token parece incorrecto (debe empezar por 'sk.'). Valor actual: ${token.take(5)}...")
+                        } else {
+                            println("✅ TOKEN DETECTADO CORRECTAMENTE: ${token.take(10)}...")
+                        }
+                        
+                        token
                     }
                 )
             }
