@@ -24,8 +24,20 @@ dependencyResolutionManagement {
             credentials {
                 // Do not change the username below. It should always be "mapbox" (not your username).
                 username = "mapbox"
-                // Use the secret token you stored in gradle.properties as the password
-                password = providers.gradleProperty("MAPBOX_DOWNLOADS_TOKEN").getOrElse("MISSING_TOKEN")
+                // Use the secret token you stored in gradle.properties or local.properties as the password
+                password = providers.gradleProperty("MAPBOX_DOWNLOADS_TOKEN").getOrElse(
+                    run {
+                        // Fallback: Try reading from local.properties file manually
+                        val localProperties = java.util.Properties()
+                        val localPropertiesFile = File(rootDir, "local.properties")
+                        if (localPropertiesFile.exists()) {
+                            localPropertiesFile.inputStream().use { stream ->
+                                localProperties.load(stream)
+                            }
+                        }
+                        localProperties.getProperty("MAPBOX_DOWNLOADS_TOKEN") ?: "MISSING_TOKEN"
+                    }
+                )
             }
         }
     }
