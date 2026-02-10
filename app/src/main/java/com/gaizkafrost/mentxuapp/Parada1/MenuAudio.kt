@@ -140,7 +140,7 @@ class MenuAudio : BaseMenuActivity() {
                 audioSeekBar.max = it.duration
             }
             mediaPlayer?.setOnCompletionListener {
-                playPauseButton.text = "▶"
+                playPauseButton.text = getString(R.string.audio_play_icon)
                 gifAnimatable?.stop()
                 audioSeekBar.progress = 0
             }
@@ -154,11 +154,11 @@ class MenuAudio : BaseMenuActivity() {
         mediaPlayer?.let {
             if (it.isPlaying) {
                 it.pause()
-                playPauseButton.text = "▶"
+                playPauseButton.text = getString(R.string.audio_play_icon)
                 gifAnimatable?.stop()
             } else {
                 it.start()
-                playPauseButton.text = "❚❚"
+                playPauseButton.text = getString(R.string.audio_pause_icon)
                 gifAnimatable?.start()
                 updateSeekBar()
             }

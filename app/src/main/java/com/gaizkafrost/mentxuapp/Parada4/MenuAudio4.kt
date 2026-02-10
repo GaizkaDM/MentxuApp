@@ -70,8 +70,9 @@ class MenuAudio4 : BaseMenuActivity() {
         configurarRecursos()
 
         // Listener para cuando el audio termina
+        // Listener para cuando el audio termina
         mediaPlayer?.setOnCompletionListener {
-            playPauseButton.text = "▶"
+            playPauseButton.text = getString(R.string.audio_play_icon)
             gifAnimatable?.stop()
             audioSeekBar.progress = 0
         }
@@ -108,11 +109,11 @@ class MenuAudio4 : BaseMenuActivity() {
         mediaPlayer?.let {
             if (it.isPlaying) {
                 it.pause()
-                playPauseButton.text = "▶"
+                playPauseButton.text = getString(R.string.audio_play_icon)
                 gifAnimatable?.stop() // Detiene la animación del GIF
             } else {
                 it.start()
-                playPauseButton.text = "❚❚"
+                playPauseButton.text = getString(R.string.audio_pause_icon)
                 gifAnimatable?.start() // Inicia la animación del GIF
                 updateSeekBar()
             }
@@ -147,7 +148,7 @@ class MenuAudio4 : BaseMenuActivity() {
                 audioSeekBar.max = it.duration
             }
             mediaPlayer?.setOnCompletionListener {
-                playPauseButton.text = "▶"
+                playPauseButton.text = getString(R.string.audio_play_icon)
                 gifAnimatable?.stop()
                 audioSeekBar.progress = 0
             }
