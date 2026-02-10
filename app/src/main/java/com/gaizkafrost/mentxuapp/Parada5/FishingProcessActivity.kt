@@ -37,13 +37,13 @@ class FishingProcessActivity : BaseMenuActivity() {
     // List of steps. You can add or remove steps here.
     // The "id" must be the correct sequence number (1, 2, 3...).
     private val stepsData = listOf(
-        FishingStep(1, "Ontzia eta sareak prestatu", R.drawable.pesca_1),
-        FishingStep(2, "Arrantza-lekura nabigatu", R.drawable.pesca_2),
-        FishingStep(3, "Sareak itsasora bota", R.drawable.pesca_3),
-        FishingStep(4, "Sareak jaso arrantzarekin", R.drawable.pesca_4),
-        FishingStep(5, "Arraina espezieen arabera sailkatu", R.drawable.pesca_5),
-        FishingStep(6, "Sotoan gorde izotzarekin", R.drawable.pesca_6),
-        FishingStep(7, "Portura iritsi eta enkantea egin", R.drawable.pesca_7)
+        FishingStep(1, R.string.pesca_step_1, R.drawable.pesca_1),
+        FishingStep(2, R.string.pesca_step_2, R.drawable.pesca_2),
+        FishingStep(3, R.string.pesca_step_3, R.drawable.pesca_3),
+        FishingStep(4, R.string.pesca_step_4, R.drawable.pesca_4),
+        FishingStep(5, R.string.pesca_step_5, R.drawable.pesca_5),
+        FishingStep(6, R.string.pesca_step_6, R.drawable.pesca_6),
+        FishingStep(7, R.string.pesca_step_7, R.drawable.pesca_7)
     )
 
 
