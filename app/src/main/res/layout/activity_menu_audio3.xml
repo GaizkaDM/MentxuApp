@@ -61,17 +61,17 @@
         </LinearLayout>
 
         <!-- Botón para reproducir o pausar el audio -->
-        <Button
+        <ImageButton
             android:id="@+id/playPauseButton"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginBottom="@dimen/margin_large"
-            android:paddingBottom="12dp"
-            android:text="▶"
+            android:padding="12dp"
+            android:src="@drawable/ic_play_icon"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/audio_play_icon"
             style="@style/Botones"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_heading"
             app:layout_constraintBottom_toTopOf="@+id/continueButton"
             app:layout_constraintStart_toStartOf="parent" />
 

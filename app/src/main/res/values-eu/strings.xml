@@ -143,4 +143,6 @@
     <string name="stops_label">Geltokiak</string>
     <string name="points_label">Puntuak</string>
     <string name="logout_button">🚪 Irten</string>
+    <string name="audio_play_icon">Erreproduzitu</string>
+    <string name="audio_pause_icon">Pausatu</string>
 </resources>

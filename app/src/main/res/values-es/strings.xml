@@ -152,5 +152,6 @@
     <string name="hint_relacionar">Une cada descripción con la parte del barco adecuada. Si lo necesitas, fíjate bien en los nombres de las partes.</string>
     <string name="hint_recogida">Mueve la cesta con el dedo para atrapar la basura y mantener el puerto limpio.</string>
     <string name="hint_pesca">Ordena las imágenes según la secuencia lógica del proceso de pesca (primero pescar, luego clasificar y finalmente vender).</string>
-    <string name="hint_puzzle">Para completar el puzzle, arrastra las piezas al recuadro. En el test, recuerda lo que explicó Mentxu.</string>
+    <string name="audio_play_icon">Reproducir</string>
+    <string name="audio_pause_icon">Pausar</string>
 </resources>

@@ -24,7 +24,7 @@ class MenuAudio : BaseMenuActivity() {
     override var isScoringEnabled = false
 
     private var mediaPlayer: MediaPlayer? = null
-    private lateinit var playPauseButton: Button
+    private lateinit var playPauseButton: android.widget.ImageButton
     private lateinit var audioSeekBar: SeekBar
     private lateinit var tvExplicacion: TextView
     private lateinit var handler: Handler
@@ -140,7 +140,8 @@ class MenuAudio : BaseMenuActivity() {
                 audioSeekBar.max = it.duration
             }
             mediaPlayer?.setOnCompletionListener {
-                playPauseButton.text = getString(R.string.audio_play_icon)
+                playPauseButton.setImageResource(R.drawable.ic_play_icon)
+                playPauseButton.contentDescription = getString(R.string.audio_play_icon)
                 gifAnimatable?.stop()
                 audioSeekBar.progress = 0
             }
@@ -154,11 +155,13 @@ class MenuAudio : BaseMenuActivity() {
         mediaPlayer?.let {
             if (it.isPlaying) {
                 it.pause()
-                playPauseButton.text = getString(R.string.audio_play_icon)
+                playPauseButton.setImageResource(R.drawable.ic_play_icon)
+                playPauseButton.contentDescription = getString(R.string.audio_play_icon)
                 gifAnimatable?.stop()
             } else {
                 it.start()
-                playPauseButton.text = getString(R.string.audio_pause_icon)
+                playPauseButton.setImageResource(R.drawable.ic_pause_icon)
+                playPauseButton.contentDescription = getString(R.string.audio_pause_icon)
                 gifAnimatable?.start()
                 updateSeekBar()
             }

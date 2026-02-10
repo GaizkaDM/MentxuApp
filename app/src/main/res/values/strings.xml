@@ -182,6 +182,6 @@
     <string name="congrats_caps">ZORIONAK!</string>
     <string name="score_label">Lortutako puntuazioa:</string>
     <string name="view_ranking_btn">Ikus Ranking-a</string>
-    <string name="audio_play_icon">▶</string>
-    <string name="audio_pause_icon">⏸</string>
+    <string name="audio_play_icon">Erreproduzitu</string>
+    <string name="audio_pause_icon">Pausatu</string>
 </resources>
