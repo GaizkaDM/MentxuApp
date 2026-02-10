@@ -24,7 +24,8 @@
 
         <activity
             android:name=".Presentacion"
-            android:exported="true">
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Mapa.MapaActivity"
@@ -46,7 +47,6 @@
             android:exported="false"
             android:screenOrientation="landscape" />
 
-        <!-- Módulo Parada 2 -->
         <activity
             android:name=".Parada2.DiferenciasActivity"
             android:exported="false"
