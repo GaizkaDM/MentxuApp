@@ -74,6 +74,8 @@ class MenuAudio3 : BaseMenuActivity() {
             playPauseButton.text = "▶"
             gifAnimatable?.stop()
             audioSeekBar.progress = 0
+            
+            // Botón ya es visible, no hace falta cambiar visibilidad
         }
 
         handler = Handler(Looper.getMainLooper())
@@ -84,9 +86,8 @@ class MenuAudio3 : BaseMenuActivity() {
         }
 
         continueButton.setOnClickListener {
-            Toast.makeText(this, "Yendo a la siguiente actividad...", Toast.LENGTH_SHORT).show()
-            val idParada = intent.getIntExtra("ID_PARADA", -1)
-            Intent(this, Relacionar::class.java).apply {
+            val idParada = intent.getIntExtra("ID_PARADA", 3)
+            Intent(this, Parada3Imagen1::class.java).apply {
                 putExtra("ID_PARADA", idParada)
                 startActivity(this)
             }
