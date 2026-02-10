@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="👋 Kaixo!"
+                android:text="@string/hello_title"
                 android:textColor="@android:color/white"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -49,7 +49,8 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/mentxu_cesta"
-                    android:background="@color/lavender" />
+                    android:background="@color/lavender"
+                    android:contentDescription="@string/user_avatar_desc" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -93,7 +94,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="🏆 Zure Lorpenak"
+                        android:text="@string/achievements_title"
                         android:textColor="@color/purple"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -132,7 +133,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Geltokiak"
+                                android:text="@string/stops_label"
                                 android:textColor="@color/texto_secundario"
                                 android:textSize="14sp" />
 
@@ -172,7 +173,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Puntuak"
+                                android:text="@string/points_label"
                                 android:textColor="@color/texto_secundario"
                                 android:textSize="14sp" />
 
@@ -192,7 +193,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/pink"
-                android:text="🚪 Irten"
+                android:text="@string/logout_button"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 

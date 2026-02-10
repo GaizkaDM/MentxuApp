@@ -123,4 +123,25 @@
     <string name="ajustes_info">Información</string>
     <string name="creditos_desarrolladores">Créditos</string>
     <string name="ajustes_cerrar">Cerrar</string>
+    <!-- Modo Libre strings (Español) -->
+    <string name="locked_title">🔒 Juego Libre Bloqueado</string>
+    <string name="locked_message">Para jugar al modo libre, primero debes completar la historia.\\n\\n¡Ve al mapa y completa todas las paradas!</string>
+    <string name="go_to_map">🗺️ Ir al mapa</string>
+    <string name="free_mode_title">🎮 Juego Libre</string>
+    <string name="free_mode_subtitle">¡Elige un minijuego para jugar de nuevo!</string>
+    <string name="mentxu_desc">Mentxu</string>
+    <string name="game_sopa">Sopa de Letras</string>
+    <string name="game_diferencias">Diferencias</string>
+    <string name="game_relacionar">Relacionar</string>
+    <string name="game_recogida">Recogida</string>
+    <string name="game_pesca">Procesamiento</string>
+    <string name="game_puzzle">Puzzle y Test</string>
+    
+    <!-- Perfil strings (Español) -->
+    <string name="hello_title">👋 ¡Hola!</string>
+    <string name="user_avatar_desc">Avatar de usuario</string>
+    <string name="achievements_title">🏆 Tus Logros</string>
+    <string name="stops_label">Paradas</string>
+    <string name="points_label">Puntos</string>
+    <string name="logout_button">🚪 Salir</string>
 </resources>

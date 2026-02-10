@@ -122,4 +122,25 @@
     <string name="ajustes_info">Informazioa</string>
     <string name="creditos_desarrolladores">Kredituak</string>
     <string name="ajustes_cerrar">Utzi</string>
+    <!-- Modo Libre strings (Euskara) -->
+    <string name="locked_title">🔒 Joko Librea Blokeatuta</string>
+    <string name="locked_message">Joko librean jolastu ahal izateko, lehenik istorioa osatu behar duzu.\\n\\nJoan mapara eta geldiune guztiak bukatu!</string>
+    <string name="go_to_map">🗺️ Mapara joan</string>
+    <string name="free_mode_title">🎮 Joko Librea</string>
+    <string name="free_mode_subtitle">Aukeratu minijoko bat berriro jolasteko!</string>
+    <string name="mentxu_desc">Mentxu</string>
+    <string name="game_sopa">Letra Zopa</string>
+    <string name="game_diferencias">Diferentziak</string>
+    <string name="game_relacionar">Erlazionatu</string>
+    <string name="game_recogida">Bilketa</string>
+    <string name="game_pesca">Prozesatzea</string>
+    <string name="game_puzzle">Puzzlea eta Testa</string>
+    
+    <!-- Perfil strings (Euskara) -->
+    <string name="hello_title">👋 Kaixo!</string>
+    <string name="user_avatar_desc">Erabiltzailearen avatarra</string>
+    <string name="achievements_title">🏆 Zure Lorpenak</string>
+    <string name="stops_label">Geltokiak</string>
+    <string name="points_label">Puntuak</string>
+    <string name="logout_button">🚪 Irten</string>
 </resources>
