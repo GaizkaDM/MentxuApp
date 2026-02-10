@@ -48,7 +48,7 @@ class Huevo_Activity : BaseMenuActivity() {
         }
 
         // Sistema de pistas
-        setupHint("Begiratu arretaz udaletxearen goiko aldean.")
+        setupHint(getString(R.string.hint_huevo))
     }
 
     private fun huevoEncontrado(huevoEncontrado: ImageView) {

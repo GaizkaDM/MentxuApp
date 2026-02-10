@@ -144,4 +144,13 @@
     <string name="stops_label">Paradas</string>
     <string name="points_label">Puntos</string>
     <string name="logout_button">🚪 Salir</string>
+
+    <!-- Pistas (Hints) -->
+    <string name="hint_huevo">Mira atentamente en la parte superior del ayuntamiento.</string>
+    <string name="hint_sopa">Las palabras pueden estar en horizontal, vertical o diagonal.</string>
+    <string name="hint_diferencias">Fíjate en los detalles: colores, objetos que faltan o tamaños diferentes.</string>
+    <string name="hint_relacionar">Une cada descripción con la parte del barco adecuada. Si lo necesitas, fíjate bien en los nombres de las partes.</string>
+    <string name="hint_recogida">Mueve la cesta con el dedo para atrapar la basura y mantener el puerto limpio.</string>
+    <string name="hint_pesca">Ordena las imágenes según la secuencia lógica del proceso de pesca (primero pescar, luego clasificar y finalmente vender).</string>
+    <string name="hint_puzzle">Para completar el puzzle, arrastra las piezas al recuadro. En el test, recuerda lo que explicó Mentxu.</string>
 </resources>

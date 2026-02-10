@@ -56,7 +56,7 @@ class Parada6Activity : BaseMenuActivity() {
         }
 
         // Sistema de pistas
-        setupHint("Puzzlea osatzeko, arrastatu piezak laukira. Testean, gogoratu Mentxuk azaldutakoa.")
+        setupHint(getString(R.string.hint_puzzle))
     }
 
     // =========================================================================

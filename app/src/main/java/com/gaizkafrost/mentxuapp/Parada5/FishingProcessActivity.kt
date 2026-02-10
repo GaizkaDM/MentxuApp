@@ -82,7 +82,7 @@ class FishingProcessActivity : BaseMenuActivity() {
         resetGame()
 
         // Sistema de pistas
-        setupHint("Ordenatu irudiak arrantza-prozesuaren sekuentzia logikoaren arabera (lehenengo arrantzatzea, gero sailkatzea eta azkenik saltzea).")
+        setupHint(getString(R.string.hint_pesca))
     }
 
     private fun setupRecyclerView() {

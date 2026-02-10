@@ -60,7 +60,7 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
         }
 
         // Sistema de pistas
-        setupHint("Hitzak horizontalki, bertikalki edo diagonalki egon daitezke.")
+        setupHint(getString(R.string.hint_sopa))
     }
 
     private fun palabraEncontrada(palabra: String) {

@@ -49,7 +49,7 @@ class DiferenciasActivity : BaseMenuActivity() {
         }
 
         // Sistema de pistas
-        setupHint("Arreta jarri xehetasunetan: koloreak, objektu falta edo tamaina desberdinak.")
+        setupHint(getString(R.string.hint_diferencias))
     }
 
     private fun diferenciaEncontrada() {

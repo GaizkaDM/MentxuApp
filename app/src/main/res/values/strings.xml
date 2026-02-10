@@ -142,4 +142,13 @@
     <string name="stops_label">Geltokiak</string>
     <string name="points_label">Puntuak</string>
     <string name="logout_button">🚪 Irten</string>
+    
+    <!-- Pistas (Hints) -->
+    <string name="hint_huevo">Begiratu arretaz udaletxearen goiko aldean.</string>
+    <string name="hint_sopa">Hitzak horizontalki, bertikalki edo diagonalki egon daitezke.</string>
+    <string name="hint_diferencias">Arreta jarri xehetasunetan: koloreak, objektu falta edo tamaina desberdinak.</string>
+    <string name="hint_relacionar">Lotu deskribapen bakoitza itsasontziaren atal egokiarekin. Behar baduzu, begiratu arretaz atalen izenei.</string>
+    <string name="hint_recogida">Mugitu saskia hatzarekin zaborra harrapatzeko eta portua garbi mantentzeko.</string>
+    <string name="hint_pesca">Ordenatu irudiak arrantza-prozesuaren sekuentzia logikoaren arabera (lehenengo arrantzatzea, gero sailkatzea eta azkenik saltzea).</string>
+    <string name="hint_puzzle">Puzzlea osatzeko, arrastatu piezak laukira. Testean, gogoratu Mentxuk azaldutakoa.</string>
 </resources>

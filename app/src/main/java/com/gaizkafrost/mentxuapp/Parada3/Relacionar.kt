@@ -63,7 +63,7 @@ class Relacionar : BaseMenuActivity() {
         setupGame()
 
         // Sistema de pistas
-        setupHint("Lotu deskribapen bakoitza itsasontziaren atal egokiarekin. Behar baduzu, begiratu arretaz atalen izenei.")
+        setupHint(getString(R.string.hint_relacionar))
     }
 
     /**
