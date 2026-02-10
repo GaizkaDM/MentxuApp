@@ -127,17 +127,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:baselineAligned="false"
-                android:layout_marginBottom="24dp">
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
 
                 <!-- Card de Avatar -->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
                     app:cardBackgroundColor="#F8F4FF">
@@ -203,10 +200,8 @@
 
                 <!-- Card de Colores -->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
                     app:cardBackgroundColor="#FFF8F4">
