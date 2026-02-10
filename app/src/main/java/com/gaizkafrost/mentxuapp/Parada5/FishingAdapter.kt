@@ -44,7 +44,7 @@ class FishingAdapter(
 
         // Load image (Using R.drawable directly as requested)
         holder.imgStep.setImageResource(step.imageRes)
-        holder.tvDescription.text = step.title
+        holder.tvDescription.setText(step.titleRes)
 
         // Mode Switching UI Logic
         if (isDragAndDropMode) {

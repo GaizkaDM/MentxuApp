@@ -1,6 +1,7 @@
 package com.gaizkafrost.mentxuapp.Parada5
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 
 /**
  * Data class representing a step in the fishing process.
@@ -12,7 +13,7 @@ import androidx.annotation.DrawableRes
  */
 data class FishingStep(
     val id: Int,
-    val title: String,
+    @StringRes val titleRes: Int,
     @DrawableRes val imageRes: Int,
     var userOrder: String = "" // For Modo A - Numérico
 )
