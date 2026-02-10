@@ -69,6 +69,9 @@ class JuegoRecogida : BaseMenuActivity() {
         setupControls()
         startGameLoop()
         startSpawner()
+
+        // Sistema de pistas
+        setupHint("Mugitu saskia hatzarekin zaborra harrapatzeko eta portua garbi mantentzeko.")
     }
 
     private fun setupControls() {

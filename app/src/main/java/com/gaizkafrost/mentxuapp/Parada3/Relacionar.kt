@@ -61,6 +61,9 @@ class Relacionar : BaseMenuActivity() {
 
         // Configuración aleatoria de textos y emparejamientos
         setupGame()
+
+        // Sistema de pistas
+        setupHint("Lotu deskribapen bakoitza itsasontziaren atal egokiarekin. Behar baduzu, begiratu arretaz atalen izenei.")
     }
 
     /**

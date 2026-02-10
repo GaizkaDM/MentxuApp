@@ -2,6 +2,11 @@ package com.gaizkafrost.mentxuapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
@@ -15,6 +20,7 @@ abstract class BaseMenuActivity : AppCompatActivity() {
 
     protected var startTime: Long = 0
     protected open var isScoringEnabled: Boolean = true
+    private var hintText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +32,12 @@ abstract class BaseMenuActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         
-        // Configurar Toolbar si existe
+        // Ocultar Toolbar si existe (evitar franja morada)
         try {
-            val toolbar = findViewById<Toolbar>(R.id.toolbar)
-            toolbar?.let { setSupportActionBar(it) }
+            val toolbar = findViewById<android.view.View>(R.id.toolbar)
+            if (toolbar != null) {
+                toolbar.visibility = android.view.View.GONE
+            }
         } catch (e: Exception) {}
 
         // Configurar Bottom Navigation
@@ -152,6 +160,65 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         
         startActivity(intent)
         finish()
+    }
+
+    // --- SISTEMA DE PISTAS ---
+
+    private var hintButton: android.widget.ImageView? = null
+
+    /**
+     * Configura una pista para la actividad actual.
+     * Muestra una imagen estática en la esquina superior derecha que, al pulsarse, abre el diálogo de ayuda.
+     */
+    protected fun setupHint(text: String) {
+        this.hintText = text
+        
+        // Si ya existe el botón, solo actualizamos el comportamiento (aunque el texto ya se guardó)
+        if (hintButton != null) return
+
+        val rootView = findViewById<android.view.ViewGroup>(android.R.id.content)
+        
+        hintButton = android.widget.ImageView(this).apply {
+            setImageResource(R.drawable.logo) // Usamos el logo como icono
+            scaleType = android.widget.ImageView.ScaleType.FIT_CENTER
+            
+            // Definir tamaño en píxeles (aprox 60dp)
+            val size = (60 * resources.displayMetrics.density).toInt()
+            val margin = (16 * resources.displayMetrics.density).toInt()
+            
+            val params = android.widget.FrameLayout.LayoutParams(size, size).apply {
+                gravity = android.view.Gravity.TOP or android.view.Gravity.END
+                topMargin = margin
+                rightMargin = margin
+            }
+            layoutParams = params
+            
+            setOnClickListener { showHintDialog() }
+            
+            // Asegurar que esté por encima de todo
+            elevation = 10f
+        }
+        
+        rootView.addView(hintButton)
+    }
+
+    private fun showHintDialog() {
+        hintText?.let { text ->
+            val builder = AlertDialog.Builder(this)
+            val inflater = layoutInflater
+            val dialogView = inflater.inflate(R.layout.ayuda, null)
+            
+            val tvAyuda = dialogView.findViewById<TextView>(R.id.ayudaTexto)
+            tvAyuda.text = text
+            
+            val dialog = builder.setView(dialogView).create()
+            
+            dialogView.findViewById<View>(R.id.cerrar).setOnClickListener {
+                dialog.dismiss()
+            }
+            
+            dialog.show()
+        }
     }
     override fun attachBaseContext(newBase: android.content.Context) {
         super.attachBaseContext(com.gaizkafrost.mentxuapp.utils.LocaleHelper.onAttach(newBase))
