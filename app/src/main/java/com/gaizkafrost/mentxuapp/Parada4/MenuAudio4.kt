@@ -152,7 +152,7 @@ class MenuAudio4 : BaseMenuActivity() {
                 audioSeekBar.progress = 0
             }
         } else {
-            Toast.makeText(this, "Ez da audiorik aurkitu $idParada geltokirako", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.audio_not_found, idParada), Toast.LENGTH_SHORT).show()
         }
     }
 

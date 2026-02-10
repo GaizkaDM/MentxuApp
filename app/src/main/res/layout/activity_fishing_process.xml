@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_small"
-        android:text="Ordena las imágenes según el proceso de la pesca, del primer paso al último."
+        android:text="@string/fishing_process_instruction"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
@@ -82,7 +82,7 @@
             android:layout_height="@dimen/button_height_large"
             android:layout_weight="1"
             android:layout_marginEnd="@dimen/margin_small"
-            android:text="Reiniciar"
+            android:text="@string/restart_btn"
             android:textSize="@dimen/text_size_medium" />
 
         <Button
@@ -92,7 +92,7 @@
             android:layout_height="@dimen/button_height_large"
             android:layout_weight="1"
             android:layout_marginStart="@dimen/margin_small"
-            android:text="Comprobar"
+            android:text="@string/check_btn"
             android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>

@@ -67,7 +67,7 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
         if (!palabrasEncontradas.contains(palabra)) {
             palabrasEncontradas.add(palabra)
             
-            Toast.makeText(this, "$palabra aurkitu duzu!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.word_found, palabra), Toast.LENGTH_SHORT).show()
 
             
             // Marcar la palabra en verde en la lista
@@ -84,7 +84,7 @@ class SopaDeLetrasActivity : BaseMenuActivity() {
     }
 
     private fun juegoCompletado() {
-        Toast.makeText(this, "Zorionak! Hizki-sopa osatu duzu", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.soup_completed), Toast.LENGTH_LONG).show()
 
         
         // Marcar la parada como completada en el Backend y Local

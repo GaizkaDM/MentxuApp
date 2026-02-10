@@ -44,7 +44,7 @@ class Huevo_Activity : BaseMenuActivity() {
         // 3. Listener en la imagen de fondo para cuando el usuario falla
         imagenFondo.setOnClickListener {
             // Damos una pista o simplemente indicamos que ha fallado
-            Toast.makeText(this, "Ia-ia! Jarraitu bilatzen...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.keep_searching), Toast.LENGTH_SHORT).show()
         }
 
         // Sistema de pistas
@@ -53,7 +53,7 @@ class Huevo_Activity : BaseMenuActivity() {
 
     private fun huevoEncontrado(huevoEncontrado: ImageView) {
         // Mostramos un mensaje de felicitación
-        Toast.makeText(this, "Aurkitu duzu! Zorionak!", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.egg_found), Toast.LENGTH_LONG).show()
 
 
         // Hacemos visible el huevo (opcional, para resaltarlo)

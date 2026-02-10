@@ -286,7 +286,7 @@ class Presentacion : BaseMenuActivity() {
         lifecycleScope.launch {
             try {
                 // Mostrar toast de "Registrando..."
-                Toast.makeText(this@Presentacion, "Erregistratzen...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Presentacion, getString(R.string.registering), Toast.LENGTH_SHORT).show()
 
                 val api = RetrofitClient.api
                 val request = UsuarioRequest(nombre, apellido, deviceId, avatar, color)

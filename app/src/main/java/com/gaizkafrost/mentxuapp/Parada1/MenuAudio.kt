@@ -101,7 +101,7 @@ class MenuAudio : BaseMenuActivity() {
                     startActivity(intent)
                     finish()
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Errorea hurrengo jarduera irekitzean", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.error_opening_activity), Toast.LENGTH_SHORT).show()
                 }
 
             } else {
@@ -145,7 +145,7 @@ class MenuAudio : BaseMenuActivity() {
                 audioSeekBar.progress = 0
             }
         } else {
-            Toast.makeText(this, "Ez da audiorik aurkitu $idParada geltokirako", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.audio_not_found, idParada), Toast.LENGTH_SHORT).show()
         }
 
     }

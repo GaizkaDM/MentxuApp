@@ -174,7 +174,7 @@ class Relacionar : BaseMenuActivity() {
      */
     private fun checkCompletion() {
         if (remainingPairs == 0) {
-            Toast.makeText(this, "Zorionak! Jarduera garaitu duzu!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.activity_completed), Toast.LENGTH_LONG).show()
             
             // Marcamos la parada como completada en el Backend y Local
             val userId = userPrefs.userId

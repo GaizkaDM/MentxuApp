@@ -45,7 +45,7 @@ class DiferenciasActivity : BaseMenuActivity() {
         // Configurar listener para errores (toques en zonas incorrectas)
         diferenciasView.onToqueErroneo = {
             addError()
-            Toast.makeText(this, "Hori ez da desberdintasuna! (-50 puntu)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.not_a_difference), Toast.LENGTH_SHORT).show()
         }
 
         // Sistema de pistas
@@ -56,7 +56,7 @@ class DiferenciasActivity : BaseMenuActivity() {
         diferenciasEncontradas++
         actualizarContador()
         
-        Toast.makeText(this, "Desberdintasuna aurkituta! ($diferenciasEncontradas/$totalDiferencias)", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.difference_found, diferenciasEncontradas, totalDiferencias), Toast.LENGTH_SHORT).show()
 
         
         // Verificar si se han encontrado todas las diferencias
@@ -71,7 +71,7 @@ class DiferenciasActivity : BaseMenuActivity() {
 
 
     private fun juegoCompletado() {
-        Toast.makeText(this, "Zorionak! Desberdintasun guztiak aurkitu dituzu", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.all_differences_found), Toast.LENGTH_LONG).show()
 
         
         // Marcar la parada como completada en el Backend y Local

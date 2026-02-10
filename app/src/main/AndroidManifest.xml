@@ -24,8 +24,13 @@
 
         <activity
             android:name=".Presentacion"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".Mapa.MapaActivity"
@@ -50,12 +55,7 @@
         <!-- Módulo Parada 3 -->
         <activity
             android:name=".Parada3.MenuAudio3"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            android:exported="false" >
         </activity>
         <activity
             android:name=".Parada3.Parada3Imagen1"

@@ -147,7 +147,7 @@ class FishingProcessActivity : BaseMenuActivity() {
             val timeSpent = getElapsedTimeSeconds()
             
             showFeedback("Oso ondo! Arrantza prozesua ondo ordenatu duzu.", true)
-            Toast.makeText(this, "Lan bikaina!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.great_job), Toast.LENGTH_SHORT).show()
 
             // Marcamos la parada como completada en el Backend y Local
             val userId = userPrefs.userId
@@ -199,7 +199,7 @@ class FishingProcessActivity : BaseMenuActivity() {
         }
         adapter.updateSteps(shuffledSteps)
         tvFeedback.visibility = View.GONE
-        Toast.makeText(this, "Jokoa berrabiarazi da. Aurrera!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.game_restarted), Toast.LENGTH_SHORT).show()
 
     }
 

@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="4sp"
-                    android:text="Cargando explicación..."
+                    android:text="@string/loading_explanation"
                     android:textColor="@color/black" />
             </ScrollView>
         </LinearLayout>
@@ -91,7 +91,7 @@
             android:layout_marginStart="@dimen/margin_large"
             android:layout_marginEnd="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
-            android:text="Continuar"
+            android:text="@string/continue_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

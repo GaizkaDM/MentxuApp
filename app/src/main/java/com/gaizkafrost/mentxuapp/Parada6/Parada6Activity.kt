@@ -108,7 +108,7 @@ class Parada6Activity : BaseMenuActivity() {
 
     private fun checkPuzzleCompletion() {
         if (puzzleAdapter.isComplete()) {
-            Toast.makeText(this, "Oso ondo! Puzlea osatu duzu.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.puzzle_completed), Toast.LENGTH_LONG).show()
             findViewById<TextView>(R.id.puzzle_status).text = "Puzlea osatuta!"
             
             // Esperar 2 segundos antes de mostrar el test para que vean la imagen completa

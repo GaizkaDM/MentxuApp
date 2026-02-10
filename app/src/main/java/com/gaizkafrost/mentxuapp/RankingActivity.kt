@@ -68,15 +68,15 @@ class RankingActivity : BaseMenuActivity() {
                     }
                 } else {
                     if (cachedRanking.isEmpty()) {
-                        Toast.makeText(this@RankingActivity, "Error al cargar ranking", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RankingActivity, getString(R.string.error_loading_ranking), Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
                 progressBar.visibility = View.GONE
                 if (cachedRanking.isEmpty()) {
-                    Toast.makeText(this@RankingActivity, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RankingActivity, getString(R.string.network_error) + e.message, Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@RankingActivity, "Modo offline: Ranking gordea erabiltzen", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RankingActivity, getString(R.string.offline_mode), Toast.LENGTH_SHORT).show()
                 }
             }
         }

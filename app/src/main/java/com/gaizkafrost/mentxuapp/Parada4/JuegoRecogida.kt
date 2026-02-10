@@ -219,7 +219,7 @@ class JuegoRecogida : BaseMenuActivity() {
 
     private fun winGame() {
         isGameRunning = false
-        Toast.makeText(this, "Oso ondo! Itsasoa garbitu duzu.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.cleaning_completed), Toast.LENGTH_LONG).show()
 
         // Marcamos la parada como completada en el Backend y Local
         val userId = userPrefs.userId
