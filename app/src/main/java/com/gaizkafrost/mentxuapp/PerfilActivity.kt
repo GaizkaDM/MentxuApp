@@ -43,6 +43,13 @@ class PerfilActivity : BaseMenuActivity() {
             startActivity(intent)
             finish()
         }
+        
+        // Botón ajustes
+        findViewById<android.widget.ImageButton>(R.id.btnSettings).setOnClickListener {
+            // Abrir la nueva actividad de ajustes
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun cargarEstadisticas() {

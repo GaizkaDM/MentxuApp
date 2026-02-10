@@ -58,6 +58,8 @@ class MapaActivity : BaseMenuActivity() {
         mapContainer = findViewById(R.id.mapContainer)
         congratsContainer = findViewById(R.id.congratsContainer)
         
+
+        
         // Inicializar Mapbox
         // Initialize Mapbox Access Token explicitly to avoid crash
         val accessToken = getString(R.string.mapbox_access_token)
@@ -199,13 +201,13 @@ class MapaActivity : BaseMenuActivity() {
                 4 -> MenuAudio.navegarAParada(this@MapaActivity, 4, JuegoRecogida::class.java)
                 5 -> MenuAudio.navegarAParada(this@MapaActivity, 5, FishingProcessActivity::class.java)
                 6 -> MenuAudio.navegarAParada(this@MapaActivity, 6, Parada6Activity::class.java)
-                else -> Toast.makeText(this, "Geltoki honetako jokoa ez dago inplementatuta.", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(this, getString(R.string.msg_juego_no_implementado), Toast.LENGTH_SHORT).show()
             }
         } else {
             val mensaje = when (paradaClicada?.estado) {
-                EstadoParada.BLOQUEADA -> "Aurreko geltokia osatu behar duzu lehenago."
-                EstadoParada.COMPLETADA -> "Geltoki hau osatu duzu jada!"
-                else -> "Geltoki hau ez dago erabilgarri."
+                EstadoParada.BLOQUEADA -> getString(R.string.msg_parada_bloqueada)
+                EstadoParada.COMPLETADA -> getString(R.string.msg_parada_completada)
+                else -> getString(R.string.msg_parada_no_disponible)
             }
             Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
         }

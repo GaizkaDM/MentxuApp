@@ -76,6 +76,12 @@
 
         <!-- Módulo Parada 6 -->
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MentxuApp" />
+
+        <activity
             android:name=".Parada6.Parada6Activity"
             android:exported="false"
             android:label="Parada 6: Puzlea eta Test-a" />

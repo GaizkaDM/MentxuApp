@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MentxuApp</string>
     <string name="registrarse">Erregistratu</string>
@@ -73,7 +74,7 @@
         Kaixo, marinel ausartak!
         Zelako lan dotorea orain arte egindakoa!
         Primeran ari zareten arren, oraingoan, dinamika berezi bati ekingo diogu, hauen ardatz nagusia ingurumenaren zaintza izanik. Prest zaudete?
-        Dakizuen bezala, itsasoa nire etxea da, eta azkenaldian Santurtziko Itsas Portura heltzen ari den zabor kopurua gero eta handiagoa da.  Horregatik, zuen laguntza behar dut! Izan ere, hura zaintzen ez badugu, lurrean dagoen zaborra bertan pilatzen hasiko da, eta gune polit hau betirako galduko dugu.
+        Dakizuen bezala, itsasoa nire etxea da, eta azkenaldian Santurtziko Itsas Portura heltzen ari den zabor kopurua gero eta handiagoa da.  Horretarako, zuen laguntza behar dut! Izan ere, hura zaintzen ez badugu, lurrean dagoen zaborra bertan pilatzen hasiko da, eta gune polit hau betirako galduko dugu.
         Are gehiago, Santurtziko Itsas Portua urte askotan arrantzale eta merkatarien leku garrantzitsua izan da. Lehen, sardina-saltzaile eta marinel asko aritzen ziren bertan lanean. Denboraren poderioz, merkantzia-ontziak eta bidaiariak jasotzen dituen portu handi bihurtu delarik.
         Hori dela eta, zuen lana portua bizirik eta garbi mantentzea izango da. Horretarako, zerutik eroriko diren zabor horiek guztiak eskuan daukadan saski erraldoiarekin harrapatu beharko dituzue, portura eta itsasora iritsi ez daitezen!
         Prest zaudete itsasoa garbi mantentzeko eta naturaren zaintzan parte-hartzeko? Goazen, lagunok! Mentxurekin batera, itsasoa babes dezagun!
@@ -119,6 +120,6 @@
     <string name="accesibilidad_alto_contraste">Kontraste altua</string>
     <string name="accesibilidad_alto_contraste_desc">Testuaren irakurgarritasuna hobetzen du</string>
     <string name="ajustes_info">Informazioa</string>
-    <string name="creditos_desarrolladores">Garatzaileak</string>
+    <string name="creditos_desarrolladores">Kredituak</string>
     <string name="ajustes_cerrar">Utzi</string>
 </resources>

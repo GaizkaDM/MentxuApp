@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:text="Puntos de Interés en Santurtzi"
+                android:text="@string/mapa_titulo"
                 android:textColor="#2C3E50" />
 
             <com.google.android.material.card.MaterialCardView
@@ -56,6 +56,8 @@
 
         </LinearLayout>
     </ScrollView>
+
+
 
     <!-- Pantalla de Felicitación (visible al completar todo) -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,7 +88,7 @@
             android:id="@+id/congratsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zorionak! 🎉"
+            android:text="@string/congrats_titulo"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/purple"
@@ -100,7 +102,7 @@
             android:id="@+id/congratsMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hurrengo geltoki guztiak osatu dituzu!\nOrain Modu Librean jolastu dezakezu nahi duzun guztietan."
+            android:text="@string/congrats_mensaje"
             android:textSize="18sp"
             android:textColor="@color/texto_secundario"
             android:gravity="center"

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MentxuApp</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="idioma">Idioma</string>
+    <string name="credenciales">Credenciales</string>
+    <string name="ayudaTexto">Bienvenido a la presentación de la aplicación. Pulsa el botón de registrarse para comenzar a jugar. ¡Disfruta!</string>
+    <string name="nombre">Nombre:</string>
+    <string name="apellido">Apellido:</string>
+    <string name="dialog_comenzar">Empezar</string>
+    <string name="dialog_cancelar">Atrás</string>
+    <string name="desarrolladores">Desarrolladores:\n</string>
+    <string name="clientes">Cliente: \n</string>
+    <string name="error_campos_vacios">Por favor, rellena tus datos.</string>
+    <string name="dialog_hint_nombre">Nombre</string>
+    <string name="dialog_hint_apellido">Apellido</string>
+    <string name="dialog_select_avatar">Elige tu avatar:</string>
+    <string name="dialog_select_color">Elige tu color:</string>
+    <string name="ok">OK</string>
+    <string name="descripcion_mentxu_hablando" />
+    <string name="deskribapena1">La parte superior, la usamos para caminar por ella.</string>
+    <string name="deskribapena2">La parte izquierda del barco.</string>
+    <string name="deskribapena3">La parte derecha del barco.</string>
+    <string name="deskribapena4">La parte exterior del barco que toca el agua.</string>
+    <string name="deskribapena5">La parte delantera del barco.</string>
+    <string name="deskribapena6">La parte trasera del barco.</string>
+    <string name="deskribapena7">El capitán está ahí dirigiendo el barco.</string>
+    <!-- Parada 1: Santurtziko Udala (Mentxu) -->
+    <string name="textoExplicacion1">
+        ¡Hola amigos!
+        ¡Soy Mentxu, la gaviota más alegre y adorable de Santurtzi! El mar es mi hogar, y amo Santurtzi con locura: ¡el sonido de las olas, el viento del puerto y el brillo del faro!
+        Cada año, el 8 de julio, nazco de un huevo enorme en el ayuntamiento para anunciar a los ciudadanos de Santurtzi que han comenzado las fiestas. Pero este año, ha pasado algo... ¡mi huevo se ha perdido! Para que las fiestas del pueblo puedan comenzar, ¿podéis ayudarme a buscar el huevo?
+        Para ello, tendréis que superar dos retos divertidos: en el primero, tendréis que ayudarme a buscar y romper el huevo, para que pueda volver a salir al mundo. En el segundo, tendréis que encontrar las palabras que describen bien mi forma de ser en una sopa de letras mágica.
+        ¿Estáis listos para participar en esta aventura de Santurtzi conmigo? ¡Juntos encontraremos el huevo, buscaremos las palabras secretas y volaremos con el viento del mar!
+        ¡Vamos, amigos!
+    </string>
+    <string name="objeto1">Cubierta</string>
+    <string name="objeto2">Babor</string>
+    <string name="objeto3">Estribor</string>
+    <string name="objeto4">Casco</string>
+    <string name="objeto5">Proa</string>
+    <string name="objeto6">Popa</string>
+    <string name="objeto7">Puente de mando</string>
+
+    <!-- Parada 2: Juego de Diferencias -->
+    <string name="textoExplicacion2">
+        ¡Felicidades, equipo!
+        Quiero daros las gracias por encontrar mi huevo y romper el cascarón.
+        Para premiar vuestro esfuerzo, me tendréis como ayudante durante el recorrido.
+        Juntos hemos conocido los rincones más bonitos de Santurtzi, pero cuidado, la aventura aún no ha terminado.
+        Aunque hayáis hecho la siguiente dinámica genial, el viaje debe continuar.
+        En la siguiente parada tendréis que analizar una escultura, prestando toda la atención a su forma, color y pequeños detalles.
+        Esta escultura del niño y el perro rinde homenaje al pasado del pueblo y a su vínculo con el mar.
+        Antiguamente, el agua llegaba hasta ese lugar, y toda la vida de Santurtzi se organizaba en torno a la pesca y el puerto. Después, vuestro siguiente cometido será buscar las diferencias entre dos fotos de la misma escultura, una real y otra editada. ¿Estáis listos para poner en práctica vuestra vista más aguda?
+    </string>
+    <string name="titulo_diferencias">Busca las diferencias</string>
+    <string name="instrucciones_diferencias">Busca las 7 diferencias entre las dos imágenes del puerto de Santurtzi. Pulsa en la imagen de la derecha para marcar las diferencias.</string>
+    <string name="contador_diferencias_inicio">Diferencias encontradas: 0/7</string>
+    <string name="boton_pista">Ayuda</string>
+
+    <!-- Parada 3: Agurtza itsasontzia -->
+    <string name="textoExplicacion3">
+        ¡Hola equipo!
+        ¡Felicidades por el trabajo realizado! Aunque os habéis desenvuelto genial en los retos hasta ahora, ¡la aventura aún continúa! ¿Listos?
+        Esta vez visitaremos el atunero llamado Agurtza, que está en el barco-museo. ¡Este no es un barco cualquiera, sino un tesoro de la tradición pesquera de Santurtzi!
+        El barco Agurtza es un atunero de madera construido en los astilleros Murelaga de Lekeitio. Se utilizó para la pesca hasta principios del siglo XX, tanto en la costa cantábrica como en mares lejanos. Cuando el barco estaba a punto de ser desguazado, Santurtzi lo adquirió, siendo el único atunero que queda en Bizkaia.
+        Para analizarlo, tendréis que investigar una foto del barco Agurtza, donde aparecerán sus partes más características: proa, popa, bote, timonel... ¡y muchas más! Para convertiros en verdaderos expertos navales, tendréis que unir el nombre de cada parte con su significado correspondiente.
+        ¿Estáis listos para sumergiros en esta aventura marina y conocer mejor el barco Agurtza?
+        ¡Adelante, valientes marineros!
+    </string>
+
+    <!-- Parada 4: Itsas-museoa -->
+    <string name="textoExplicacion4">
+        ¡Hola, valientes marineros!
+        ¡Qué trabajo tan elegante el que habéis hecho hasta ahora!
+        Aunque lo estáis haciendo genial, esta vez nos embarcaremos en una dinámica especial, cuyo eje principal será el cuidado del medio ambiente. ¿Estáis listos?
+        Como sabéis, el mar es mi casa, y últimamente la cantidad de basura que llega al Puerto Marítimo de Santurtzi es cada vez mayor. ¡Por eso necesito vuestra ayuda! De hecho, si no lo cuidamos, la basura de la tierra empezará a acumularse allí, y perderemos este bonito lugar para siempre.
+        Es más, el Puerto Marítimo de Santurtzi ha sido durante muchos años un lugar importante para pescadores y comerciantes. Antes, muchas sardineras y marineros trabajaban allí. Con el paso del tiempo, se ha convertido en un gran puerto que recibe barcos mercantes y pasajeros.
+        Por eso, vuestro trabajo será mantener el puerto vivo y limpio. Para ello, tendréis que atrapar con la cesta gigante que tengo en la mano toda esa basura que caerá del cielo, ¡para que no llegue al puerto ni al mar!
+        ¿Estáis listos para mantener el mar limpio y participar en el cuidado de la naturaleza? ¡Vamos, amigos! ¡Protejamos el mar junto a Mentxu!
+    </string>
+
+    <!-- Parada 5: Arrantzaren prozesua -->
+    <string name="textoExplicacion5">
+        ¡Hola, familia!
+        ¡Qué trabajo estáis haciendo!
+        Aunque estáis superando cada reto de maravilla, ¡la aventura aún no ha terminado! Pero tranquilos, estáis cada vez más cerca del final del recorrido... ¡Animo!
+        Llegaremos a nuestra siguiente parada, es decir, el Museo Marítimo de Santurtzi. Este museo está en el corazón del puerto pesquero del pueblo, y muestra la especial conexión que Santurtzi tiene con el mar.
+        Sin embargo, ¿conocéis el proceso de pesca?
+        Por todo lo que habéis conseguido hasta ahora os daré una pequeña ayuda: Primero, capturan los peces mediante redes gigantes. Después, recogen todo lo pescado y lo clasifican, separándolo por tamaño y tipo. Finalmente, comercializan el pescado, llevándolo al mercado o para consumo del pueblo.
+        Ahora que sabéis un poco más sobre la pesca, vuestro siguiente reto será: ordenar cronológicamente los pasos que componen el proceso de pesca. Para ello, recibiréis siete imágenes desordenadas.
+        ¿Estáis listos para descubrir los secretos del mar y superar el siguiente reto? ¡Empecemos, hábiles pescadores!
+    </string>
+
+    <!-- Parada 6: Puzlea + AMALERAKO-TESTA -->
+    <string name="textoExplicacion6">
+        ¡Aupa, amigos!
+        ¡Hemos llegado al final de nuestra excursión virtual! Pero antes de despedirnos, os queda un último reto. ¡No estéis tristes! ¡Juntos hemos conocido muchos rincones y tesoros de Santurtzi!
+        En la última parada, iremos al Museo de Esculturas. Para conocer la emotiva escultura llamada “Monumento a los niños y niñas de la guerra”. Para ello, tenemos que retroceder en el tiempo, concretamente al año 1937, cuando España sufría la Guerra Civil. En aquella época, a consecuencia de las bombas que destruían el pueblo de Santurtzi, muchos niños vieron la necesidad de huir del pueblo por miedo. Por eso, subieron a un barco y partieron en busca de un lugar más seguro. Por otro lado, este lugar también tiene otra importancia cultural: el lugar donde nos diremos adiós.
+        Esta vez, vuestro reto será el siguiente: por un lado, analizar atentamente la escultura y completar su puzzle. Por otro lado, compartir opiniones, pensamientos e hipótesis en gran grupo. Para terminar, tendréis que responder un breve test.
+        ¿Estáis listos para superar este último reto y dar un final maravilloso a la aventura?
+        ¡Empecemos, hábiles pescadores!
+    </string>
+
+    <string name="mapbox_access_token">pk.eyJ1Ijoic3J0b2Zyb3N0eSIsImEiOiJjbWw3eGlqdTAwMWpzM2VzYm9mb3BzZ214In0.IYzuxDpLTFzkRAe9yrbIDw</string>
+    
+    <!-- Mensajes Mapa -->
+    <string name="msg_juego_no_implementado">El juego de esta parada no está implementado.</string>
+    <string name="msg_parada_bloqueada">Debes completar la parada anterior primero.</string>
+    <string name="msg_parada_completada">¡Ya has completado esta parada!</string>
+    <string name="msg_parada_no_disponible">Esta parada no está disponible.</string>
+    <string name="mapa_titulo">Puntos de Interés en Santurtzi</string>
+    <string name="congrats_titulo">¡Felicidades! 🎉</string>
+    <string name="congrats_mensaje">¡Has completado todas las paradas!\nAhora puedes jugar en Modo Libre cuando quieras.</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="ajustes_volumen">Sonido</string>
+    <string name="ajustes_volumen_musica">Música y efectos</string>
+    <string name="ajustes_idioma">Idioma</string>
+    <string name="ajustes_accesibilidad">Accesibilidad</string>
+    <string name="accesibilidad_alto_contraste">Alto contraste</string>
+    <string name="accesibilidad_alto_contraste_desc">Mejora la legibilidad del texto</string>
+    <string name="ajustes_info">Información</string>
+    <string name="creditos_desarrolladores">Créditos</string>
+    <string name="ajustes_cerrar">Cerrar</string>
+</resources>

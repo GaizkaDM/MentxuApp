@@ -81,6 +81,11 @@ class UserPreferences(context: Context) {
     var userColor: String
         get() = sharedPreferences.getString(Constants.KEY_USER_COLOR, "azul") ?: "azul"
         set(value) = sharedPreferences.edit().putString(Constants.KEY_USER_COLOR, value).apply()
+
+    // Idioma seleccionado (es, eu)
+    var language: String
+        get() = sharedPreferences.getString("KEY_LANGUAGE", "eu") ?: "eu"
+        set(value) = sharedPreferences.edit().putString("KEY_LANGUAGE", value).apply()
     
     // Verificar si hay usuario logueado
     fun hasUser(): Boolean = userId > 0

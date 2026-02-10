@@ -153,4 +153,10 @@ abstract class BaseMenuActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+    override fun attachBaseContext(newBase: android.content.Context) {
+        super.attachBaseContext(com.gaizkafrost.mentxuapp.utils.LocaleHelper.onAttach(newBase))
+    }
+
+
+
 }
