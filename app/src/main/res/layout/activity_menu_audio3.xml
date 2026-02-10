@@ -87,7 +87,7 @@
             app:layout_constraintStart_toEndOf="@+id/playPauseButton"
             app:layout_constraintTop_toTopOf="@+id/playPauseButton" />
 
-        <!-- Botón para continuar a la siguiente pantalla -->
+        <!-- Botón para continuar a la siguiente pantalla (oculto inicialmente) -->
         <Button
             android:id="@+id/continueButton"
             android:layout_width="0dp"

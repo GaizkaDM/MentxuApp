@@ -56,8 +56,8 @@ class Relacionar : BaseMenuActivity() {
         deskViews = deskIds.map { findViewById<TextView>(it) }
         objViews = objIds.map { findViewById<TextView>(it) }
 
-        // Configuramos el arrastre
-        deskViews.forEach { setDraggable(it) }
+        // Configuramos el arrastre (Ahora los OBJETOS de la izquierda se mueven)
+        objViews.forEach { setDraggable(it) }
 
         // Configuración aleatoria de textos y emparejamientos
         setupGame()
@@ -95,7 +95,8 @@ class Relacionar : BaseMenuActivity() {
             val currentObjView = objViews.find { it.text == correctObjText }
 
             if (currentDeskView != null && currentObjView != null) {
-                setDroppable(currentObjView, currentDeskView)
+                // El DESTINO es la descripción (derecha), el arrastrable es el objeto (izquierda)
+                setDroppable(currentDeskView, currentObjView)
             }
         }
     }
