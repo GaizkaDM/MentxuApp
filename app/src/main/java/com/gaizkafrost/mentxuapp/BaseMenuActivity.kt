@@ -32,10 +32,12 @@ abstract class BaseMenuActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         
-        // Configurar Toolbar si existe
+        // Ocultar Toolbar si existe (evitar franja morada)
         try {
-            val toolbar = findViewById<Toolbar>(R.id.toolbar)
-            toolbar?.let { setSupportActionBar(it) }
+            val toolbar = findViewById<android.view.View>(R.id.toolbar)
+            if (toolbar != null) {
+                toolbar.visibility = android.view.View.GONE
+            }
         } catch (e: Exception) {}
 
         // Configurar Bottom Navigation
@@ -162,31 +164,42 @@ abstract class BaseMenuActivity : AppCompatActivity() {
 
     // --- SISTEMA DE PISTAS ---
 
+    private var hintButton: android.widget.ImageView? = null
+
     /**
      * Configura una pista para la actividad actual.
-     * Si se llama a este método, aparecerá un icono de bombilla en la Toolbar.
+     * Muestra una imagen estática en la esquina superior derecha que, al pulsarse, abre el diálogo de ayuda.
      */
     protected fun setupHint(text: String) {
         this.hintText = text
-        invalidateOptionsMenu()
-    }
+        
+        // Si ya existe el botón, solo actualizamos el comportamiento (aunque el texto ya se guardó)
+        if (hintButton != null) return
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if (hintText != null) {
-            menuInflater.inflate(R.menu.hint_menu, menu)
-            return true
-        }
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_hint -> {
-                showHintDialog()
-                true
+        val rootView = findViewById<android.view.ViewGroup>(android.R.id.content)
+        
+        hintButton = android.widget.ImageView(this).apply {
+            setImageResource(R.drawable.logo) // Usamos el logo como icono
+            scaleType = android.widget.ImageView.ScaleType.FIT_CENTER
+            
+            // Definir tamaño en píxeles (aprox 60dp)
+            val size = (60 * resources.displayMetrics.density).toInt()
+            val margin = (16 * resources.displayMetrics.density).toInt()
+            
+            val params = android.widget.FrameLayout.LayoutParams(size, size).apply {
+                gravity = android.view.Gravity.TOP or android.view.Gravity.END
+                topMargin = margin
+                rightMargin = margin
             }
-            else -> super.onOptionsItemSelected(item)
+            layoutParams = params
+            
+            setOnClickListener { showHintDialog() }
+            
+            // Asegurar que esté por encima de todo
+            elevation = 10f
         }
+        
+        rootView.addView(hintButton)
     }
 
     private fun showHintDialog() {
