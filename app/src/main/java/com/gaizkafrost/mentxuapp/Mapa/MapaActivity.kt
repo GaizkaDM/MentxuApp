@@ -13,6 +13,7 @@ import com.gaizkafrost.mentxuapp.Parada
 import com.gaizkafrost.mentxuapp.Parada1.Huevo_Activity
 import com.gaizkafrost.mentxuapp.Parada1.MenuAudio
 import com.gaizkafrost.mentxuapp.Parada2.DiferenciasActivity
+import com.gaizkafrost.mentxuapp.Parada3.Parada3Imagen1
 import com.gaizkafrost.mentxuapp.Parada3.Relacionar
 import com.gaizkafrost.mentxuapp.Parada4.JuegoRecogida
 import com.gaizkafrost.mentxuapp.Parada5.FishingProcessActivity
@@ -195,12 +196,12 @@ class MapaActivity : BaseMenuActivity() {
 
         if (paradaClicada != null && paradaClicada.estado == EstadoParada.ACTIVA) {
             when (paradaClicada.id) {
-                1 -> MenuAudio.navegarAParada(this@MapaActivity, 1, Huevo_Activity::class.java)
-                2 -> MenuAudio.navegarAParada(this@MapaActivity, 2, DiferenciasActivity::class.java)
-                3 -> MenuAudio.navegarAParada(this@MapaActivity, 3, Parada3Imagen1::class.java)
-                4 -> MenuAudio.navegarAParada(this@MapaActivity, 4, JuegoRecogida::class.java)
-                5 -> MenuAudio.navegarAParada(this@MapaActivity, 5, FishingProcessActivity::class.java)
-                6 -> MenuAudio.navegarAParada(this@MapaActivity, 6, Parada6Activity::class.java)
+                1 -> MenuAudio.navegarAParada(this, 1, Huevo_Activity::class.java)
+                2 -> MenuAudio.navegarAParada(this, 2, DiferenciasActivity::class.java)
+                3 -> MenuAudio.navegarAParada(this, 3, Parada3Imagen1::class.java)
+                4 -> MenuAudio.navegarAParada(this, 4, JuegoRecogida::class.java)
+                5 -> MenuAudio.navegarAParada(this, 5, FishingProcessActivity::class.java)
+                6 -> MenuAudio.navegarAParada(this, 6, Parada6Activity::class.java)
                 else -> Toast.makeText(this, getString(R.string.msg_juego_no_implementado), Toast.LENGTH_SHORT).show()
             }
         } else {
