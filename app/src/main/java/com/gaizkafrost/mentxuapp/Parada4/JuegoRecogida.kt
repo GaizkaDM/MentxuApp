@@ -70,8 +70,8 @@ class JuegoRecogida : BaseMenuActivity() {
         startGameLoop()
         startSpawner()
 
-        // Sistema de pistas
-        setupHint("Mugitu saskia hatzarekin zaborra harrapatzeko eta portua garbi mantentzeko.")
+        // Sistema de pistas (DESACTIVADO EN PARADA 4)
+        // setupHint("Mugitu saskia hatzarekin zaborra harrapatzeko eta portua garbi mantentzeko.")
     }
 
     private fun setupControls() {

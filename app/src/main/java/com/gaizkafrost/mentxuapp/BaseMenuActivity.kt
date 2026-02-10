@@ -184,12 +184,13 @@ abstract class BaseMenuActivity : AppCompatActivity() {
             
             // Definir tamaño en píxeles (aprox 60dp)
             val size = (60 * resources.displayMetrics.density).toInt()
-            val margin = (16 * resources.displayMetrics.density).toInt()
+            val marginTop = (16 * resources.displayMetrics.density).toInt()
+            val marginRight = 0 // Pegado totalmente a la derecha
             
             val params = android.widget.FrameLayout.LayoutParams(size, size).apply {
                 gravity = android.view.Gravity.TOP or android.view.Gravity.END
-                topMargin = margin
-                rightMargin = margin
+                topMargin = marginTop
+                rightMargin = marginRight
             }
             layoutParams = params
             
