@@ -59,7 +59,25 @@ class MapaActivity : BaseMenuActivity() {
         congratsContainer = findViewById(R.id.congratsContainer)
         
         // Inicializar Mapbox
-        mapView = findViewById(R.id.mapView)
+        // Initialize Mapbox Access Token explicitly to avoid crash
+        val accessToken = getString(R.string.mapbox_access_token)
+        com.mapbox.common.MapboxOptions.accessToken = accessToken
+
+        // Create MapView programmatically
+        // textureView = true fixes black screen on emulators and is safe for devices
+        val mapCard = findViewById<com.google.android.material.card.MaterialCardView>(R.id.mapCard)
+        // Remove any previous views to be safe
+        mapCard.removeAllViews()
+
+        val mapInitOptions = com.mapbox.maps.MapInitOptions(this, textureView = true)
+        mapView = MapView(this, mapInitOptions)
+        
+        val params = android.widget.FrameLayout.LayoutParams(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT, 
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        mapCard.addView(mapView, params)
+        
         mapboxMap = mapView.getMapboxMap()
         
         // Cargar estilo de mapa (Outdoor es bueno para turismo)

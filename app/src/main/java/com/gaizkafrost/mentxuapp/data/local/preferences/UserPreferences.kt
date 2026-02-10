@@ -16,13 +16,31 @@ class UserPreferences(context: Context) {
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
     
-    private val sharedPreferences: SharedPreferences = EncryptedSharedPreferences.create(
-        context,
-        Constants.PREFS_NAME,
-        masterKey,
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-    )
+    private val sharedPreferences: SharedPreferences = try {
+        createEncryptedSharedPreferences(context, masterKey)
+    } catch (e: Exception) {
+        // Fallback: Delete the corrupted file and try again
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                context.deleteSharedPreferences(Constants.PREFS_NAME)
+            } else {
+                context.getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE).edit().clear().commit()
+            }
+        } catch (deleteException: Exception) {
+            // Ignore delete errors
+        }
+        createEncryptedSharedPreferences(context, masterKey)
+    }
+
+    private fun createEncryptedSharedPreferences(context: Context, masterKey: MasterKey): SharedPreferences {
+        return EncryptedSharedPreferences.create(
+            context,
+            Constants.PREFS_NAME,
+            masterKey,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
     
     // Usuario ID
     var userId: Int
