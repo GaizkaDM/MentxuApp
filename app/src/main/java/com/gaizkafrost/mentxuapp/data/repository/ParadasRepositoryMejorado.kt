@@ -269,6 +269,13 @@ class ParadasRepositoryMejorado(
             emptyList()
         }
     }
+
+    /**
+     * Obtiene el flujo de progresos del usuario para actualizaciones en tiempo real.
+     */
+    fun obtenerProgresoUsuarioFlow(usuarioId: Int): Flow<List<com.gaizkafrost.mentxuapp.data.local.entity.ProgresoEntity>> {
+        return progresoDao.obtenerProgresoUsuarioFlow(usuarioId)
+    }
     
     // ==================== LOGROS ====================
     
