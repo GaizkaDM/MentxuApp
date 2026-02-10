@@ -197,7 +197,7 @@ class MapaActivity : BaseMenuActivity() {
             when (paradaClicada.id) {
                 1 -> MenuAudio.navegarAParada(this@MapaActivity, 1, Huevo_Activity::class.java)
                 2 -> MenuAudio.navegarAParada(this@MapaActivity, 2, DiferenciasActivity::class.java)
-                3 -> MenuAudio.navegarAParada(this@MapaActivity, 3, Relacionar::class.java)
+                3 -> MenuAudio.navegarAParada(this@MapaActivity, 3, Parada3Imagen1::class.java)
                 4 -> MenuAudio.navegarAParada(this@MapaActivity, 4, JuegoRecogida::class.java)
                 5 -> MenuAudio.navegarAParada(this@MapaActivity, 5, FishingProcessActivity::class.java)
                 6 -> MenuAudio.navegarAParada(this@MapaActivity, 6, Parada6Activity::class.java)

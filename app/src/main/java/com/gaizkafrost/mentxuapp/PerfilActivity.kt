@@ -55,23 +55,22 @@ class PerfilActivity : BaseMenuActivity() {
     private fun cargarEstadisticas() {
         lifecycleScope.launch {
             try {
-                repository.obtenerParadas(userPrefs.userId).collect { resource ->
-                    when (resource) {
-                        is com.gaizkafrost.mentxuapp.utils.Resource.Success -> {
-                            val paradas = resource.data ?: emptyList()
-                            val completadas = paradas.count { it.estado == EstadoParada.COMPLETADA }
-                            
-                            findViewById<TextView>(R.id.tvParadasCompletadas).text = completadas.toString()
-                            // Calcular puntuación aproximada (100 puntos por parada)
-                            findViewById<TextView>(R.id.tvPuntuacionTotal).text = (completadas * 100).toString()
-                        }
-                        else -> {}
-                    }
+                repository.obtenerProgresoUsuarioFlow(userPrefs.userId).collect { progresos ->
+                    val completadas = progresos.count { it.estado == "completada" }
+                    val puntuacionTotal = progresos.sumOf { it.puntuacion }
+                    
+                    findViewById<TextView>(R.id.tvParadasCompletadas).text = completadas.toString()
+                    findViewById<TextView>(R.id.tvPuntuacionTotal).text = puntuacionTotal.toString()
                 }
             } catch (e: Exception) {
                 findViewById<TextView>(R.id.tvParadasCompletadas).text = "0"
                 findViewById<TextView>(R.id.tvPuntuacionTotal).text = "0"
             }
+        }
+        
+        // También disparamos obtenerParadas para forzar la sincronización inicial con el servidor
+        lifecycleScope.launch {
+            repository.obtenerParadas(userPrefs.userId).collect { /* Solo para sincronizar */ }
         }
     }
 
