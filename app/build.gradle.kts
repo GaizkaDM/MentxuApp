@@ -36,6 +36,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "API_BASE_URL", "\"https://mentxubackend-production.up.railway.app/api/\"")
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     
