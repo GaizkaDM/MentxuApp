@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.gaizkafrost.mentxuapp"
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.gaizkafrost.mentxuapp"
         minSdk = 29
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -24,6 +24,7 @@ android {
             // Excluimos x86_64 para evitar el error de alineación de 16KB en Mapbox
             abiFilters.add("armeabi-v7a")
             abiFilters.add("arm64-v8a")
+            abiFilters.add("x86_64") // Añadido para permitir Emuladores
         }
     }
 
