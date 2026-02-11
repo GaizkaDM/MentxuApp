@@ -154,4 +154,13 @@
     <string name="hint_pesca">Ordena las imágenes según la secuencia lógica del proceso de pesca (primero pescar, luego clasificar y finalmente vender).</string>
     <string name="audio_play_icon">Reproducir</string>
     <string name="audio_pause_icon">Pausar</string>
+
+    <!-- Parada 5: Pasos del Proceso de Pesca -->
+    <string name="pesca_step_1">Pesca</string>
+    <string name="pesca_step_2">Recogida de redes</string>
+    <string name="pesca_step_3">Descarga en puerto</string>
+    <string name="pesca_step_4">Clasificación del pescado</string>
+    <string name="pesca_step_5">Subasta en la Lonja</string>
+    <string name="pesca_step_6">Transporte</string>
+    <string name="pesca_step_7">Venta al público</string>
 </resources>

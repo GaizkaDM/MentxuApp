@@ -145,4 +145,13 @@
     <string name="logout_button">🚪 Irten</string>
     <string name="audio_play_icon">Erreproduzitu</string>
     <string name="audio_pause_icon">Pausatu</string>
+
+    <!-- Parada 5: Arrantza Prozesua Urratsak -->
+    <string name="pesca_step_1">Arrantzatzea</string>
+    <string name="pesca_step_2">Sareak jasotzea</string>
+    <string name="pesca_step_3">Portuan deskargatzea</string>
+    <string name="pesca_step_4">Arraina sailkatzea</string>
+    <string name="pesca_step_5">Lonjan enkantea</string>
+    <string name="pesca_step_6">Garraioa</string>
+    <string name="pesca_step_7">Salmenta</string>
 </resources>
