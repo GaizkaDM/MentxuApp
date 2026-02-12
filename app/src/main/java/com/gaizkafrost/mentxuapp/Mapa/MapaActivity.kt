@@ -35,6 +35,19 @@ import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
 import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import kotlinx.coroutines.launch
 
+/**
+ * Actividad principal que muestra el mapa interactivo de Santurtzi.
+ * Utiliza Mapbox para renderizar el mapa y gestionar los marcadores de las paradas.
+ *
+ * Funcionalidades clave:
+ * - **Visualización de Paradas**: Carga las paradas desde el repositorio (local o remoto).
+ * - **Estado de las Paradas**: Diferencia visualmente entre paradas bloqueadas (gris), activas (rojo) y completadas (verde).
+ * - **Interacción**: Al hacer clic en un marcador activo, navega a la actividad del minijuego correspondiente.
+ * - **Sincronización**: En `onResume`, verifica el progreso y sincroniza datos pendientes con el servidor.
+ * - **Fin del Juego**: Detecta si todas las paradas (excepto la final) están completas para mostrar la pantalla de felicitación.
+ *
+ * @author Diego, Gaizka, Xiker
+ */
 class MapaActivity : BaseMenuActivity() {
     private lateinit var mapView: MapView
     private lateinit var mapboxMap: MapboxMap

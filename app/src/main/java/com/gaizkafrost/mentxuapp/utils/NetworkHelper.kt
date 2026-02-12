@@ -6,11 +6,20 @@ import android.net.NetworkCapabilities
 import android.os.Build
 
 /**
- * Helper para verificar la conectividad de red
+ * Helper para verificar la conectividad de red y el tipo de conexión actual.
+ * Maneja las diferencias entre versiones de Android (pre y post Marshmallow).
+ *
+ * @author Diego, Gaizka, Xiker
  */
 object NetworkHelper {
     
+    /**
+     * Comprueba si el dispositivo tiene una conexión a internet activa y validada.
+     * @param context Contexto de la aplicación.
+     * @return `true` si hay conexión, `false` en caso contrario.
+     */
     fun isNetworkAvailable(context: Context): Boolean {
+        // ... implementation
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -27,6 +36,11 @@ object NetworkHelper {
         }
     }
     
+    /**
+     * Determina el tipo de red al que está conectado el dispositivo.
+     * @param context Contexto de la aplicación.
+     * @return Enum [NetworkType] indicando el tipo (WIFI, CELULAR, etc.).
+     */
     fun getNetworkType(context: Context): NetworkType {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         
@@ -54,6 +68,7 @@ object NetworkHelper {
     }
 }
 
+/** Enum que define los tipos de conexión posibles. */
 enum class NetworkType {
     NONE, WIFI, CELLULAR, ETHERNET, OTHER
 }

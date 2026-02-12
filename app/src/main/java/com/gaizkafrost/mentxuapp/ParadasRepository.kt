@@ -2,9 +2,15 @@ package com.gaizkafrost.mentxuapp
 
 import com.mapbox.geojson.Point
 
+/**
+ * Repositorio encargado de gestionar la lista de paradas y su estado.
+ * Funciona como una fuente de verdad única para el progreso del recorrido.
+ *
+ * @author Diego, Gaizka, Xiker
+ */
 object ParadasRepository {
 
-    // Lista privada de paradas
+    // Lista privada de paradas con sus datos iniciales
     private val paradas = mutableListOf(
         Parada(1, "Santurtziko Udala (Mentxu)", Point.fromLngLat(-3.032944, 43.328833)),
         Parada(2, "“El niño y el perro” eskultura", Point.fromLngLat(-3.032306, 43.328833)),
@@ -15,30 +21,41 @@ object ParadasRepository {
     )
 
     init {
-        // Al iniciar, la primera parada siempre está activa
+        // Al iniciar, aseguramos que la primera parada sea la activa
         paradas.firstOrNull()?.estado = EstadoParada.ACTIVA
     }
 
-    // Función para obtener todas las paradas
+    /**
+     * Devuelve la lista completa de paradas con su estado actual.
+     * @return Lista de objetos [Parada].
+     */
     fun obtenerTodas(): List<Parada> {
         return paradas
     }
 
-    // Función para marcar una parada como completada y activar la siguiente
+    /**
+     * Marca una parada como completada y desbloquea la siguiente en la secuencia.
+     *
+     * Si se completa la última parada (ID 6), no se activa ninguna nueva parada,
+     * dando paso al "modo libre".
+     *
+     * @param idParada El ID de la parada que se ha completado.
+     */
     fun completarParada(idParada: Int) {
         val paradaActual = paradas.find { it.id == idParada }
         paradaActual?.estado = EstadoParada.COMPLETADA
 
-        // Nota: la parada 6 es la última del recorrido.
-        // Después de marcarla como completada se activará el "modo libre", en el que se podrán jugar las actividades que quieran.
+        // Control de flujo: si no es la última, activamos la siguiente
         if (idParada != 6) {
-            // Buscamos la siguiente parada que esté bloqueada y la activamos
             val siguienteParada = paradas.firstOrNull { it.estado == EstadoParada.BLOQUEADA }
             siguienteParada?.estado = EstadoParada.ACTIVA
         }
     }
 
-    // Función para obtener la parada activa actual
+    /**
+     * Busca y devuelve la parada que se encuentra actualmente activa (en curso).
+     * @return La [Parada] activa, o null si no hay ninguna.
+     */
     fun obtenerParadaActiva(): Parada? {
         return paradas.find { it.estado == EstadoParada.ACTIVA }
     }

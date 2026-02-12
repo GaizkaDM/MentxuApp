@@ -2,17 +2,32 @@ package com.gaizkafrost.mentxuapp
 
 import com.mapbox.geojson.Point
 
-// 1. Enum para definir los estados posibles de una parada
+// Enum que define el estado en el que se encuentra una parada.
+// Esto ayuda a controlar si el usuario puede interactuar con ella o no.
 enum class EstadoParada {
-    BLOQUEADA, // Gris, no se puede hacer clic
-    ACTIVA,    // Rojo, es la siguiente parada a visitar
-    COMPLETADA // Verde (o un color vivo), ya ha sido visitada
+    /** La parada está bloqueada y no se puede visitar aún. */
+    BLOQUEADA,
+
+    /** La parada es la siguiente en la ruta y está lista para ser visitada. */
+    ACTIVA,
+
+    /** La parada ya ha sido completada por el usuario. */
+    COMPLETADA
 }
 
-// 2. Clase de datos para representar una parada
+/**
+ * Representa una parada dentro del recorrido turístico o educativo.
+ * Contiene la información básica como su ID, nombre, ubicación y estado actual.
+ *
+ * @property id Identificador único de la parada.
+ * @property nombre Nombre descriptivo de la parada.
+ * @property ubicacion Coordenadas geográficas (Mapbox Point).
+ * @property estado Estado actual de la parada (por defecto BLOQUEADA).
+ * @author Diego, Gaizka, Xiker
+ */
 data class Parada(
     val id: Int,
     val nombre: String,
-    val ubicacion: Point, // Coordenadas Mapbox (Longitud, Latitud)
-    var estado: EstadoParada = EstadoParada.BLOQUEADA // Por defecto, todas están bloqueadas
+    val ubicacion: Point,
+    var estado: EstadoParada = EstadoParada.BLOQUEADA
 )

@@ -13,8 +13,16 @@ import com.gaizkafrost.mentxuapp.Mapa.MapaActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
- * Clase base para todas las actividades con Bottom Navigation.
- * La barra de navegación estará fija en todas las pantallas.
+ * Actividad base abstracta que gestiona la navegación inferior (BottomNavigation) y funcionalidades comunes.
+ * Todas las actividades principales (Mapa, Perfil, Ranking, Modo Libre) heredan de esta clase.
+ *
+ * Funcionalidades incluidas:
+ * - Configuración y gestión de la barra de navegación inferior.
+ * - Sistema de puntuación base (cálculo de tiempo y errores).
+ * - Sistema de pistas (Hint System) con diálogo emergente.
+ * - Soporte multiidioma (Context Wrapper).
+ *
+ * @author Diego, Gaizka, Xiker
  */
 abstract class BaseMenuActivity : AppCompatActivity() {
 

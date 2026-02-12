@@ -16,6 +16,17 @@ import com.gaizkafrost.mentxuapp.data.remote.api.RetrofitClient
 import com.gaizkafrost.mentxuapp.data.remote.dto.RankingItemResponse
 import kotlinx.coroutines.launch
 
+/**
+ * Actividad que muestra la tabla de clasificación (Ranking) de los usuarios.
+ *
+ * Funcionalidad:
+ * - Carga datos primero de caché local (si existe) para respuesta inmediata.
+ * - Sincroniza con el servidor en segundo plano usando [RetrofitClient].
+ * - Muestra un indicador de carga (ProgressBar) mientras se obtienen los datos.
+ * - Maneja errores de conexión mostrando mensajes (Toast) adecuados.
+ *
+ * @author Diego, Gaizka, Xiker
+ */
 class RankingActivity : BaseMenuActivity() {
 
     private lateinit var recyclerView: RecyclerView

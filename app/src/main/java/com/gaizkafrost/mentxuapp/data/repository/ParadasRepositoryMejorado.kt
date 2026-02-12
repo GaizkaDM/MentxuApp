@@ -11,7 +11,18 @@ import kotlinx.coroutines.flow.flow
 import android.util.Log
 
 /**
- * Repository mejorado para gestionar paradas con sincron ización online/offline
+ * Repositorio central de la aplicación que gestiona la lógica de datos de Paradas y Progreso.
+ * Implementa una estrategia "Offline-First" (primero local, luego red) para garantizar
+ * que el usuario pueda jugar sin conexión a internet.
+ *
+ * Funcionalidades principales:
+ * - **Sincronización Bidireccional**: Descarga datos del servidor y sube el progreso local pendiente.
+ * - **Gestión de Estado**: Combina datos estáticos (Paradas) con dinámicos (Progreso del usuario).
+ * - **Persistencia Local**: Utiliza Room Database como fuente única de verdad para la UI.
+ *
+ * @param context Contexto de la aplicación.
+ * @param database Instancia de la base de datos Room (por defecto [AppDatabase.getDatabase]).
+ * @author Diego, Gaizka, Xiker
  */
 class ParadasRepositoryMejorado(
     private val context: Context,
@@ -26,9 +37,14 @@ class ParadasRepositoryMejorado(
     }
     
     /**
-     * Obtener todas las paradas con estrategia cache-first
-     * 1. Mostrar datos locales inmediatamente (si existen)
-     * 2. Intentar actualizar desde backend en segundo plano
+     * Obtiene el flujo de paradas con sus estados actualizados.
+     * Sigue el patrón "Stale-While-Revalidate":
+     * 1. Emite inmediatamente los datos locales cacheados (si existen).
+     * 2. En segundo plano, intenta contactar con la API para obtener datos frescos.
+     * 3. Si la API responde, actualiza la base de datos local y emite los nuevos datos.
+     *
+     * @param usuarioId ID del usuario para filtrar su progreso personal.
+     * @return Flow que emite recursos con la lista de [Parada].
      */
     fun obtenerParadas(usuarioId: Int): Flow<Resource<List<Parada>>> = flow {
         emit(Resource.Loading())

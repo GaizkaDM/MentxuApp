@@ -32,11 +32,20 @@ import com.gaizkafrost.mentxuapp.utils.Resource
 import kotlinx.coroutines.launch
 
 /**
- * Clase Presentacion que representa la actividad inicial de la aplicación.
- * Permite al usuario introducir sus datos, registrarlos en el backend y acceder al mapa.
+ * Actividad de inicio (Splash/Login) de la aplicación.
  *
- * @author Diego, Gaizka (Backend Integration)
- * @version 2.0
+ * Funciones principales:
+ * 1. **Verificación de Sesión**: Comprueba si existe un usuario activo en [UserPreferences].
+ *    - Si existe, registra una nueva sesión en el backend y redirige al Mapa.
+ *    - Si no, muestra la pantalla de bienvenida con opciones de registro.
+ *
+ * 2. **Registro de Usuario**: Gestiona el flujo de creación de una nueva cuenta.
+ *    - Selección de Avatar y Color mediante diálogos personalizados.
+ *    - Comunicación con la API para registrar el usuario y obtener su ID único.
+ *
+ * 3. **Gestión de Recursos**: Carga inicial de datos (paradas) para tenerlos listos en el Mapa.
+ *
+ * @author Diego, Gaizka, Xiker
  */
 class Presentacion : BaseMenuActivity() {
 

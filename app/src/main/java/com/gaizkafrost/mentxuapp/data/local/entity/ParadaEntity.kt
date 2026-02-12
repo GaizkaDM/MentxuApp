@@ -7,7 +7,21 @@ import com.gaizkafrost.mentxuapp.EstadoParada
 import com.mapbox.geojson.Point
 
 /**
- * Entidad de Room para almacenar paradas localmente (offline cache)
+ * Entidad de Base de Datos (Room) que representa una parada almacenada localmente.
+ * Permite que la aplicación funcione sin conexión a internet (offline-first).
+ *
+ * @property id Identificador único de la parada (coincide con el remoto).
+ * @property nombre Nombre completo de la parada.
+ * @property nombreCorto Nombre abreviado para mostrar en listas o marcadores.
+ * @property latitud Coordenada de latitud.
+ * @property longitud Coordenada de longitud.
+ * @property descripcion Descripción detallada del lugar o actividad.
+ * @property tipoJuego Identificador del tipo de minijuego asociado (puzzle, quiz, etc.).
+ * @property orden Orden de la parada en la ruta.
+ * @property imagenUrl URL de la imagen representativa (puede ser local o remota).
+ * @property estado Estado de progreso actual ("bloqueada", "activa", "completada").
+ * @property ultimaActualizacion Timestamp de la última vez que se sincronizó este registro.
+ * @author Diego, Gaizka, Xiker
  */
 @Entity(tableName = "paradas")
 data class ParadaEntity(
@@ -25,7 +39,10 @@ data class ParadaEntity(
     val ultimaActualizacion: Long = System.currentTimeMillis()
 ) {
     /**
-     * Convierte ParadaEntity (Room) a Parada (domain model usado en la app)
+     * Convierte esta entidad de base de datos al modelo de dominio [Parada].
+     * Realiza la transformación de estados de String a Enum [EstadoParada].
+     *
+     * @return Objeto [Parada] listo para ser usado por la UI o lógica de negocio.
      */
     fun toParada(): Parada {
         return Parada(

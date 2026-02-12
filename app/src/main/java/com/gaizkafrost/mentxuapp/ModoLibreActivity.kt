@@ -19,6 +19,14 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.launch
 
+/**
+ * Actividad que permite al usuario volver a jugar a los minijuegos de cualquier parada
+ * sin restricciones de orden, una vez haya completado la ruta principal.
+ *
+ * Muestra el estado de bloqueo/desbloqueo global y los récords obtenidos en cada juego.
+ *
+ * @author Diego, Gaizka, Xiker
+ */
 class ModoLibreActivity : BaseMenuActivity() {
 
     private lateinit var userPrefs: UserPreferences

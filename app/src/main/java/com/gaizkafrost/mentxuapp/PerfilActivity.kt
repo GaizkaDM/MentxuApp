@@ -10,6 +10,16 @@ import com.gaizkafrost.mentxuapp.data.local.preferences.UserPreferences
 import com.gaizkafrost.mentxuapp.data.repository.ParadasRepositoryMejorado
 import kotlinx.coroutines.launch
 
+/**
+ * Actividad que muestra la información del perfil del usuario.
+ *
+ * Muestra:
+ * - Avatar y nombre del usuario.
+ * - Estadísticas globales (paradas completadas, puntuación total).
+ * - Opciones de configuración (Ajustes) y cierre de sesión.
+ *
+ * @author Diego, Gaizka, Xiker
+ */
 class PerfilActivity : BaseMenuActivity() {
 
     private lateinit var userPrefs: UserPreferences
